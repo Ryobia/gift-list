@@ -1,6 +1,7 @@
 :root {
   --color1: #220c37;
   --color2: #c8c8c8;
+  --color3: #39274b;
 }
 
 * {
@@ -17,7 +18,7 @@ header {
   display: flex;
   justify-content: space-between;
   background-color: var(--color1);
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 1em;
   margin: 1em;
   color: white;
@@ -25,7 +26,7 @@ header {
 }
 
 header h1 {
-  font-size: 40px;
+  font-size: 48px;
 }
 
 nav *{
@@ -39,17 +40,60 @@ nav *:hover {
 }
 
 .homeSection {
+  margin-top: 3em;
   display: flex;
   width: 100%;
-  height: 100%;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.homeSection div {
+.insetBtn {
+  border-radius: 5px;
+    border: solid 2px var(--color1);
+    padding: .25em .8em;
+    margin: .5em;
+    transition: .25s;
+    background-color: var(--color1);
+}
+
+.insetBtn:hover {
+  box-shadow: inset 0 0 0 2em var(--color3);
+    cursor: pointer;
+}
+
+.homeSection a {
   width: 45%;
   color: white;
   border-radius: 5px;
+  height: 100%;
+  margin: 1em;
+  background-color: var(--color1);
+  text-align: center;
+}
+
+.homeSection div:hover {
+  background-color: var(--color3);
+  cursor: pointer;
+}
+
+.homeSection div h1 {
+  padding: 2em;
+  font-size: 35px;
+}
+ /* MY LISTS----------------------------------------------------------------------------------------------------------------------------------- */
+
+.sectionTitle {
+  margin-top: 3em;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.sectionTitleDiv {
+  width: 25%;
+  color: white;
+  border-radius: 5px;
+  padding: 2em;
   height: 100%;
   margin: 1em;
   background-color: var(--color1);
