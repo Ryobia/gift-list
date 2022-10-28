@@ -10,9 +10,9 @@ const Home = () => {
           <h1>MY LISTS</h1>
         </div>
         </Link>
-        <Link to="/groups">
+        <Link to="/createList">
         <div className="insetBtn">
-          <h1>CREATE GROUP</h1>
+          <h1>CREATE LIST</h1>
         </div>
         </Link>
         <Link to="/profile">

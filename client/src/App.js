@@ -9,7 +9,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 import Home from "./pages/Home";
-import Group from "./pages/Group";
+import CreateList from "./pages/CreateList";
 import Profile from "./pages/Profile";
 import Lists from "./pages/Lists";
 import Friends from "./pages/Friends";
@@ -50,7 +50,7 @@ function App() {
         <Routes>
           <Route  path='/' element={<Home/>} />
           <Route  path='/lists' element={<Lists/>} />
-          <Route  path='/groups' element={<Group/>} />
+          <Route  path='/createList' element={<CreateList/>} />
           <Route  path='/profile' element={<Profile/>} />
           <Route  path='/friends' element={<Friends/>} />
           <Route  path='/login' element={<Login/>} />
