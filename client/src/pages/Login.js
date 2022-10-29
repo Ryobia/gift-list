@@ -39,16 +39,17 @@ const Login = props => {
     });
   };
 
+  if (Auth.loggedIn() === false) {
+
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-md-6">
-        <div className="card">
-          <h4 className="card-header">Login</h4>
-          <div className="card-body">
+      <section className="loginSection">
+        <div className="form-div">
+          <h4>Login</h4>
+          <div className="form-object">
             <form onSubmit={handleFormSubmit}>
               <input
                 className="form-input"
-                placeholder="Your email"
+                placeholder="Email"
                 name="email"
                 type="email"
                 id="email"
@@ -57,14 +58,14 @@ const Login = props => {
               />
               <input
                 className="form-input"
-                placeholder="******"
+                placeholder="Password"
                 name="password"
                 type="password"
                 id="password"
                 value={formState.password}
                 onChange={handleChange}
               />
-              <button className="btn d-block w-100" type="submit">
+              <button className="insetBtnInverse form-submit" type="submit">
                 Submit
               </button>
             </form>
@@ -72,9 +73,16 @@ const Login = props => {
             {error && <div>Login failed</div>}
           </div>
         </div>
-      </div>
-    </main>
+      </section>
   );
+} else {
+  return (
+    <div className="logout" onClick={() => Auth.logout()}>
+      <h2>You are already logged in</h2>
+      <h4>Click here to logout</h4>
+    </div>
+  );
+}
 };
 
 export default Login;

@@ -1,13 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+
 :root {
   --color1: #220c37;
   --color2: #c8c8c8;
   --color3: #39274b;
+  --color4: #494949;
 }
 
 * {
   padding: 0%;
   margin: 0%;
   text-decoration: none;
+  font-family: 'Kanit', sans-serif;
 }
 
 body {
@@ -61,6 +65,21 @@ nav *:hover {
     cursor: pointer;
 }
 
+.insetBtnInverse {
+  border-radius: 5px;
+    border: solid 2px var(--color2);
+    padding: .25em .8em;
+    margin: .5em;
+    transition: .25s;
+    background-color: var(--color2);
+}
+
+.insetBtnInverse:hover {
+  box-shadow: inset 0 0 0 2em var(--color4);
+  color: white;
+    cursor: pointer;
+}
+
 .homeSection a {
   width: 45%;
   color: white;
@@ -98,4 +117,44 @@ nav *:hover {
   margin: 1em;
   background-color: var(--color1);
   text-align: center;
+}
+
+/* LOGIN ******************************************************************************************************************* */
+
+.loginSection {
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  width: 100%;
+  position: fixed;
+  top: 30%;
+  justify-content: center;
+}
+
+.form-div {
+  background-color: var(--color1);
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.form-div h4 {
+  font-size: 30px;
+}
+
+.form-input {
+  width: 90%;
+  margin: auto;
+  margin-top: 1em;
+  padding: .5em;
+}
+
+.form-submit {
+  padding: .2em 2em .2em 2em;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.logout {
+  
 }
