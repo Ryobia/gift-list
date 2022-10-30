@@ -1,5 +1,5 @@
 const { AuthenticationError, UserInputError } = require("apollo-server-express");
-const { User, Score } = require("../models");
+const { User, List, Item } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -25,6 +25,9 @@ const resolvers = {
       .select("-__v -password")
       .populate('scores');
 
+    },
+    allLists: async () => {
+      return List.find()
     }
   },
 
@@ -39,7 +42,38 @@ const resolvers = {
 
       return { token, user };
     },
+    addList: async (parent, args, context) => {
+      console.log(context);
+      if (context.user) {
+        const list = await List.create(args);
 
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { lists: list._id } },
+          { new: true }
+        );
+
+        return list;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+    addItem: async (parent, args, context) => {
+      console.log(context);
+      if (context.user) {
+        const item = await Item.create(args);
+
+        await List.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { items: item._id } },
+          { new: true }
+        );
+
+        return item;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
     updateUser: async (parent, args, context) => {
       console.log(context);
       if (context.user) {

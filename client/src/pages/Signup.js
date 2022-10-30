@@ -1,70 +1,92 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_USER } from '../utils/mutations';
+import Logout from '../components/Logout';
 
 import Auth from '../utils/auth';
 
 const Signup = () => {
-  const [formState, setFormState] = useState({ username: '', email: '', password: '' });
+  const [signupState, setSignupState] = useState({ email: "", password: "" });
   const [addUser, { error }] = useMutation(ADD_USER);
 
-  // update state based on form input changes
-  const handleChange = event => {
-    const { name, value } = event.target;
+  const handleSignupSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const mutationResponse = await addUser({
+        variables: {
+          username: signupState.username,
+          email: signupState.email,
+          password: signupState.password,
+          firstName: signupState.firstName,
+          lastName: signupState.lastName,
+        },
+      });
+      const token = mutationResponse.data.addUser.token;
+      Auth.login(token);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
-    setFormState({
-      ...formState,
-      [name]: value
+
+  const handleSignupChange = (event) => {
+    const { name, value } = event.target;
+    setSignupState({
+      ...signupState,
+      [name]: value,
     });
   };
 
-  // submit form
-  const handleFormSubmit = async event => {
-    event.preventDefault();
-
-    try {
-      const { data } = await addUser({
-        variables: { ...formState }
-      });
-
-      Auth.login(data.addUser.token);
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  if (Auth.loggedIn() === false) {
+  
 
   return (
       <section className="loginSection">
         <div className="form-div">
           <h4>Sign Up</h4>
           <div className="form-object">
-            <form onSubmit={handleFormSubmit}>
+            <form onSubmit={handleSignupSubmit}>
+              <div className='form-firstLast'>
+                <input
+                className="form-input-50"
+                placeholder="First Name"
+                name="firstName"
+                type="firstName"
+                id="firstName"
+                onChange={handleSignupChange}
+                />
+                <input
+                className="form-input-50"
+                placeholder="Last Name"
+                name="lastName"
+                type="lastName"
+                id="lastName"
+                onChange={handleSignupChange}
+                />
+              </div>
               <input
                 className="form-input"
-                placeholder="Your username"
+                placeholder="Username"
                 name="username"
                 type="username"
                 id="username"
-                value={formState.username}
-                onChange={handleChange}
+                onChange={handleSignupChange}
               />
               <input
                 className="form-input"
-                placeholder="Your email"
+                placeholder="Email"
                 name="email"
                 type="email"
                 id="email"
-                value={formState.email}
-                onChange={handleChange}
+                onChange={handleSignupChange}
               />
               <input
                 className="form-input"
-                placeholder="******"
+                placeholder="Password"
                 name="password"
                 type="password"
                 id="password"
-                value={formState.password}
-                onChange={handleChange}
+                onChange={handleSignupChange}
               />
               <button className="insetBtnInverse form-submit" type="submit">
                 Submit
@@ -76,6 +98,11 @@ const Signup = () => {
         </div>
       </section>
   );
+} else {
+  return (
+    <Logout/>
+  );
+}
 };
 
 export default Signup;

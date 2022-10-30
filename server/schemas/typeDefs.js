@@ -8,17 +8,24 @@ const typeDefs = gql`
     lastName: String
     email: String!
     dateJoined: String
-    scores: [Score]
+    lists: [List]
   }
 
-  type Score {
+  type List {
     _id: ID
-    game: String
-    score: Float
-    scoreType: String
-    scoreDate: String
-    scoreUser: String
-    hint: Boolean
+    listDate: String
+    listUser: String
+    listName: String
+    items: [Item]
+  }
+
+  type Item {
+    _id: ID
+    itemDate: String
+    itemUser: String
+    itemName: String!
+    itemDetails: String
+    itemPrice: Float
   }
 
 
@@ -31,8 +38,7 @@ const typeDefs = gql`
     me: User
     users: [User]
     user(_id: ID!): User
-    allScores: [Score]
-
+    allLists: [List]
 
   }
 
@@ -45,8 +51,8 @@ const typeDefs = gql`
       email: String!
       password: String!
     ): Auth
-    addScore(game: String, score: Float, scoreType: String, scoreUser: String, hint: Boolean): Score
-
+    addList(listDate: String, listUser: String, listName: String): List
+    addItem(itemDate: String, itemUser: String, itemName: String, itemDetails: String, itemPrice: Float): Item
 
     updateUser(
       

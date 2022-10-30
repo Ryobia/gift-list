@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { LOGIN } from '../utils/mutations';
+import Logout from '../components/Logout';
 
 import Auth from '../utils/auth';
 
@@ -77,10 +78,8 @@ const Login = props => {
   );
 } else {
   return (
-    <div className="logout" onClick={() => Auth.logout()}>
-      <h2>You are already logged in</h2>
-      <h4>Click here to logout</h4>
-    </div>
+    <Logout/>
+
   );
 }
 };

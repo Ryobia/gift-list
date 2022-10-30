@@ -149,12 +149,20 @@ nav *:hover {
   padding: .5em;
 }
 
+.form-input-50 {
+  width: 40%;
+  margin: auto;
+  margin-top: 1em;
+  padding: .5em;
+}
+
+.form-firstLast {
+  display: flex;
+}
+
 .form-submit {
   padding: .2em 2em .2em 2em;
   font-weight: bold;
   font-size: 16px;
 }
 
-.logout {
-  
-}

@@ -34,7 +34,13 @@ const userSchema = new Schema(
     dateJoined: {
       type: Date,
       default: Date.now
-    }
+    },
+    lists: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'List'
+      }
+    ]
   },
   {
     toJSON: {
