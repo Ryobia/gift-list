@@ -166,3 +166,32 @@ nav *:hover {
   font-size: 16px;
 }
 
+/* CREATE LIST **************************************________*_*__*__*_***&_*(_*%(^&_*(_(#%^_&*($_&*($_^&*(_$ */
+
+.createGroupSection {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.createListDiv {
+  background-color: var(--color1);
+  padding: 1em;
+  border-radius: 5px;
+  width: 25%;
+  padding: 2em;
+  margin: 1em;
+  align-self: flex-start;
+}
+
+.createListDiv form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contentDiv {
+  background-color: var(--color1);
+  text-align: center;
+}
+

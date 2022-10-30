@@ -5,37 +5,62 @@ import { useQuery } from "@apollo/react-hooks";
 import { QUERY_ME, QUERY_ALL_LISTS } from "../utils/queries";
 import { Link } from "react-router-dom";
 
-
-
 const CreateList = () => {
+  const [formState, setFormState] = useState({ name: "" });
   const [addList, { error }] = useMutation(ADD_LIST);
   const { loading, error: meError, data: meData } = useQuery(QUERY_ME);
-  const { data: listData} = useQuery(QUERY_ALL_LISTS);
+  const { data: listData } = useQuery(QUERY_ALL_LISTS);
 
-  const handleAddList = async () => {
-    console.log(meData.me)
-    console.log(listData)
-    try {
-      const mutationResponse = await addList({
-        variables: {
-          listUser: meData.me.username,
-          listName: 'test'
-        },
-      });
-      console.log(mutationResponse);
-    } catch (e) {
-      console.log(e);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleAddList = async (event) => {
+    event.preventDefault();
+    if (formState.name !== "") {
+      try {
+        const mutationResponse = await addList({
+          variables: {
+            listUser: meData.me.username,
+            listName: formState.name,
+          },
+        });
+        console.log(mutationResponse);
+      } catch (e) {
+        console.log(e);
+      }
     }
-  }
-
+  };
 
   return (
-      <section className="createGroupSection sectionTitle">
+    <section className="createGroupSection sectionTitle">
       <div className="sectionTitleDiv">
         <h2>CREATE LIST</h2>
-        <button className="insetBtn" onClick={handleAddList}>ADD LIST</button>
       </div>
-      </section>
+
+      
+      <div className="createListDiv">
+        <form onSubmit={handleAddList}>
+          <input
+            className="form-input"
+            placeholder="Name your list"
+            name="name"
+            type="name"
+            id="name"
+            onChange={handleChange}
+          />
+
+          <button className="insetBtnInverse" type="submit">
+            Create New List
+          </button>
+        </form>
+      </div>
+    </section>
   );
 };
 
