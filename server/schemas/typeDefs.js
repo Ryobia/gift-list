@@ -53,7 +53,6 @@ const typeDefs = gql`
     ): Auth
     addList(listDate: String, listUser: String, listName: String): List
     addItem(itemDate: String, itemUser: String, itemName: String, itemDetails: String, itemPrice: Float): Item
-
     updateUser(
       
       username: String

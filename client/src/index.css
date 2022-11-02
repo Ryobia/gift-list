@@ -101,7 +101,7 @@ nav *:hover {
 }
  /* MY LISTS----------------------------------------------------------------------------------------------------------------------------------- */
 
-.sectionTitle {
+.sectionMain {
   margin-top: 3em;
   display: flex;
   width: 100%;
@@ -109,11 +109,9 @@ nav *:hover {
 }
 
 .sectionTitleDiv {
-  width: 25%;
   color: white;
   border-radius: 5px;
   padding: 2em;
-  height: 100%;
   margin: 1em;
   background-color: var(--color1);
   text-align: center;
@@ -195,3 +193,34 @@ nav *:hover {
   text-align: center;
 }
 
+/* LISTS )(!)@#(!)@()()()()()(((((((()))))))!@(#)!($)!*%)*^)!*#$)^!*#$%)!*#^$)!*^#)!*^)#*$^)!#*$^)!#*^$ */
+
+.myListLeft {
+  width: 30%;
+}
+
+.myListSection {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.listDiv {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.listDiv a {
+  background-color: var(--color1);
+  color: white;
+  text-align: center;
+  width: 90%;
+  padding: 1em;
+  margin-top: 1em;
+  border-radius: 5px;
+}
+
+.listDiv a:hover {
+  background-color: var(--color3);
+  scale: 1.01;
+}

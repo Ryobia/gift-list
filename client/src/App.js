@@ -9,13 +9,13 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 import Home from "./pages/Home";
-import CreateList from "./pages/CreateList";
 import Profile from "./pages/Profile";
 import Lists from "./pages/Lists";
 import Friends from "./pages/Friends";
 import Login from "./pages/Login";
 import NoMatch from "./pages/NoMatch";
 import Signup from "./pages/Signup";
+import SingleList from "./pages/SingleList";
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -50,7 +50,7 @@ function App() {
         <Routes>
           <Route  path='/' element={<Home/>} />
           <Route  path='/lists' element={<Lists/>} />
-          <Route  path='/createList' element={<CreateList/>} />
+          <Route  path='/lists/:id' element={<SingleList/>} />
           <Route  path='/profile' element={<Profile/>} />
           <Route  path='/friends' element={<Friends/>} />
           <Route  path='/login' element={<Login/>} />

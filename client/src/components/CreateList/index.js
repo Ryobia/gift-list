@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import { ADD_LIST } from "../utils/mutations";
+import { ADD_LIST } from "../../utils/mutations";
 import { useQuery } from "@apollo/react-hooks";
-import { QUERY_ME, QUERY_ALL_LISTS } from "../utils/queries";
+import { QUERY_ME, QUERY_ALL_LISTS } from "../../utils/queries";
 import { Link } from "react-router-dom";
 
 const CreateList = () => {
@@ -38,13 +38,11 @@ const CreateList = () => {
   };
 
   return (
-    <section className="createGroupSection sectionTitle">
+    <section>
       <div className="sectionTitleDiv">
-        <h2>CREATE LIST</h2>
-      </div>
+        <h2>CREATE NEW LIST</h2>
 
       
-      <div className="createListDiv">
         <form onSubmit={handleAddList}>
           <input
             className="form-input"
