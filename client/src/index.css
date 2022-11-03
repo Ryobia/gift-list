@@ -5,6 +5,7 @@
   --color2: #c8c8c8;
   --color3: #39274b;
   --color4: #494949;
+  --color5: #494949;
 }
 
 * {
@@ -14,8 +15,13 @@
   font-family: 'Kanit', sans-serif;
 }
 
+html {
+  height: 1vh;
+  
+}
+
 body {
-  background-color: var(--color2);
+  background: var(--color2)
 }
  
 header {
@@ -119,7 +125,7 @@ nav *:hover {
   border-radius: 5px;
   padding: 2em;
   margin: 1em;
-  background-color: var(--color1);
+  background-color: var(--color4);
   text-align: center;
 }
 
@@ -200,7 +206,14 @@ nav *:hover {
 }
 
 /* LISTS )(!)@#(!)@()()()()()(((((((()))))))!@(#)!($)!*%)*^)!*#$)^!*#$%)!*#^$)!*^#)!*^)#*$^)!#*$^)!#*^$ */
-
+.createListComponent {
+  color: white;
+  border-radius: 5px;
+  padding: 2em;
+  margin: 1em;
+  background-color: var(--color1);
+  text-align: center;
+}
 .myListLeft {
   width: 30%;
 }

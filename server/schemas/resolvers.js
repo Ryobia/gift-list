@@ -66,14 +66,19 @@ const resolvers = {
     },
 
     removeList: async (parent, {_id}, context) => {
-      console.log(context.user);
+      console.log(context);
       if (context.user) {
-        const updatedUserLists = await List.findOneAndRemove(
-          {_id: _id},
-          {new: true, runValidators: true}
-        ).populate('lists');
-        return updatedUserLists;
+
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $pull: { lists: _id } },
+          { new: true, multi: true }
+        );
+
+        return updatedUser;
       }
+
+      throw new AuthenticationError("Not logged in");
     },
     addItem: async (parent, args, context) => {
       console.log(context);

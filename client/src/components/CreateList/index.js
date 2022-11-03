@@ -39,7 +39,7 @@ const CreateList = () => {
 
   return (
     <section>
-      <div className="sectionTitleDiv">
+      <div className="createListComponent">
         <h2>CREATE NEW LIST</h2>
 
       

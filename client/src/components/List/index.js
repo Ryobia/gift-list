@@ -15,7 +15,7 @@ const List = (props) => {
   return (
     <section className="listComponent">
       <div>
-        <h3>{list.listName}</h3>
+        <h2>{list.listName}</h2>
         <p>
           {new Date(parseInt(list.listDate)).toLocaleDateString(
             "en-US",
