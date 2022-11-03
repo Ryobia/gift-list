@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 const List = (props) => {
   const { list } = props;
   let dateOptions = {
@@ -10,9 +11,10 @@ const List = (props) => {
     year: "2-digit",
     minute: "2-digit",
   };
+
   return (
     <section className="listComponent">
-      
+      <div>
         <h3>{list.listName}</h3>
         <p>
           {new Date(parseInt(list.listDate)).toLocaleDateString(
@@ -21,6 +23,7 @@ const List = (props) => {
           )}
         </p>
         <p>Created by: {list.listUser}</p>
+      </div>
       
     </section>
   );

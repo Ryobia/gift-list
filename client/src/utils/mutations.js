@@ -59,3 +59,12 @@ export const ADD_ITEM = gql`
   }
 
 `;
+
+export const REMOVE_LIST = gql`
+  mutation removeList($_id: ID!) {
+    removeList(_id: $_id) {
+      _id
+      }
+    }
+  
+`;

@@ -26,6 +26,12 @@ const resolvers = {
       .populate('scores');
 
     },
+    list: async (parent, { _id }) => {
+      return List.findById(_id)
+      .select("-__v")
+      .populate('items');
+
+    },
     allLists: async () => {
       return List.find()
     }
@@ -57,6 +63,17 @@ const resolvers = {
       }
 
       throw new AuthenticationError("Not logged in");
+    },
+
+    removeList: async (parent, {_id}, context) => {
+      console.log(context.user);
+      if (context.user) {
+        const updatedUserLists = await List.findOneAndRemove(
+          {_id: _id},
+          {new: true, runValidators: true}
+        ).populate('lists');
+        return updatedUserLists;
+      }
     },
     addItem: async (parent, args, context) => {
       console.log(context);

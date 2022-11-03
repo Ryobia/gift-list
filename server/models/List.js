@@ -21,6 +21,11 @@ const listSchema = new Schema(
   }
 );
 
+listSchema.pre('deleteMany', function(next) {
+  var list = this;
+  list.model('Assignment').deleteOne({ list: list._id }, next);
+});
+
 const List = model('List', listSchema);
 
 module.exports = List;

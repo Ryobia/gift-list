@@ -38,6 +38,7 @@ const typeDefs = gql`
     me: User
     users: [User]
     user(_id: ID!): User
+    list(_id: ID): List
     allLists: [List]
 
   }
@@ -53,6 +54,8 @@ const typeDefs = gql`
     ): Auth
     addList(listDate: String, listUser: String, listName: String): List
     addItem(itemDate: String, itemUser: String, itemName: String, itemDetails: String, itemPrice: Float): Item
+    removeList(_id: ID!): User
+
     updateUser(
       
       username: String
