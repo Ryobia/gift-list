@@ -5,6 +5,7 @@
   --color2: #c8c8c8;
   --color3: #39274b;
   --color4: #494949;
+  --color5: #494949;
 }
 
 * {
@@ -14,8 +15,13 @@
   font-family: 'Kanit', sans-serif;
 }
 
+html {
+  height: 1vh;
+  
+}
+
 body {
-  background-color: var(--color2);
+  background: var(--color2)
 }
  
 header {
@@ -41,6 +47,12 @@ nav *{
 
 nav *:hover {
   color: #c8c8c8;
+}
+
+.loader {
+  margin-top: 15em;
+  display: flex;
+  justify-content: center;
 }
 
 .homeSection {
@@ -101,7 +113,7 @@ nav *:hover {
 }
  /* MY LISTS----------------------------------------------------------------------------------------------------------------------------------- */
 
-.sectionTitle {
+.sectionMain {
   margin-top: 3em;
   display: flex;
   width: 100%;
@@ -109,13 +121,11 @@ nav *:hover {
 }
 
 .sectionTitleDiv {
-  width: 25%;
   color: white;
   border-radius: 5px;
   padding: 2em;
-  height: 100%;
   margin: 1em;
-  background-color: var(--color1);
+  background-color: var(--color4);
   text-align: center;
 }
 
@@ -166,3 +176,107 @@ nav *:hover {
   font-size: 16px;
 }
 
+/* CREATE LIST **************************************________*_*__*__*_***&_*(_*%(^&_*(_(#%^_&*($_&*($_^&*(_$ */
+
+.createGroupSection {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.createListDiv {
+  background-color: var(--color1);
+  padding: 1em;
+  border-radius: 5px;
+  width: 25%;
+  padding: 2em;
+  margin: 1em;
+  align-self: flex-start;
+}
+
+.createListDiv form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contentDiv {
+  background-color: var(--color1);
+  text-align: center;
+}
+
+/* LISTS )(!)@#(!)@()()()()()(((((((()))))))!@(#)!($)!*%)*^)!*#$)^!*#$%)!*#^$)!*^#)!*^)#*$^)!#*$^)!#*^$ */
+.createListComponent {
+  color: white;
+  border-radius: 5px;
+  padding: 2em;
+  margin: 1em;
+  background-color: var(--color1);
+  text-align: center;
+}
+.myListLeft {
+  width: 30%;
+}
+
+.myListSection {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.listDiv {
+  width: 100%;
+}
+
+.listDiv div {
+  margin: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.listDiv div a {
+  background-color: var(--color1);
+  color: white;
+  text-align: center;
+  width: 90%;
+  padding: 1em;
+  margin-top: 1em;
+  border-radius: 5px;
+}
+
+.listDiv div a:hover {
+  background-color: var(--color3);
+  scale: 1.01;
+}
+
+.reactTrash {
+  background-color: var(--color1);
+  color: white;
+  padding: 1em;
+  border-radius: 5px;
+  transition: .2s;
+}
+
+.reactTrash:hover {
+  cursor: pointer;
+  background-color: var(--color3);
+  color: var(--color2);
+  scale: 1.1;
+}
+
+.listComponent div {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.listComponent div * {
+  width: 100%;
+}
+
+
+.singleListSection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

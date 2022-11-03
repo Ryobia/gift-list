@@ -4,10 +4,7 @@ import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
 
 const Logout = () => {
-  const logout = (event) => {
-    event.preventDefault();
-    Auth.logout();
-  };
+
 
   return (
     <section className="loginSection" >
