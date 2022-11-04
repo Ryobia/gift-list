@@ -14,11 +14,17 @@ export const QUERY_ME = gql`
         listDate
         listUser
         listName
+        items {
+          itemDate
+          itemUser
+          itemName
+          itemDetails
+          itemPrice
+        }
       }
     }
   }
 `;
-
 
 export const QUERY_ALL_USERS = gql`
   {
@@ -33,13 +39,13 @@ export const QUERY_ALL_USERS = gql`
 `;
 
 export const QUERY_LIST = gql`
-
   query list($_id: ID!) {
     list(_id: $_id) {
       listDate
       listUser
       listName
       items {
+        _id
         itemDate
         itemUser
         itemName
@@ -48,7 +54,6 @@ export const QUERY_LIST = gql`
       }
     }
   }
-
 `;
 
 export const QUERY_ALL_LISTS = gql`
@@ -58,6 +63,19 @@ export const QUERY_ALL_LISTS = gql`
       listDate
       listUser
       listName
+    }
+  }
+`;
+
+export const QUERY_ALL_ITEMS = gql`
+  {
+    allItems {
+      _id
+      itemName
+      itemDetails
+      itemPrice
+      itemDate
+      itemUser
     }
   }
 `;

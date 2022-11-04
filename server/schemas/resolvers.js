@@ -8,7 +8,7 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select("-__v -password")
-          .populate("scores");
+          .populate("lists", "items");
 
         return userData;
       }
@@ -23,7 +23,7 @@ const resolvers = {
     user: async (parent, { _id }) => {
       return User.findById(_id)
       .select("-__v -password")
-      .populate('scores');
+      .populate('lists', "items");
 
     },
     list: async (parent, { _id }) => {
@@ -34,6 +34,10 @@ const resolvers = {
     },
     allLists: async () => {
       return List.find()
+    },
+    
+    allItems: async () => {
+      return Item.find()
     }
   },
 
@@ -73,7 +77,7 @@ const resolvers = {
           { _id: context.user._id },
           { $pull: { lists: _id } },
           { new: true, multi: true }
-        );
+        ).populate('lists', 'items');
 
         return updatedUser;
       }
@@ -81,12 +85,14 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
     addItem: async (parent, args, context) => {
-      console.log(context);
+      const { listId, ...rest} = args;
       if (context.user) {
+        console.log(args);
+
         const item = await Item.create(args);
 
         await List.findByIdAndUpdate(
-          { _id: context.user._id },
+          { _id: listId },
           { $push: { items: item._id } },
           { new: true }
         );

@@ -159,6 +159,10 @@ nav *:hover {
   padding: .5em;
 }
 
+.form-textarea {
+  height: 5em;
+}
+
 .form-input-50 {
   width: 40%;
   margin: auto;
@@ -174,6 +178,23 @@ nav *:hover {
   padding: .2em 2em .2em 2em;
   font-weight: bold;
   font-size: 16px;
+}
+
+.needLoginSection {
+  background-color: var(--color4);
+  width: 40%;
+  margin: auto;
+  padding: 1em;
+  margin-top: 15em;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.needLoginSection a h3 {
+  padding: .5em;
+  color: white;
+  
 }
 
 /* CREATE LIST **************************************________*_*__*__*_***&_*(_*%(^&_*(_(#%^_&*($_&*($_^&*(_$ */
@@ -272,11 +293,4 @@ nav *:hover {
 
 .listComponent div * {
   width: 100%;
-}
-
-
-.singleListSection {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 }
