@@ -13,20 +13,20 @@ const Item = (props) => {
   };
 
   return (
-    <section className="listComponent">
-      <div>
-        
-      <h2>{item.itemName}</h2>
-      <h2>{item.itemPrice}</h2>
-      <h2>{item.itemDetails}</h2>
-        <p>
-          {new Date(parseInt(item.itemDate)).toLocaleDateString(
+    <section className="itemComponent">
+      <span className="itemDiv">
+            <h2>{item.itemName}</h2>
+            <h2>Price: {item.itemPrice}</h2>
+            <p>Added: 
+          {' ' + new Date(parseInt(item.itemDate)).toLocaleDateString(
             "en-US",
             dateOptions
           )}
         </p>
-        <p>Created by: {item.itemUser}</p>
-      </div>
+      
+      <h4>{item.itemDetails}</h4>
+        
+      </span>
       
     </section>
   );

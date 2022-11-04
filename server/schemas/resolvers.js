@@ -32,6 +32,10 @@ const resolvers = {
       .populate('items');
 
     },
+    item: async (parent, { _id }) => {
+      return Item.findById(_id)
+      .select("-__v");
+    },
     allLists: async () => {
       return List.find()
     },

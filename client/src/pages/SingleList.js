@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { QUERY_LIST, QUERY_ALL_ITEMS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
@@ -70,12 +71,14 @@ const SingleList = () => {
             <CreateItem listId={listId} />
           </div>
           {data ? (
-          <div className="listDiv">
+          <div className="itemMapDiv">
             {itemsArray.map((item) => (
               <div key={item._id}>
-                <div className="insetBtn">
+                <Link 
+                to={`/lists/${listId}/${item._id}`}
+                className="insetBtn">
                   <Item item={item} />
-                </div>
+                </Link>
                 <span
                   onClick={() => handleRemoveItem(item._id)}
                   className="reactTrash"

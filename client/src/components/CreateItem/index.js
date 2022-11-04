@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const CreateItem = () => {
   const { id: listId } = useParams();
 
-  const [formState, setFormState] = useState({ name: "", details: "", price: 0 });
+  const [formState, setFormState] = useState({ name: "", details: "", link: "", price: 0 });
   const [addItem, { error }] = useMutation(ADD_ITEM);
   const { loading, error: meError, data: meData } = useQuery(QUERY_ME);
   
@@ -33,6 +33,7 @@ const CreateItem = () => {
             listId: listId,
             itemUser: meData.me.username,
             itemName: formState.name,
+            itemLink: formState.link,
             itemDetails: formState.details,
             itemPrice: parseInt(formState.price, 10)
           },
@@ -65,6 +66,14 @@ const CreateItem = () => {
             name="details"
             type="name"
             id="details"
+            onChange={handleChange}
+          />
+          <input
+            className="form-input"
+            placeholder="Paste link to item here"
+            name="link"
+            type="name"
+            id="link"
             onChange={handleChange}
           />
           <input

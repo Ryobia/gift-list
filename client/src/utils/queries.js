@@ -15,11 +15,7 @@ export const QUERY_ME = gql`
         listUser
         listName
         items {
-          itemDate
-          itemUser
           itemName
-          itemDetails
-          itemPrice
         }
       }
     }
@@ -49,9 +45,25 @@ export const QUERY_LIST = gql`
         itemDate
         itemUser
         itemName
+        itemLink
         itemDetails
         itemPrice
       }
+    }
+  }
+`;
+
+export const QUERY_ITEM = gql`
+  query item($_id: ID!) {
+    item(_id: $_id) {
+        _id
+        itemDate
+        itemUser
+        itemLink
+        itemName
+        itemDetails
+        itemPrice
+        purchased
     }
   }
 `;
@@ -73,6 +85,7 @@ export const QUERY_ALL_ITEMS = gql`
       _id
       itemName
       itemDetails
+      itemLink
       itemPrice
       itemDate
       itemUser
