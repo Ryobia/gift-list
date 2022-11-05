@@ -67,12 +67,12 @@ nav *:hover {
   border: solid 2px var(--color1);
   padding: 0.25em 0.8em;
   margin: 0.5em;
-  transition: 0.25s;
+  transition: 0.3s;
   background-color: var(--color1);
 }
 
 .insetBtn:hover {
-  box-shadow: inset 0 0 0 2em var(--color3);
+  box-shadow: inset 0 0 0 2.5em var(--color3);
   cursor: pointer;
 }
 
@@ -233,6 +233,10 @@ nav *:hover {
   background-color: var(--color1);
   text-align: center;
 }
+
+.editItem:hover {
+  background-color: var(--color3);
+}
 .myListLeft {
   width: 30%;
 }
@@ -293,10 +297,6 @@ nav *:hover {
   width: 100%;
 }
 
-
-
-
-
 .itemMapDiv {
   display: flex;
   flex-wrap: wrap;
@@ -336,7 +336,35 @@ nav *:hover {
   width: 100%;
 }
 
-.itemDiv h2, p {
+.itemDiv h2, .itemDiv p {
   width: 100%;
   text-align: center;
+}
+
+.singleItemTitleDiv h1, .singleItemTitleDiv p {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.singleItemDetails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.singleItemDetails span {
+  width: 100%;
+  text-align: center;
+}
+
+.myItem {
+  min-width: 30%;
+  width: fit-content;
+  max-width: 90%;
+}
+
+.linkSpan {
+  font-size: 12px;
 }
