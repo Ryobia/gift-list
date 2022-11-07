@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CreateList from "../components/CreateList";
 import NeedLogin from "../components/NeedLogin";
 import Loader from "../components/Loader";
@@ -16,6 +16,7 @@ const Lists = () => {
   let me = [];
   const [removeList, { error }] = useMutation(REMOVE_LIST);
 
+  const navigate = useNavigate();
   const handleRemoveList = async (_id) => {
     try {
       const response = await removeList({
@@ -23,6 +24,8 @@ const Lists = () => {
           _id: _id,
         },
       });
+      navigate(0);
+      console.log(response);
     } catch (err) {
       console.log(err);
     }

@@ -24,12 +24,14 @@ const SingleItem = () => {
 
   const getIsItemLoaded = () => {
     if (data) {
+        console.log(data.item)
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
     getIsItemLoaded();
+
   }, [data]);
 
   return (

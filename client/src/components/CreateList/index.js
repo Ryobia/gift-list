@@ -3,9 +3,10 @@ import { useMutation } from "@apollo/react-hooks";
 import { ADD_LIST } from "../../utils/mutations";
 import { useQuery } from "@apollo/react-hooks";
 import { QUERY_ME, QUERY_ALL_LISTS } from "../../utils/queries";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const CreateList = () => {
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({ name: "" });
   const [addList, { error }] = useMutation(ADD_LIST);
   const { loading, error: meError, data: meData } = useQuery(QUERY_ME);
@@ -30,6 +31,7 @@ const CreateList = () => {
             listName: formState.name,
           },
         });
+        navigate(0);
         console.log(mutationResponse);
       } catch (e) {
         console.log(e);

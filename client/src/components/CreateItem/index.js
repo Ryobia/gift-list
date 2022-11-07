@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { ADD_ITEM } from "../../utils/mutations";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import { QUERY_ME } from "../../utils/queries";
-import { Link } from "react-router-dom";
 
 const CreateItem = () => {
   const { id: listId } = useParams();
 
-  const [formState, setFormState] = useState({ name: "", details: "", link: "", price: 0 });
+  const navigate = useNavigate();
+  const [formState, setFormState] = useState({
+    name: "",
+    details: "",
+    link: "",
+    price: 0,
+  });
   const [addItem, { error }] = useMutation(ADD_ITEM);
   const { loading, error: meError, data: meData } = useQuery(QUERY_ME);
-  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -25,7 +29,7 @@ const CreateItem = () => {
 
   const handleAddItem = async (event) => {
     event.preventDefault();
-    console.log(formState)
+    console.log(formState);
     if (formState.name !== "") {
       try {
         const mutationResponse = await addItem({
@@ -35,9 +39,10 @@ const CreateItem = () => {
             itemName: formState.name,
             itemLink: formState.link,
             itemDetails: formState.details,
-            itemPrice: parseInt(formState.price, 10)
+            itemPrice: parseInt(formState.price, 10),
           },
         });
+        navigate(0);
         console.log(mutationResponse);
       } catch (e) {
         console.log(e);
@@ -50,8 +55,8 @@ const CreateItem = () => {
       <div className="createListComponent">
         <h2>ADD NEW ITEM</h2>
 
-      
         <form onSubmit={handleAddItem}>
+          <label htmlFor="name">Item Name</label>
           <input
             className="form-input"
             placeholder="Name this item"
@@ -60,14 +65,16 @@ const CreateItem = () => {
             id="name"
             onChange={handleChange}
           />
+          <label htmlFor="details">Item Details</label>
           <textarea
             className="form-input form-textarea"
-            placeholder="Item Details..."
+            placeholder="Item Details... Include coupon codes etc. here"
             name="details"
             type="name"
             id="details"
             onChange={handleChange}
           />
+          <label htmlFor="link">Item Link</label>
           <input
             className="form-input"
             placeholder="Paste link to item here"
@@ -76,6 +83,7 @@ const CreateItem = () => {
             id="link"
             onChange={handleChange}
           />
+          <label htmlFor="price">Item Price</label>
           <input
             className="form-input"
             placeholder="Price"

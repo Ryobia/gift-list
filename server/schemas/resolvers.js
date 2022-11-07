@@ -106,6 +106,22 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+    
+    removeItem: async (parent, {_id, listId}, context) => {
+      console.log(context);
+      if (context.user) {
+
+        const deletedList = await List.findByIdAndUpdate(
+          { _id: listId },
+          { $pull: { items: _id } },
+          { new: true, multi: true }
+        ).populate('lists', 'items', 'users');
+
+        return deletedList;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
     updateUser: async (parent, args, context) => {
       console.log(context);
       if (context.user) {
