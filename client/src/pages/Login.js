@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/react-hooks';
-import { LOGIN } from '../utils/mutations';
-import Logout from '../components/Logout';
+import React, { useState } from "react";
+import { useMutation } from "@apollo/react-hooks";
+import { LOGIN } from "../utils/mutations";
+import Logout from "../components/Logout";
 
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
-const Login = props => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+const Login = (props) => {
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN);
 
   // update state based on form input changes
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
 
     setFormState({
       ...formState,
-      [name]: value
+      [name]: value,
     });
   };
 
   // submit form
-  const handleFormSubmit = async event => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const { data } = await login({
-        variables: { ...formState }
+        variables: { ...formState },
       });
 
       Auth.login(data.login.token);
@@ -35,19 +35,19 @@ const Login = props => {
 
     // clear form values
     setFormState({
-      email: '',
-      password: ''
+      email: "",
+      password: "",
     });
   };
 
   if (Auth.loggedIn() === false) {
-
-  return (
+    return (
       <section className="loginSection">
         <div className="form-div">
           <h4>Login</h4>
           <div className="form-object">
             <form onSubmit={handleFormSubmit}>
+              <label htmlFor="email">Email</label>
               <input
                 className="form-input"
                 placeholder="Email"
@@ -57,6 +57,7 @@ const Login = props => {
                 value={formState.email}
                 onChange={handleChange}
               />
+              <label htmlFor="password">Pasword</label>
               <input
                 className="form-input"
                 placeholder="Password"
@@ -75,13 +76,10 @@ const Login = props => {
           </div>
         </div>
       </section>
-  );
-} else {
-  return (
-    <Logout/>
-
-  );
-}
+    );
+  } else {
+    return <Logout />;
+  }
 };
 
 export default Login;

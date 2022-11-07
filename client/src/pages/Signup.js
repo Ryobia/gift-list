@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_USER } from '../utils/mutations';
 import Logout from '../components/Logout';
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 import Auth from '../utils/auth';
 
 const Signup = () => {
   const [signupState, setSignupState] = useState({ email: "", password: "" });
   const [addUser, { error }] = useMutation(ADD_USER);
+  const [togglePass2, setTogglePass2] = useState('password');
 
   const handleSignupSubmit = async (event) => {
     event.preventDefault();
@@ -27,6 +29,14 @@ const Signup = () => {
       console.log(e);
     }
   };
+
+  const handleSignUpPassToggle = () => {
+    if(togglePass2 === "password") {
+      setTogglePass2('text')
+    } else {
+      setTogglePass2('password')
+    }
+  }
 
 
   const handleSignupChange = (event) => {
@@ -80,14 +90,20 @@ const Signup = () => {
                 id="email"
                 onChange={handleSignupChange}
               />
+              <div className='pass-input'>
               <input
                 className="form-input"
                 placeholder="Password"
                 name="password"
-                type="password"
+                type={togglePass2}
                 id="password"
                 onChange={handleSignupChange}
               />
+              {togglePass2 === 'password' ? (<i onClick={handleSignUpPassToggle} id="passToggle2">< BsEyeSlash/></i>)
+              : (<i onClick={handleSignUpPassToggle} id="passToggle2">< BsEye/></i>)}
+              
+              </div>
+              
               <button className="insetBtnInverse form-submit" type="submit">
                 Submit
               </button>

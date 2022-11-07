@@ -23,9 +23,11 @@ const typeDefs = gql`
     _id: ID
     itemDate: String
     itemUser: String
-    itemName: String!
+    itemName: String
+    itemLink: String
     itemDetails: String
     itemPrice: Float
+    purchased: Boolean
   }
 
 
@@ -39,7 +41,9 @@ const typeDefs = gql`
     users: [User]
     user(_id: ID!): User
     list(_id: ID): List
+    item(_id: ID): Item
     allLists: [List]
+    allItems: [Item]
 
   }
 
@@ -53,8 +57,9 @@ const typeDefs = gql`
       password: String!
     ): Auth
     addList(listDate: String, listUser: String, listName: String): List
-    addItem(itemDate: String, itemUser: String, itemName: String, itemDetails: String, itemPrice: Float): Item
+    addItem(listId: String!, itemDate: String, itemUser: String, itemName: String, itemLink: String, itemDetails: String, itemPrice: Float, purchased: Boolean): Item
     removeList(_id: ID!): User
+    removeItem(_id: ID!, listId: String): List
 
     updateUser(
       

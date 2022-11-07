@@ -13,11 +13,18 @@ const itemSchema = new Schema(
         type: String,
         required: true,
     },
+    itemLink: {
+        type: String,
+    },
     itemDetails: {
         type: String,
     },
     itemPrice: {
         type: Number,
+    },
+    purchased: {
+      type: Boolean,
+      default: false,
     }
   }
 );

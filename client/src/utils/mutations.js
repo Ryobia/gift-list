@@ -47,8 +47,8 @@ export const ADD_LIST = gql`
 `;
 
 export const ADD_ITEM = gql`
-  mutation addItem($itemDate: String, $itemUser: String, $itemName: String, $itemDetails: String, $itemPrice: Float) {
-    addItem(itemDate: $itemDate, itemUser: $itemUser, itemName: $itemName, itemDetails: $itemDetails, itemPrice: $itemPrice) {
+  mutation addItem($listId: String!, $itemDate: String, $itemUser: String, $itemName: String, $itemLink: String, $itemDetails: String, $itemPrice: Float) {
+    addItem(listId: $listId, itemDate: $itemDate, itemUser: $itemUser, itemName: $itemName, itemLink: $itemLink, itemDetails: $itemDetails, itemPrice: $itemPrice) {
       _id
       itemDate
       itemUser
@@ -63,6 +63,15 @@ export const ADD_ITEM = gql`
 export const REMOVE_LIST = gql`
   mutation removeList($_id: ID!) {
     removeList(_id: $_id) {
+      _id
+      }
+    }
+  
+`;
+
+export const REMOVE_ITEM = gql`
+  mutation removeItem($_id: ID!, $listId: String) {
+    removeItem(_id: $_id, listId: $listId) {
       _id
       }
     }

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
 
 :root {
   --color1: #220c37;
@@ -12,18 +12,17 @@
   padding: 0%;
   margin: 0%;
   text-decoration: none;
-  font-family: 'Kanit', sans-serif;
+  font-family: "Kanit", sans-serif;
 }
 
 html {
   height: 1vh;
-  
 }
 
 body {
-  background: var(--color2)
+  background: var(--color2);
 }
- 
+
 header {
   display: flex;
   justify-content: space-between;
@@ -39,7 +38,7 @@ header h1 {
   font-size: 48px;
 }
 
-nav *{
+nav * {
   color: white;
   display: flex;
   justify-content: center;
@@ -60,36 +59,36 @@ nav *:hover {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .insetBtn {
   border-radius: 5px;
-    border: solid 2px var(--color1);
-    padding: .25em .8em;
-    margin: .5em;
-    transition: .25s;
-    background-color: var(--color1);
+  border: solid 2px var(--color1);
+  padding: 0.25em 0.8em;
+  margin: 0.5em;
+  transition: 0.3s;
+  background-color: var(--color1);
 }
 
 .insetBtn:hover {
-  box-shadow: inset 0 0 0 2em var(--color3);
-    cursor: pointer;
+  box-shadow: inset 0 0 0 2.5em var(--color3);
+  cursor: pointer;
 }
 
 .insetBtnInverse {
   border-radius: 5px;
-    border: solid 2px var(--color2);
-    padding: .25em .8em;
-    margin: .5em;
-    transition: .25s;
-    background-color: var(--color2);
+  border: solid 2px var(--color2);
+  padding: 0.25em 0.8em;
+  margin: 0.5em;
+  transition: 0.25s;
+  background-color: var(--color2);
 }
 
 .insetBtnInverse:hover {
   box-shadow: inset 0 0 0 2em var(--color4);
   color: white;
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .homeSection a {
@@ -111,7 +110,7 @@ nav *:hover {
   padding: 2em;
   font-size: 35px;
 }
- /* MY LISTS----------------------------------------------------------------------------------------------------------------------------------- */
+/* MY LISTS----------------------------------------------------------------------------------------------------------------------------------- */
 
 .sectionMain {
   margin-top: 3em;
@@ -142,6 +141,16 @@ nav *:hover {
   justify-content: center;
 }
 
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+label {
+  width: 100%;
+}
+
 .form-div {
   background-color: var(--color1);
   padding: 1em;
@@ -156,24 +165,64 @@ nav *:hover {
   width: 90%;
   margin: auto;
   margin-top: 1em;
-  padding: .5em;
+  padding: 0.5em;
+}
+
+.form-textarea {
+  height: 5em;
 }
 
 .form-input-50 {
   width: 40%;
   margin: auto;
   margin-top: 1em;
-  padding: .5em;
+  padding: 0.5em;
 }
 
 .form-firstLast {
   display: flex;
+  width: 100%;
 }
 
 .form-submit {
-  padding: .2em 2em .2em 2em;
+  padding: 0.2em 2em 0.2em 2em;
   font-weight: bold;
   font-size: 16px;
+}
+
+.pass-input {
+  display: flex;
+  width: 100%;
+  margin: auto;
+  padding: 0.5em;
+}
+
+#passToggle,
+#passToggle2 {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+#passToggle:hover,
+#passToggle2:hover {
+  cursor: pointer;
+}
+
+.needLoginSection {
+  background-color: var(--color4);
+  width: fit-content;
+  margin: auto;
+  padding: 1em;
+  margin-top: 15em;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.needLoginSection a h3 {
+  padding: 0.5em;
+  color: white;
 }
 
 /* CREATE LIST **************************************________*_*__*__*_***&_*(_*%(^&_*(_(#%^_&*($_&*($_^&*(_$ */
@@ -213,6 +262,10 @@ nav *:hover {
   margin: 1em;
   background-color: var(--color1);
   text-align: center;
+}
+
+.editItem:hover {
+  background-color: var(--color3);
 }
 .myListLeft {
   width: 30%;
@@ -254,7 +307,7 @@ nav *:hover {
   color: white;
   padding: 1em;
   border-radius: 5px;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .reactTrash:hover {
@@ -274,9 +327,74 @@ nav *:hover {
   width: 100%;
 }
 
+.itemMapDiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
 
-.singleListSection {
+.itemMapDiv div {
+  width: 40%;
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 1em;
+  height: fit-content;
+}
+
+.itemMapDiv div a {
+  width: 100%;
+  background-color: var(--color1);
+  border-radius: 5px;
+  margin: 1em;
+  color: white;
+}
+
+.itemMapDiv div a:hover {
+  background-color: var(--color3);
+}
+
+.itemMapDiv div span {
+  align-self: center;
+}
+
+.itemDiv {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding: .5em;
+  width: 100%;
+}
+
+.itemDiv h2, .itemDiv p {
+  width: 100%;
+  text-align: center;
+}
+
+.singleItemTitleDiv h1, .singleItemTitleDiv p {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.singleItemDetails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.singleItemDetails span {
+  width: 100%;
+  text-align: center;
+}
+
+.myItem {
+  min-width: 30%;
+  width: fit-content;
+  max-width: 90%;
+}
+
+.linkSpan {
+  font-size: 12px;
 }
