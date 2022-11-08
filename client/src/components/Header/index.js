@@ -20,7 +20,7 @@ const Header = () => {
       </nav>
       <nav>
         <Link className="insetBtn"to="/">
-          <h1>List.com</h1>
+          <h1>List-Maker</h1>
         </Link>
       </nav>
 

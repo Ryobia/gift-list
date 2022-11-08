@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
 
 :root {
-  --color1: #220c37;
-  --color2: #c8c8c8;
+  --color1: #1a052e;
+  --color2: #bcb8b1;
   --color3: #39274b;
-  --color4: #494949;
-  --color5: #494949;
+  --color4: #353831;
+  --color5: #AD5D4E;
+  --color6: #3E78B2;
 }
 
 * {
@@ -38,13 +39,13 @@ header h1 {
   font-size: 48px;
 }
 
-nav * {
+nav a {
   color: white;
   display: flex;
   justify-content: center;
 }
 
-nav *:hover {
+nav a:hover {
   color: #c8c8c8;
 }
 
@@ -109,6 +110,37 @@ nav *:hover {
 .homeSection div h1 {
   padding: 2em;
   font-size: 35px;
+}
+
+
+@media (max-width: 750px) {
+  .homeSection a {
+    width: 90%;
+  }
+
+  .homeSection a div h1 {
+    font-size: 28px;
+  }
+  
+}
+
+
+@media (max-width: 550px) {
+  header h1 {
+    font-size: 20px;
+  }
+
+  header {
+    padding: .25em;
+  }
+
+  .backBtnSection {
+    font-size: 10px;
+  }
+
+  header a {
+    font-size: 10px;
+  }
 }
 /* MY LISTS----------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -397,4 +429,9 @@ label {
 
 .linkSpan {
   font-size: 12px;
+}
+
+
+@media (max-width: 1000px) {
+  
 }
