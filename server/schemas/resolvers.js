@@ -1,4 +1,7 @@
-const { AuthenticationError, UserInputError } = require("apollo-server-express");
+const {
+  AuthenticationError,
+  UserInputError,
+} = require("apollo-server-express");
 const { User, List, Item } = require("../models");
 const { signToken } = require("../utils/auth");
 
@@ -8,7 +11,10 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select("-__v -password")
-          .populate("lists", "items");
+          .populate("lists")
+          .populate("items")
+          .populate("listUsers")
+          .populate("friends");
 
         return userData;
       }
@@ -17,42 +23,47 @@ const resolvers = {
     },
 
     users: async () => {
-      return User.find()
-      .select("-__v -password")
+      return User.find().select("-__v -password");
     },
-    user: async (parent, { _id }) => {
-      return User.findById(_id)
-      .select("-__v -password")
-      .populate('lists', "items");
-
+    user: async (parent, { username }) => {
+      return User.findOne({ username })
+        .select("-__v -password")
+        .populate("lists")
+        .populate("items")
+        .populate("friends");
     },
     list: async (parent, { _id }) => {
       return List.findById(_id)
-      .select("-__v")
-      .populate('items');
-
+        .select("-__v")
+        .populate("items")
+        .populate("listUsers")
+        .populate("lists");
     },
     item: async (parent, { _id }) => {
-      return Item.findById(_id)
-      .select("-__v");
+      return Item.findById(_id).select("-__v");
     },
     allLists: async () => {
       return List.find()
+      .select("-__v")
+      .populate("lists")
+      .populate("items")
+      .populate("listUsers");
     },
-    
+
     allItems: async () => {
-      return Item.find()
-    }
+      return Item.find();
+    },
   },
 
   Mutation: {
     addUser: async (parent, args) => {
       if (!args || args.password.length < 8) {
-        throw new UserInputError('All fields required and password length must be 8 characters or more.')
-      } 
+        throw new UserInputError(
+          "All fields required and password length must be 8 characters or more."
+        );
+      }
       const user = await User.create(args);
       const token = signToken(user);
-
 
       return { token, user };
     },
@@ -73,23 +84,24 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
 
-    removeList: async (parent, {_id}, context) => {
+    removeList: async (parent, { _id }, context) => {
       console.log(context);
       if (context.user) {
-
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $pull: { lists: _id } },
           { new: true, multi: true }
-        ).populate('lists', 'items');
+        ).populate("lists", "items");
 
+        await List.findByIdAndDelete({_id: _id}).populate("lists", "users");
+        
         return updatedUser;
       }
 
       throw new AuthenticationError("Not logged in");
     },
     addItem: async (parent, args, context) => {
-      const { listId, ...rest} = args;
+      const { listId, ...rest } = args;
       if (context.user) {
         console.log(args);
 
@@ -106,21 +118,50 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
-    
-    removeItem: async (parent, {_id, listId}, context) => {
+
+    addUserToList: async (parent, { _id, userId }, context) => {
+      if (context.user) {
+        console.log(userId, _id);
+
+        const updatedUserList = await List.findByIdAndUpdate(
+          { _id: _id },
+          { $addToSet: { listUsers: userId } },
+          { new: true, multi: true }
+        );
+
+        return updatedUserList;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    removeItem: async (parent, { _id, listId }, context) => {
       console.log(context);
       if (context.user) {
-
         const deletedList = await List.findByIdAndUpdate(
           { _id: listId },
           { $pull: { items: _id } },
           { new: true, multi: true }
-        ).populate('lists', 'items', 'users');
+        ).populate("lists", "items", "users");
 
         return deletedList;
       }
 
       throw new AuthenticationError("Not logged in");
+    },
+
+    addFriend: async (parent, { friendId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { friends: friendId } },
+          { new: true }
+        ).populate("friends");
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError("You need to be logged in!");
     },
     updateUser: async (parent, args, context) => {
       console.log(context);

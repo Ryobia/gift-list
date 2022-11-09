@@ -1,26 +1,41 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
-const listSchema = new Schema(
-  {
-    listDate: {
-      type: Date,
-      default: Date.now,
+const listSchema = new Schema({
+  listDate: {
+    type: Date,
+    default: Date.now,
+  },
+  listUser: {
+    type: String,
+  },
+  listName: {
+    type: String,
+  },
+  listUsers: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
-    listUser: {
-      type: String,
+  ],
+  items: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Item",
     },
-    listName: {
-      type: String,
-    },
-    items: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Item'
-        }
-    ]
+  ],
+},
+{
+  toJSON: {
+    getters: true,
+    virtuals: true
   }
+}
 );
 
-const List = model('List', listSchema);
+const List = model("List", listSchema);
+
+listSchema.virtual('listUsersCount').get(function() {
+  return this.listUsers.length;
+});
 
 module.exports = List;

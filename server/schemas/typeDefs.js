@@ -9,6 +9,7 @@ const typeDefs = gql`
     email: String!
     dateJoined: String
     lists: [List]
+    friends: [User]
   }
 
   type List {
@@ -16,7 +17,9 @@ const typeDefs = gql`
     listDate: String
     listUser: String
     listName: String
+    listUsersCount: Int
     items: [Item]
+    listUsers: [User]
   }
 
   type Item {
@@ -28,6 +31,7 @@ const typeDefs = gql`
     itemDetails: String
     itemPrice: Float
     purchased: Boolean
+    linkedItems: [Item]
   }
 
 
@@ -39,7 +43,7 @@ const typeDefs = gql`
   type Query {
     me: User
     users: [User]
-    user(_id: ID!): User
+    user(username: String!): User
     list(_id: ID): List
     item(_id: ID): Item
     allLists: [List]
@@ -60,7 +64,8 @@ const typeDefs = gql`
     addItem(listId: String!, itemDate: String, itemUser: String, itemName: String, itemLink: String, itemDetails: String, itemPrice: Float, purchased: Boolean): Item
     removeList(_id: ID!): User
     removeItem(_id: ID!, listId: String): List
-
+    addFriend(friendId: ID!): User
+    addUserToList(_id: ID!, userId: ID!): List
     updateUser(
       
       username: String
