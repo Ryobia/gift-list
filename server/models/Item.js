@@ -25,6 +25,17 @@ const itemSchema = new Schema(
     purchased: {
       type: Boolean,
       default: false,
+    },
+    linkedItems: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Item",
+      },
+    ],
+  },
+  {
+    toJSON: {
+      getters: true
     }
   }
 );

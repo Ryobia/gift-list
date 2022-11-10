@@ -60,6 +60,19 @@ export const ADD_ITEM = gql`
 
 `;
 
+
+export const ADD_USER_TO_LIST = gql`
+  mutation addUserToList($_id: ID!, $userId: ID!) {
+    addUserToList(_id: $_id, userId: $userId) {
+      _id
+      listUsersCount
+      listUsers {
+        username
+      }
+    }
+  }
+`;
+
 export const REMOVE_LIST = gql`
   mutation removeList($_id: ID!) {
     removeList(_id: $_id) {
@@ -76,4 +89,19 @@ export const REMOVE_ITEM = gql`
       }
     }
   
+`;
+
+
+export const ADD_FRIEND = gql`
+  mutation addFriend($username: String!) {
+    addFriend(username: $username) {
+      _id
+      username
+      friendCount
+      friends {
+        _id
+        username
+      }
+    }
+  }
 `;
