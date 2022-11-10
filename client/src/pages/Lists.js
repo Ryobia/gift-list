@@ -13,7 +13,8 @@ import { REMOVE_LIST } from "../utils/mutations";
 import Auth from "../utils/auth";
 const Lists = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const { loading: allListsLoading, data: allListsData} = useQuery(QUERY_ALL_LISTS);
+  const { loading: allListsLoading, data: allListsData } =
+    useQuery(QUERY_ALL_LISTS);
   const { loading, error: meError, data: meData } = useQuery(QUERY_ME);
   const [myLists, setMyLists] = useState([]);
   let me = [];
@@ -37,12 +38,14 @@ const Lists = () => {
   const getIslistLoaded = () => {
     if (meData && allListsData) {
       let arr1 = meData.me.lists;
-      let arr2 = allListsData.allLists.filter(x => x.listUsers.some(y => y.username === meData.me.username));
+      let arr2 = allListsData.allLists.filter((x) =>
+        x.listUsers.some((y) => y.username === meData.me.username)
+      );
       let arr3 = [...arr1, ...arr2];
-      
-      setMyLists(arr3)
+
+      setMyLists(arr3);
       setIsLoading(false);
-  }
+    }
   };
 
   if (meError) {
@@ -54,7 +57,6 @@ const Lists = () => {
   useEffect(() => {
     getIslistLoaded();
   }, [meData]);
-
 
   if (Auth.loggedIn() === true) {
     return (
@@ -80,12 +82,14 @@ const Lists = () => {
                     >
                       <List list={list} />
                     </Link>
-                    <span
-                      onClick={() => handleRemoveList(list._id)}
-                      className="reactTrash"
-                    >
-                      <BsTrashFill />
-                    </span>
+                    {list.listUser === meData.me.username ? (
+                      <span
+                        onClick={() => handleRemoveList(list._id)}
+                        className="reactTrash"
+                      >
+                        <BsTrashFill />
+                      </span>
+                    ) : null}
                   </div>
                 ))}
               </div>
