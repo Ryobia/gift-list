@@ -36,10 +36,13 @@ const Lists = () => {
 
   const getIslistLoaded = () => {
     if (meData && allListsData) {
-      setMyLists(allListsData.allLists.filter((e => e.listUser === meData.me.username)))
+      let arr1 = meData.me.lists;
+      let arr2 = allListsData.allLists.filter(x => x.listUsers.some(y => y.username === meData.me.username));
+      let arr3 = [...arr1, ...arr2];
+      
+      setMyLists(arr3)
       setIsLoading(false);
-    }
-    console.log(myLists);
+  }
   };
 
   if (meError) {
@@ -52,9 +55,6 @@ const Lists = () => {
     getIslistLoaded();
   }, [meData]);
 
-  useEffect(() => {
-    console.log(myLists);
-  }, [allListsData]);
 
   if (Auth.loggedIn() === true) {
     return (

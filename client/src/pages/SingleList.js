@@ -13,6 +13,7 @@ import Item from "../components/Item";
 
 const SingleList = () => {
   const [isAllowedToView, setIsAllowedToView] = useState(false);
+  const [isOwnList, setIsOwnList] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [itemsArray, setItemsArray] = useState([]);
   const { loading, error: meError, data: meData } = useQuery(QUERY_ME);
@@ -59,6 +60,9 @@ const SingleList = () => {
       ) {
         setIsAllowedToView(true);
       }
+      if (meData.me.username === data.list.listUser) {
+        setIsOwnList(true);
+      }
     }
   };
 
@@ -92,10 +96,14 @@ const SingleList = () => {
                   </span>
                 </p>
               </div>
+              {isOwnList ? 
+              <div>
               <AddUserToList listId={listId} />
               <CreateItem listId={listId} />
+              </div>
+              :null}
             </div>
-            {data ? (
+            {itemsArray.length > 0 ? (
               <div className="itemMapDiv">
                 {itemsArray.map((item) => (
                   <div key={item._id}>
@@ -105,16 +113,18 @@ const SingleList = () => {
                     >
                       <Item item={item} />
                     </Link>
+              {isOwnList ? 
                     <span
                       onClick={() => handleRemoveItem(item._id)}
                       className="reactTrash"
                     >
                       <BsTrashFill />
                     </span>
+                    :null}
                   </div>
                 ))}
               </div>
-            ) : null}
+            ) : <div>No Items have been added to this list</div>}
           </div>
         )}
       </section>

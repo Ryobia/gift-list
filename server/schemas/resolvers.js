@@ -127,7 +127,7 @@ const resolvers = {
           { _id: _id },
           { $addToSet: { listUsers: userId } },
           { new: true, multi: true }
-        );
+        ).populate("listUsers");
 
         return updatedUserList;
       }
@@ -143,6 +143,9 @@ const resolvers = {
           { $pull: { items: _id } },
           { new: true, multi: true }
         ).populate("lists", "items", "users");
+
+        await Item.findByIdAndDelete({_id: _id}).populate("lists", "users");
+
 
         return deletedList;
       }

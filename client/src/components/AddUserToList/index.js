@@ -62,7 +62,7 @@ const AddUserToList = (props) => {
             Add User
           </button>
         </form>
-          <p>*User must be in your friends list*</p>
+          {/* <p>*User must be in your friends list*</p> */}
       </div>
     </section>
   );
