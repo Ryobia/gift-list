@@ -152,6 +152,18 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+    
+    updateItem: async (parent, args, context) => {
+      console.log(args);
+      let {_id, ...rest} = args;
+      if (context.user) {
+        return await Item.findByIdAndUpdate(_id, rest, {
+          new: true, multi: true
+        }).populate("items", "lists", "users");
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
 
     addFriend: async (parent, { friendId }, context) => {
       if (context.user) {

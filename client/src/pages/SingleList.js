@@ -33,7 +33,6 @@ const SingleList = () => {
   };
 
   const handleRemoveItem = async (_id) => {
-    console.log(_id);
     try {
       const response = await removeItem({
         variables: {
@@ -52,7 +51,6 @@ const SingleList = () => {
     if (data) {
       setItemsArray(data.list.items);
       setIsLoading(false);
-      console.log(data);
       if (
         meData.me.username === data.list.listUser ||
         data.list.listUsers.filter((e) => e.username === meData.me.username)

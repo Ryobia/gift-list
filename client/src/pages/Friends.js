@@ -16,9 +16,9 @@ const Friends = () => {
   const { loading, error: meError, data: meData } = useQuery(QUERY_ME);
 
   const getIsMeLoaded = () => {
-    if (userData) {
+    if (meData) {
       setIsLoading(false);
-      console.log(userData)
+      console.log(meData)
     }
   };
 
