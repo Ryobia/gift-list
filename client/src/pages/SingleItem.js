@@ -1,19 +1,25 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { QUERY_ITEM, QUERY_ME } from "../utils/queries";
-import { useQuery } from "@apollo/client";
+import { QUERY_ITEM, QUERY_ME, QUERY_LIST } from "../utils/queries";
+import { UPDATE_ITEM } from "../utils/mutations";
+import { useMutation, useQuery } from "@apollo/client";
 import { BsTrashFill } from "react-icons/bs";
 import Loader from "../components/Loader";
 
-const SingleItem = () => {
+const SingleItem = (props) => {
   const [isOwnItem, setIsOwnItem] = useState(false);
   const [isAllowedToView, setIsAllowedToView] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const { id: itemId } = useParams();
+  const { id: itemId, listId: listId } = useParams();
+  const [updateItem, {error: updateError}] = useMutation(UPDATE_ITEM);
+  const navigate = useNavigate();
   const { error, data } = useQuery(QUERY_ITEM, {
     variables: { _id: itemId },
+  });
+  const { error: listError, data: listData } = useQuery(QUERY_LIST, {
+    variables: { _id: listId },
   });
   const { loading, error: meError, data: meData } = useQuery(QUERY_ME);
 
@@ -25,13 +31,30 @@ const SingleItem = () => {
     minute: "2-digit",
   };
 
+  const handlePurchaseItem = async () => {
+    try {
+      const response = await updateItem({
+        variables: {
+          _id: itemId,
+          purchased: true,
+        },
+      });
+      // navigate(0);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const getIsItemLoaded = () => {
     if (data && meData) {
-      console.log(data.item);
       setIsLoading(false);
+      if (listData.list.listUsers.filter((e) => e.username === meData.me.username).length > 0) 
+      {
+        setIsAllowedToView(true);
+      }
       if (meData.me.username === data.item.itemUser) {
         setIsOwnItem(true);
-        setIsAllowedToView(true);
       }
     }
   };
@@ -62,7 +85,7 @@ const SingleItem = () => {
               </p>
               <p>
                 <span>Price:</span>
-                <span></span>${data.item.itemPrice}
+                <span>${data.item.itemPrice}</span>
               </p>
               <p>
                 <span>Added by:</span>
@@ -73,14 +96,25 @@ const SingleItem = () => {
                 Details: <span>{data.item.itemDetails}</span>
               </p>
               <p className="linkSpan">
-                Link: <span>{data.item.itemLink}</span>
+                Link:{" "}
+                <a
+                  className="itemLink"
+                  target="_blank"
+                  href={data.item.itemLink}
+                >
+                  Click Here
+                </a>
               </p>
             </div>
-            {isOwnItem ? (
-              <div className="createListComponent editItem insetBtn">
-                <h2>EDIT THIS ITEM</h2>
+            {isAllowedToView && data.item.purchased == false ? (
+              <div onClick={handlePurchaseItem} className="createListComponent editItem insetBtn">
+                <h2>MARK ITEM AS PURCHASED</h2>
               </div>
-            ) : null}
+            ) : isAllowedToView && data.item.purchased == true ? (
+            <div className="createListComponent">
+                <h2>PURCHASED</h2>
+              </div>
+              ): null}
           </div>
         </div>
       )}

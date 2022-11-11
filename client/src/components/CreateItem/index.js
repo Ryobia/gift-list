@@ -29,7 +29,6 @@ const CreateItem = () => {
 
   const handleAddItem = async (event) => {
     event.preventDefault();
-    console.log(formState);
     if (formState.name !== "") {
       try {
         const mutationResponse = await addItem({
@@ -90,11 +89,12 @@ const CreateItem = () => {
             name="price"
             type="int"
             id="price"
+            maxLength="20"
             onChange={handleChange}
           />
 
           <button className="insetBtnInverse" type="submit">
-            Create New List
+            Add Item
           </button>
         </form>
       </div>

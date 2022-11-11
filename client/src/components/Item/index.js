@@ -1,8 +1,14 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
+import { QUERY_ME } from "../../utils/queries";
+import { useQuery } from "@apollo/client";
+import Loader from "../Loader";
 
 
 const Item = (props) => {
+  const { loading, error: meError, data: meData } = useQuery(QUERY_ME);
+  const [ isLoaded, setIsLoaded ] = useState(false);
+
   const { item } = props;
   let dateOptions = {
     hour: "numeric",
@@ -12,11 +18,28 @@ const Item = (props) => {
     minute: "2-digit",
   };
 
+  console.log(item)
+
+  const getIsLoaded = () => {
+    if(meData) setIsLoaded(true);
+  }
+
+  useEffect(() => {
+    getIsLoaded();
+  }, [meData]);
+
+if(isLoaded) {
   return (
     <section className="itemComponent">
+      {meData.me.username !== item.itemUser ? 
+      <label className="purchased" htmlFor="isPurchased">
+      <input type="checkbox" name="isPurchased" checked={item.purchased} readOnly/>
+      <span className="checkmark"></span>
+      </label>
+      :null}
       <span className="itemDiv">
-            <h2>{item.itemName}</h2>
-            <h2>Price: {item.itemPrice}</h2>
+            <h2>{item.itemName.substring(0,30)}</h2>
+            <h3>Price: {item.itemPrice}</h3>
             <p>Added: 
           {' ' + new Date(parseInt(item.itemDate)).toLocaleDateString(
             "en-US",
@@ -24,12 +47,15 @@ const Item = (props) => {
           )}
         </p>
       
-      <h4>{item.itemDetails}</h4>
+      <h4>{item.itemDetails.substring(0,40) + '...'}</h4>
         
       </span>
       
     </section>
   );
+          } else {
+            <Loader />
+          }
 };
 
 export default Item;

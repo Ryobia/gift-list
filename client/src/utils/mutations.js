@@ -91,6 +91,15 @@ export const REMOVE_ITEM = gql`
   
 `;
 
+export const UPDATE_ITEM = gql`
+    mutation updateItem($_id: ID, $itemName: String, $itemLink: String, $itemDetails: String, $itemPrice: Float, $purchased: Boolean) {
+      updateItem(_id: $_id, itemName: $itemName, itemLink: $itemLink, itemDetails: $itemDetails, itemPrice: $itemPrice, purchased: $purchased) {
+      _id
+      purchased
+    }
+  }
+`;
+
 
 export const ADD_FRIEND = gql`
   mutation addFriend($username: String!) {

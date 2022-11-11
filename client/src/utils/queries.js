@@ -67,6 +67,7 @@ export const QUERY_LIST = gql`
         itemLink
         itemDetails
         itemPrice
+        purchased
       }
     }
   }

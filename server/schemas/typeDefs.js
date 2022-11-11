@@ -34,7 +34,6 @@ const typeDefs = gql`
     linkedItems: [Item]
   }
 
-
   type Auth {
     token: ID!
     user: User
@@ -48,7 +47,6 @@ const typeDefs = gql`
     item(_id: ID): Item
     allLists: [List]
     allItems: [Item]
-
   }
 
   type Mutation {
@@ -61,13 +59,29 @@ const typeDefs = gql`
       password: String!
     ): Auth
     addList(listDate: String, listUser: String, listName: String): List
-    addItem(listId: String!, itemDate: String, itemUser: String, itemName: String, itemLink: String, itemDetails: String, itemPrice: Float, purchased: Boolean): Item
+    addItem(
+      listId: String!
+      itemDate: String
+      itemUser: String
+      itemName: String
+      itemLink: String
+      itemDetails: String
+      itemPrice: Float
+      purchased: Boolean
+    ): Item
     removeList(_id: ID!): User
     removeItem(_id: ID!, listId: String): List
     addFriend(friendId: ID!): User
     addUserToList(_id: ID!, userId: ID!): List
+    updateItem(
+      _id: ID
+      itemName: String
+      itemLink: String
+      itemDetails: String
+      itemPrice: Float
+      purchased: Boolean
+    ): Item
     updateUser(
-      
       username: String
       firstName: String
       lastName: String

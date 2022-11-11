@@ -56,7 +56,7 @@ function App() {
           <Route  path='/friends' element={<Friends/>} />
           <Route  path='/login' element={<Login/>} />
           <Route  path='/signup' element={<Signup/>} />
-          <Route  path='/lists/:id/:id' element={<SingleItem/>} />
+          <Route  path='/lists/:listId/:id' element={<SingleItem/>} />
           <Route path="*" element={<NoMatch/>} />
         </Routes>
       </div>

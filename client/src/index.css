@@ -242,7 +242,7 @@ label {
 }
 
 .needLoginSection {
-  background-color: var(--color4);
+  background-color: var(--color1);
   width: fit-content;
   margin: auto;
   padding: 1em;
@@ -254,7 +254,7 @@ label {
 
 .needLoginSection a h3 {
   padding: 0.5em;
-  color: white;
+  color: black;
 }
 
 /* CREATE LIST **************************************________*_*__*__*_***&_*(_*%(^&_*(_(#%^_&*($_&*($_^&*(_$ */
@@ -363,6 +363,7 @@ label {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-content: flex-start;
   width: 100%;
 }
 
@@ -427,11 +428,64 @@ label {
   max-width: 90%;
 }
 
-.linkSpan {
-  font-size: 12px;
+.itemLink {
+  color: var(--color6);
+  text-decoration: underline;
+  font-weight: bold;
 }
 
+.purchased {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 12px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
-@media (max-width: 1000px) {
-  
+.purchased input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: var(--color6);
+}
+
+.purchased input:checked ~ .checkmark {
+  background-color: var(--color6);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.purchased input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.purchased .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
