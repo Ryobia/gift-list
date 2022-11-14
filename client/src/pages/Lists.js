@@ -4,7 +4,7 @@ import CreateList from "../components/CreateList";
 import AddUserToList from "../components/AddUserToList";
 import NeedLogin from "../components/NeedLogin";
 import Loader from "../components/Loader";
-import { BsTrashFill } from "react-icons/bs";
+import { BsTrashFill, BsFillArrowUpRightSquareFill, BsFillPencilFill } from "react-icons/bs";
 import List from "../components/List";
 import { QUERY_ME, QUERY_ALL_LISTS } from "../utils/queries";
 import { useQuery } from "@apollo/react-hooks";
@@ -48,6 +48,11 @@ const Lists = () => {
     }
   };
 
+  const toggleList = (e) => {
+    document.getElementById(e).classList.toggle("listDivElToggle");
+    document.getElementById(e).classList.toggle("listDivEl");
+  };
+
   if (meError) {
     console.log(meError);
   } else if (meData) {
@@ -64,7 +69,7 @@ const Lists = () => {
         {isLoading ? (
           <Loader />
         ) : (
-          <section className="myListSection sectionMain">
+          <section className="myListSection sectionMain listsPage">
             <div className="myListLeft">
               <div className="sectionTitleDiv">
                 <h2>MY LISTS</h2>
@@ -74,18 +79,20 @@ const Lists = () => {
             {meData ? (
               <div className="listDiv">
                 {myLists.map((list) => (
-                  <div key={list._id}>
+                  <div onClick={() => toggleList(list._id)} className="listDivEl" id={list._id} key={list._id}>
                     <Link
                       key={list._id}
                       className="insetBtn"
                       to={`/lists/${list._id}`}
                     >
+                      <BsFillArrowUpRightSquareFill />
+                      </Link>
                       <List list={list} />
-                    </Link>
+                    
                     {list.listUser === meData.me.username ? (
                       <span
                         onClick={() => handleRemoveList(list._id)}
-                        className="reactTrash"
+                        className="reactTrashList"
                       >
                         <BsTrashFill />
                       </span>

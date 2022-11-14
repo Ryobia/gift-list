@@ -127,7 +127,7 @@ nav a:hover {
 
 @media (max-width: 550px) {
   header h1 {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   header {
@@ -141,8 +141,11 @@ nav a:hover {
   header a {
     font-size: 10px;
   }
+
+  .homeSection a div h1 {
+    font-size: 24px;
+  }
 }
-/* MY LISTS----------------------------------------------------------------------------------------------------------------------------------- */
 
 .sectionMain {
   margin-top: 3em;
@@ -287,6 +290,10 @@ label {
 }
 
 /* LISTS )(!)@#(!)@()()()()()(((((((()))))))!@(#)!($)!*%)*^)!*#$)^!*#$%)!*#^$)!*^#)!*^)#*$^)!#*$^)!#*^$ */
+.listIcon {
+  display: none;
+}
+
 .createListComponent {
   color: white;
   border-radius: 5px;
@@ -300,7 +307,7 @@ label {
   background-color: var(--color3);
 }
 .myListLeft {
-  width: 30%;
+  width: 35%;
 }
 
 .myListSection {
@@ -312,26 +319,60 @@ label {
   width: 100%;
 }
 
-.listDiv div {
+.listDivEl {
+  position: relative;
   margin: auto;
   display: flex;
-  flex-wrap: nowrap;
   align-items: center;
+  transition: .2s linear;
+  width: 100%;
 }
 
-.listDiv div a {
+.listDivEl .listComponent, .listDivElToggle .listComponent {
   background-color: var(--color1);
   color: white;
   text-align: center;
   width: 90%;
   padding: 1em;
+  margin: auto;
   margin-top: 1em;
   border-radius: 5px;
+  z-index: 100;
 }
 
-.listDiv div a:hover {
+.listDivElToggle {
+  margin: auto;
+  transition: .2s linear;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 60%;
+}
+
+.listDivEl .listComponent:hover, .listDivElToggle .listComponent:hover {
+  cursor: pointer;
   background-color: var(--color3);
   scale: 1.01;
+}
+
+.listDivEl a, .listDivElToggle a {
+  position: fixed;
+  left: 30%;
+  background-color: var(--color1);
+  color: white;
+  padding: 1em;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+
+.reactTrashList {
+  position: fixed;
+  left: 85%;
+  background-color: var(--color1);
+  color: white;
+  padding: 1em;
+  border-radius: 5px;
+  transition: 0.2s;
 }
 
 .reactTrash {
@@ -342,7 +383,7 @@ label {
   transition: 0.2s;
 }
 
-.reactTrash:hover {
+.reactTrash:hover, .reactTrashList:hover {
   cursor: pointer;
   background-color: var(--color3);
   color: var(--color2);
@@ -362,16 +403,15 @@ label {
 .itemMapDiv {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-content: flex-start;
   width: 100%;
 }
 
 .itemMapDiv div {
-  width: 40%;
+  width: 47%;
   display: flex;
   flex-wrap: nowrap;
-  padding: 1em;
   height: fit-content;
 }
 
@@ -395,7 +435,7 @@ label {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: .5em;
+  padding: .2em;
   width: 100%;
 }
 
@@ -488,4 +528,97 @@ label {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+
+@media (max-width: 1400px) {
+  .itemDiv h2 {
+    font-size: 18px;
+  }
+  .itemDiv h4 {
+    font-size: 12px;
+    font-weight: 100;
+  }
+  .sectionTitleDiv p {
+    font-size: 14px;
+  }
+  .sectionTitleDiv {
+    padding: 1em;
+  }
+  .createListComponent {
+    padding: .5em;
+  }
+  .createListComponent h2 {
+    font-size: 18px;
+  }
+  .createListComponent form label {
+    font-size: 14px;
+  }
+  .createListComponent form input {
+    padding: 0;
+  }
+
+}
+
+@media (max-width: 1100px) {
+
+  .listsPage .myListLeft, .singleListPage .myListLeft {
+    width: 50%;
+  }
+  .listDivEl a, .listDivElToggle a {
+    left: 35%;
+  }
+  .reactTrashList {
+    left: 90%;
+  }
+  .itemMapDiv div {
+    width: 95%;
+  }
+}
+
+@media (max-width: 700px) {
+  .listIcon {
+    display: block;
+    background-color: var(--color1);
+    color: white;
+    padding: 1em;
+    border-radius: 5px;
+    transition: 0.2s;
+    text-align: center;
+  }
+  
+  .listIcon:hover {
+    cursor: pointer;
+    background-color: var(--color3);
+    color: var(--color2);
+    scale: 1.1;
+  }
+ .listsPage {
+  flex-wrap: wrap;
+  width: 100%;
+ }
+ .listsPage .myListLeft {
+  width: 90%;
+  margin: auto;
+ }
+ .reactTrashList {
+  left: 85%;
+  padding: .5em;
+ }
+ .listDivEl a, .listDivElToggle a {
+  left: 4%;
+  padding: .5em;
+ }
+ .listDivEl {
+  width: 95%;
+ }
+ .listComponent {
+  padding: .5em;
+ }
+ .listComponent div h2 {
+  font-size: 18px;
+ } 
+ .listComponent div p {
+  font-size: 14px;
+ }
 }

@@ -38,7 +38,7 @@ if(isLoaded) {
       </label>
       :null}
       <span className="itemDiv">
-            <h2>{item.itemName.substring(0,30)}</h2>
+            <h2>{item.itemName.substring(0,20)}</h2>
             <h3>Price: {item.itemPrice}</h3>
             <p>Added: 
           {' ' + new Date(parseInt(item.itemDate)).toLocaleDateString(
@@ -47,7 +47,7 @@ if(isLoaded) {
           )}
         </p>
       
-      <h4>{item.itemDetails.substring(0,40) + '...'}</h4>
+      <h4>{item.itemDetails.substring(0,30) + '...'}</h4>
         
       </span>
       

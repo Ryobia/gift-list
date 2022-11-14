@@ -15,7 +15,7 @@ const Header = () => {
       </nav>
       <nav>
         <Link className="insetBtn" to="/">
-          <h1>List-Maker</h1>
+          <h1>Anonylists</h1>
         </Link>
       </nav>
       {Auth.loggedIn() === false ? (
