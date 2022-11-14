@@ -69,7 +69,7 @@ const Lists = () => {
         {isLoading ? (
           <Loader />
         ) : (
-          <section className="myListSection sectionMain">
+          <section className="myListSection sectionMain listsPage">
             <div className="myListLeft">
               <div className="sectionTitleDiv">
                 <h2>MY LISTS</h2>
