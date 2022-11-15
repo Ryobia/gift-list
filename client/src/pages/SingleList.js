@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { QUERY_LIST, QUERY_ME } from "../utils/queries";
 import { REMOVE_ITEM } from "../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
-import { BsTrashFill, BsList } from "react-icons/bs";
+import { BsTrashFill, BsPlusCircleFill, BsPersonPlusFill } from "react-icons/bs";
 import Loader from "../components/Loader";
 import AddUserToList from "../components/AddUserToList";
 import CreateItem from "../components/CreateItem";
@@ -75,6 +75,13 @@ const SingleList = () => {
           <Loader />
         ) : (
           <div className="myListSection sectionMain singleListPage">
+            <div id="open-modal" className="modal-window">
+              <div>
+              <AddUserToList listId={listId} />
+
+              <CreateItem listId={listId} />
+              </div>
+            </div>
             <div className="myListLeft">
               <div className="sectionTitleDiv">
                 <h2>{data.list.listName}</h2>
@@ -93,7 +100,10 @@ const SingleList = () => {
                     ))}
                   </span>
                 </p>
-              <BsList id="listIcon" className="listIcon"/>
+                <div id="listIcon" className="listIcon">
+                <span ><BsPlusCircleFill /></span>
+                <span ><BsPersonPlusFill /></span>
+                </div>
               </div>
               {isOwnList ? 
               <div className="listHidden">
