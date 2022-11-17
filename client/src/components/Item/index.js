@@ -18,8 +18,6 @@ const Item = (props) => {
     minute: "2-digit",
   };
 
-  console.log(item)
-
   const getIsLoaded = () => {
     if(meData) setIsLoaded(true);
   }

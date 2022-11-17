@@ -7,6 +7,7 @@ import { QUERY_ME } from "../../utils/queries";
 
 const CreateItem = () => {
   const { id: listId } = useParams();
+  const [error, setError] = useState(false);
 
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
@@ -15,7 +16,7 @@ const CreateItem = () => {
     link: "",
     price: 0,
   });
-  const [addItem, { error }] = useMutation(ADD_ITEM);
+  const [addItem, { error: addItemError }] = useMutation(ADD_ITEM);
   const { loading, error: meError, data: meData } = useQuery(QUERY_ME);
 
   const handleChange = (event) => {
@@ -28,8 +29,10 @@ const CreateItem = () => {
   };
 
   const handleAddItem = async (event) => {
+    setError(false);
+    console.log(typeof formState.price)
     event.preventDefault();
-    if (formState.name !== "") {
+    if (formState.name !== "" && typeof formState.price === 'number') {
       try {
         const mutationResponse = await addItem({
           variables: {
@@ -44,9 +47,11 @@ const CreateItem = () => {
         navigate(0);
         console.log(mutationResponse);
       } catch (e) {
+        setError(true);
         console.log(e);
       }
     }
+    setError(true)
   };
 
   return (
@@ -98,6 +103,11 @@ const CreateItem = () => {
           </button>
         </form>
       </div>
+      {error ? 
+      <p className="errorText">Price must only contain numbers (no $ etc.) <br></br>
+      Item Name cannot be left blank</p>
+      
+      :null}
     </section>
   );
 };
