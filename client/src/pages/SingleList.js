@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { QUERY_LIST, QUERY_ME } from "../utils/queries";
 import { REMOVE_ITEM } from "../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
-import { BsTrashFill, BsList } from "react-icons/bs";
+import { BsTrashFill, BsPlusCircleFill, BsPersonPlusFill, BsFillXSquareFill } from "react-icons/bs";
 import Loader from "../components/Loader";
 import AddUserToList from "../components/AddUserToList";
 import CreateItem from "../components/CreateItem";
@@ -13,6 +13,8 @@ import Item from "../components/Item";
 
 const SingleList = () => {
   const [isAllowedToView, setIsAllowedToView] = useState(false);
+  const [modalView, setModalView] = useState('createItem');
+  const [modalOpen, setModalOpen] = useState(false)
   const [isOwnList, setIsOwnList] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [itemsArray, setItemsArray] = useState([]);
@@ -22,7 +24,6 @@ const SingleList = () => {
     variables: { _id: listId },
   });
   const navigate = useNavigate();
-  const [removeItem, { error: removeItemError }] = useMutation(REMOVE_ITEM);
 
   let dateOptions = {
     hour: "numeric",
@@ -32,20 +33,6 @@ const SingleList = () => {
     minute: "2-digit",
   };
 
-  const handleRemoveItem = async (_id) => {
-    try {
-      const response = await removeItem({
-        variables: {
-          _id: _id,
-          listId: listId,
-        },
-      });
-      navigate(0);
-      console.log(response);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   const getIslistLoaded = () => {
     if (data) {
@@ -75,6 +62,18 @@ const SingleList = () => {
           <Loader />
         ) : (
           <div className="myListSection sectionMain singleListPage">
+            {modalOpen ? 
+            <div id="open-modal" className="modal-window">
+              <div>
+              <span className="cancelModal" onClick={() => setModalOpen(false)}><BsFillXSquareFill className="insetBtnInverse "/></span>
+                {modalView === 'addUser' ? (
+              <AddUserToList listId={listId} />
+                ) : modalView === 'createItem' ? (
+              <CreateItem listId={listId} />
+                ):null}
+              </div>
+            </div>
+            :null}
             <div className="myListLeft">
               <div className="sectionTitleDiv">
                 <h2>{data.list.listName}</h2>
@@ -93,7 +92,10 @@ const SingleList = () => {
                     ))}
                   </span>
                 </p>
-              <BsList id="listIcon" className="listIcon"/>
+                <div id="listIcon" className="listIcon">
+                <span ><BsPlusCircleFill onClick={() => {setModalOpen(true); setModalView('createItem')}}/></span>
+                <span ><BsPersonPlusFill onClick={() => {setModalOpen(true); setModalView('addUser')}}/></span>
+                </div>
               </div>
               {isOwnList ? 
               <div className="listHidden">
@@ -112,14 +114,7 @@ const SingleList = () => {
                     >
                       <Item item={item} />
                     </Link>
-              {isOwnList ? 
-                    <span
-                      onClick={() => handleRemoveItem(item._id)}
-                      className="reactTrash"
-                    >
-                      <BsTrashFill />
-                    </span>
-                    :null}
+             
                   </div>
                 ))}
               </div>

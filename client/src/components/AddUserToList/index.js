@@ -6,13 +6,14 @@ import { QUERY_ME, QUERY_USER } from "../../utils/queries";
 import { useNavigate, useParams } from "react-router-dom";
 
 const AddUserToList = (props) => {
+  const [error, setError] = useState(false);
   const { id: listId } = useParams();
   const navigate = useNavigate();
   const [formState, setFormState] = useState({ name: "" });
   const { loading, data } = useQuery(QUERY_USER, {
     variables: { username: formState.name }
   });
-  const [addUserToList, { error }] = useMutation(ADD_USER_TO_LIST);
+  const [addUserToList, { error: addUserError }] = useMutation(ADD_USER_TO_LIST);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -25,6 +26,7 @@ const AddUserToList = (props) => {
 
 
   const handleAddUserToList = async (event) => {
+    setError(false);
     event.preventDefault();
     if (formState.name !== "") {
       try {
@@ -38,6 +40,7 @@ const AddUserToList = (props) => {
         console.log(mutationResponse);
       } catch (e) {
         console.log(e);
+        setError(true);
       }
     }
   };
@@ -62,8 +65,10 @@ const AddUserToList = (props) => {
             Add User
           </button>
         </form>
-          {/* <p>*User must be in your friends list*</p> */}
       </div>
+      {error ?
+      <p className="errorText">Unable to find User</p>
+        :null}
     </section>
   );
 };

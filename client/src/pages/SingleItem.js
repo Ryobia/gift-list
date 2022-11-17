@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { QUERY_ITEM, QUERY_ME, QUERY_LIST } from "../utils/queries";
-import { UPDATE_ITEM } from "../utils/mutations";
+import { UPDATE_ITEM, REMOVE_ITEM } from "../utils/mutations";
 import { useMutation, useQuery } from "@apollo/client";
 import { BsTrashFill } from "react-icons/bs";
 import Loader from "../components/Loader";
@@ -13,7 +13,8 @@ const SingleItem = (props) => {
   const [isAllowedToView, setIsAllowedToView] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { id: itemId, listId: listId } = useParams();
-  const [updateItem, {error: updateError}] = useMutation(UPDATE_ITEM);
+  const [updateItem, { error: updateError }] = useMutation(UPDATE_ITEM);
+  const [removeItem, { error: removeItemError }] = useMutation(REMOVE_ITEM);
   const navigate = useNavigate();
   const { error, data } = useQuery(QUERY_ITEM, {
     variables: { _id: itemId },
@@ -31,6 +32,21 @@ const SingleItem = (props) => {
     minute: "2-digit",
   };
 
+  const handleRemoveItem = async (_id) => {
+    try {
+      const response = await removeItem({
+        variables: {
+          _id: _id,
+          listId: listId,
+        },
+      });
+      navigate(-1);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handlePurchaseItem = async () => {
     try {
       const response = await updateItem({
@@ -44,13 +60,15 @@ const SingleItem = (props) => {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   const getIsItemLoaded = () => {
     if (data && meData) {
       setIsLoading(false);
-      if (listData.list.listUsers.filter((e) => e.username === meData.me.username).length > 0) 
-      {
+      if (
+        listData.list.listUsers.filter((e) => e.username === meData.me.username)
+          .length > 0
+      ) {
         setIsAllowedToView(true);
       }
       if (meData.me.username === data.item.itemUser) {
@@ -107,14 +125,25 @@ const SingleItem = (props) => {
               </p>
             </div>
             {isAllowedToView && data.item.purchased == false ? (
-              <div onClick={handlePurchaseItem} className="createListComponent editItem insetBtn">
+              <div
+                onClick={handlePurchaseItem}
+                className="createListComponent editItem insetBtn"
+              >
                 <h2>MARK ITEM AS PURCHASED</h2>
               </div>
             ) : isAllowedToView && data.item.purchased == true ? (
-            <div className="createListComponent">
+              <div className="createListComponent">
                 <h2>PURCHASED</h2>
               </div>
-              ): null}
+            ) : null}
+            {isOwnItem ? (
+              <span
+                onClick={() => handleRemoveItem(data.item._id)}
+                className="reactTrash"
+              >
+                <BsTrashFill />
+              </span>
+            ) : null}
           </div>
         </div>
       )}
