@@ -444,10 +444,9 @@ label {
   text-align: center;
 }
 
-.singleItemTitleDiv h1, .singleItemTitleDiv p {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: nowrap;
+.singleItemTitleDiv {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .singleItemDetails {
@@ -463,15 +462,17 @@ label {
 }
 
 .myItem {
-  width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-wrap: break-word;
+  width: fit-content;
+  max-width: 90%;
+  margin: auto;
+  height: fit-content;
 }
 
 .myItem .reactTrash {
-  height: fit-content;
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  margin: auto;
 }
 
 .itemLink {
@@ -543,6 +544,11 @@ label {
 
 
 @media (max-width: 1400px) {
+  .singleItemTitleDiv h1 {
+    font-size: 18px;
+    font-weight: 200;
+  }
+
   .itemDiv h2 {
     font-size: 18px;
   }
