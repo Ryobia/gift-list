@@ -61,7 +61,7 @@ const Lists = () => {
 
   useEffect(() => {
     getIslistLoaded();
-  }, [meData]);
+  }, [meData, allListsData]);
 
   if (Auth.loggedIn() === true) {
     return (

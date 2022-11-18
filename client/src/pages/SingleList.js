@@ -88,7 +88,7 @@ const SingleList = () => {
                   Members of this list:
                   <span>
                     {data.list.listUsers.map((user) => (
-                      <span key={user._id}>{" - " + user.username + " "}</span>
+                      <span key={user._id}>{" - " + user.firstName +" " + user.lastName}</span>
                     ))}
                   </span>
                 </p>

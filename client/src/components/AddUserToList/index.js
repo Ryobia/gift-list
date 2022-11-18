@@ -9,9 +9,9 @@ const AddUserToList = (props) => {
   const [error, setError] = useState(false);
   const { id: listId } = useParams();
   const navigate = useNavigate();
-  const [formState, setFormState] = useState({ name: "" });
+  const [formState, setFormState] = useState({ email: "" });
   const { loading, data } = useQuery(QUERY_USER, {
-    variables: { username: formState.name }
+    variables: { email: formState.email }
   });
   const [addUserToList, { error: addUserError }] = useMutation(ADD_USER_TO_LIST);
 
@@ -54,10 +54,10 @@ const AddUserToList = (props) => {
         <form onSubmit={handleAddUserToList}>
           <input
             className="form-input"
-            placeholder="Enter Username "
-            name="name"
-            type="name"
-            id="name"
+            placeholder="Enter User's Email"
+            name="email"
+            type="email"
+            id="email"
             onChange={handleChange}
           />
 

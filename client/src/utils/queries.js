@@ -24,8 +24,8 @@ export const QUERY_ME = gql`
 
 
 export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
+  query user($email: String!) {
+    user(email: $email) {
       _id
       username
       firstName
@@ -57,7 +57,8 @@ export const QUERY_LIST = gql`
       listName
       listUsers {
         _id
-        username
+        firstName
+        lastName
       }
       items {
         _id
