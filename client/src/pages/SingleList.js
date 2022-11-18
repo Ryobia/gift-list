@@ -40,7 +40,7 @@ const SingleList = () => {
       setIsLoading(false);
       if (
         meData.me.username === data.list.listUser ||
-        data.list.listUsers.filter((e) => e.username === meData.me.username)
+        data.list.listUsers.filter((e) => e.email === meData.me.email)
           .length > 0
       ) {
         setIsAllowedToView(true);

@@ -66,7 +66,7 @@ const SingleItem = (props) => {
     if (data && meData) {
       setIsLoading(false);
       if (
-        listData.list.listUsers.filter((e) => e.username === meData.me.username)
+        listData.list.listUsers.filter((e) => e.email === meData.me.email)
           .length > 0
       ) {
         setIsAllowedToView(true);

@@ -57,6 +57,7 @@ export const QUERY_LIST = gql`
       listName
       listUsers {
         _id
+        email
         firstName
         lastName
       }
