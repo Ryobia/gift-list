@@ -30,9 +30,9 @@ const CreateItem = () => {
 
   const handleAddItem = async (event) => {
     setError(false);
-    console.log(typeof formState.price)
+    console.log(parseInt(formState.price, 10))
     event.preventDefault();
-    if (formState.name !== "" && typeof formState.price === 'number') {
+    if (formState.name !== "" && parseInt(formState.price, 10) !== NaN) {
       try {
         const mutationResponse = await addItem({
           variables: {
@@ -92,9 +92,8 @@ const CreateItem = () => {
             className="form-input"
             placeholder="Price"
             name="price"
-            type="int"
+            type="number"
             id="price"
-            maxLength="20"
             onChange={handleChange}
           />
 
