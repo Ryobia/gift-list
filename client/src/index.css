@@ -260,6 +260,116 @@ label {
   color: black;
 }
 
+/* PROFILE PAGE !#$%@#^@$%^@#$%@#$%&^@$%^@%#@&%^#%^&#%^&#%^ */
+
+.profileDiv {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+}
+
+.profileDiv .sectionTitleDiv {
+  width: 100%;
+}
+
+.profileInfoDiv {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.changeInfoDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  padding: .5em;
+  background-color: var(--color1);
+}
+
+.changeInfoDiv button {
+  height: 20%;
+}
+
+.accountDiv span {
+display: flex;
+justify-content: space-between;
+padding: 1em;
+}
+
+.accountDiv {
+  background-color: var(--color1);
+  color: white;
+  padding: 1em;
+  border-radius: 5px;
+  width: 60%;
+}
+
+.accountDiv span:nth-child(even) {
+  background-color: var(--color4);
+}
+
+.accountForm {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: auto;
+  margin-top: 1em;
+  border-radius: 5px;
+  background-color: var(--color1);
+}
+
+.accountForm div {
+  width: 80%;
+  color: white;
+}
+
+.infoBtnDiv {
+  display: flex;
+  justify-content: center;
+}
+
+
+@media (max-width: 1100px) {
+ .profileDiv {
+  width: 75%;
+ }
+}
+
+@media (max-width: 800px) {
+  .profileDiv {
+   width: 90%;
+   margin: auto;
+  }
+  .changeInfoDiv {
+    padding: 0;
+  }
+ }
+
+ @media (max-width: 600px) {
+  .profileInfoDiv {
+    flex-wrap: wrap;
+  }
+  .accountDiv {
+    width: 100%;
+  }
+  .changeInfoDiv {
+    flex-direction: row;
+    height: fit-content;
+    padding: .5em;
+    margin-top: 1em;
+  }
+  .changeInfoDiv button {
+    font-size: 12px;
+    padding: .2em;
+  }
+  .accountDiv span {
+    font-size: 12px;
+    padding: .3em;
+    }
+ }
+
 /* CREATE LIST **************************************________*_*__*__*_***&_*(_*%(^&_*(_(#%^_&*($_&*($_^&*(_$ */
 
 .createGroupSection {
