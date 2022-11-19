@@ -10,6 +10,7 @@ const Signup = () => {
   const [signupState, setSignupState] = useState({ email: "", password: "" });
   const [addUser, { error }] = useMutation(ADD_USER);
   const [togglePass2, setTogglePass2] = useState('password');
+  const [passMatch, setPassMatch] = useState(false);
 
   const handleSignupSubmit = async (event) => {
     event.preventDefault();
@@ -17,7 +18,7 @@ const Signup = () => {
       const mutationResponse = await addUser({
         variables: {
           username: signupState.username,
-          email: signupState.email,
+          email: signupState.email.toLowerCase(),
           password: signupState.password,
           firstName: signupState.firstName,
           lastName: signupState.lastName,

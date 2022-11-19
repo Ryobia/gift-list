@@ -79,7 +79,7 @@ const SingleItem = (props) => {
 
   useEffect(() => {
     getIsItemLoaded();
-  }, [data]);
+  }, [data, meData, listData]);
 
   return (
     <section>
