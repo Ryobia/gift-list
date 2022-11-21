@@ -90,8 +90,8 @@ const SingleItem = (props) => {
           <div className="myItem">
             <div className="sectionTitleDiv singleItemTitleDiv">
               <h1>
-                <span>Name:</span>
-                <span>{data.item.itemName}</span>
+                <span>Name: </span>
+                <span> {data.item.itemName}</span>
               </h1>
               <p>
                 <span>Item Created:</span>

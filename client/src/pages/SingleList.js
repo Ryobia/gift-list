@@ -53,7 +53,7 @@ const SingleList = () => {
 
   useEffect(() => {
     getIslistLoaded();
-  }, [data]);
+  }, [data, meData]);
 
   if (isAllowedToView) {
     return (
