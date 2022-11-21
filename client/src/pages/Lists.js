@@ -51,6 +51,8 @@ const Lists = () => {
   const toggleList = (e) => {
     document.getElementById(e).classList.toggle("listDivElToggle");
     document.getElementById(e).classList.toggle("listDivEl");
+    document.getElementById(`${e}1`).classList.toggle("hidden");
+    document.getElementById(`${e}2`).classList.toggle("hidden");
   };
 
   if (meError) {
@@ -81,8 +83,9 @@ const Lists = () => {
                 {myLists.map((list) => (
                   <div onClick={() => toggleList(list._id)} className="listDivEl" id={list._id} key={list._id}>
                     <Link
+                      id={`${list._id}1`}
                       key={list._id}
-                      className="insetBtn"
+                      className="insetBtn hidden"
                       to={`/lists/${list._id}`}
                     >
                       <BsFillArrowUpRightSquareFill />
@@ -92,7 +95,8 @@ const Lists = () => {
                     {list.listUser === meData.me.username ? (
                       <span
                         onClick={() => handleRemoveList(list._id)}
-                        className="reactTrashList"
+                        className="reactTrashList hidden"
+                        id={`${list._id}2`}
                       >
                         <BsTrashFill />
                       </span>
