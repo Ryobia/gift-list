@@ -1,9 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { QUERY_LIST, QUERY_ME } from "../utils/queries";
-import { REMOVE_ITEM } from "../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import { BsTrashFill, BsPlusCircleFill, BsPersonPlusFill, BsFillXSquareFill } from "react-icons/bs";
 import Loader from "../components/Loader";
@@ -14,7 +13,7 @@ import Item from "../components/Item";
 const SingleList = () => {
   const [isAllowedToView, setIsAllowedToView] = useState(false);
   const [modalView, setModalView] = useState('createItem');
-  const [modalOpen, setModalOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false);
   const [isOwnList, setIsOwnList] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [itemsArray, setItemsArray] = useState([]);
@@ -23,7 +22,6 @@ const SingleList = () => {
   const { error, data } = useQuery(QUERY_LIST, {
     variables: { _id: listId },
   });
-  const navigate = useNavigate();
 
   let dateOptions = {
     hour: "numeric",
@@ -106,6 +104,7 @@ const SingleList = () => {
             </div>
             {itemsArray.length > 0 ? (
               <div className="itemMapDiv">
+                <div className="itemSortDiv">SORTING DIV</div>
                 {itemsArray.map((item) => (
                   <div key={item._id}>
                     <Link

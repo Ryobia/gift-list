@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const itemSchema = new Schema(
   {
@@ -10,17 +10,20 @@ const itemSchema = new Schema(
       type: String,
     },
     itemName: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     itemLink: {
-        type: String,
+      type: String,
     },
     itemDetails: {
-        type: String,
+      type: String,
     },
     itemPrice: {
-        type: Number,
+      type: Number,
+    },
+    priority: {
+      type: Number,
     },
     purchased: {
       type: Boolean,
@@ -35,11 +38,11 @@ const itemSchema = new Schema(
   },
   {
     toJSON: {
-      getters: true
-    }
+      getters: true,
+    },
   }
 );
 
-const Item = model('Item', itemSchema);
+const Item = model("Item", itemSchema);
 
 module.exports = Item;

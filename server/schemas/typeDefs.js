@@ -30,6 +30,7 @@ const typeDefs = gql`
     itemLink: String
     itemDetails: String
     itemPrice: Float
+    priority: Float
     purchased: Boolean
     linkedItems: [Item]
   }

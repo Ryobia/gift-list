@@ -69,6 +69,7 @@ export const QUERY_LIST = gql`
         itemLink
         itemDetails
         itemPrice
+        priority
         purchased
       }
     }
@@ -85,6 +86,7 @@ export const QUERY_ITEM = gql`
         itemName
         itemDetails
         itemPrice
+        priority
         purchased
     }
   }

@@ -434,43 +434,27 @@ padding: 1em;
 
 .listDivEl {
   display: flex;
-  align-items: center;
-  transition: .15s linear;
   width: 100%;
 }
 
-.listDivEl .listComponent, .listDivElToggle .listComponent {
+.listDivEl a {
   background-color: var(--color1);
   color: white;
   text-align: center;
-  width: 90%;
-  margin: auto;
+  width: 80%;
   padding: 1em;
   margin-top: 1em;
   overflow: hidden;
   border-radius: 5px;
 }
 
-.listDivElToggle .listComponent {
-  width: 70%;
-}
-
-
-
-.listDivElToggle {
-  transition: .15s linear;
-  display: flex;
-  align-items: center;
-  width: 80%;
-}
-
-.listDivEl .listComponent:hover, .listDivElToggle .listComponent:hover {
+.listDivEl a:hover {
   cursor: pointer;
   background-color: var(--color3);
   scale: 1.01;
 }
 
-.listDivEl a, .listDivElToggle a {
+.listDivEl a {
   background-color: var(--color1);
   color: white;
   padding: 1em;
@@ -520,11 +504,20 @@ padding: 1em;
   width: 100%;
 }
 
+
+
 .itemMapDiv div {
   width: 47%;
   display: flex;
   flex-wrap: nowrap;
   height: fit-content;
+}
+
+.itemMapDiv .itemSortDiv {
+  width: 90%;
+  padding: 1em;
+  border-radius: 5px;
+  background-color: var(--color6);
 }
 
 .itemMapDiv div a {
@@ -693,16 +686,15 @@ padding: 1em;
 }
 
 @media (max-width: 1100px) {
+  .listDivEl a {
+    width: 90%;
+  }
 
   .listsPage .myListLeft, .singleListPage .myListLeft {
     width: 50%;
   }
   .itemMapDiv div {
     width: 95%;
-  }
-
-  .listDivElToggle {
-    width: 80%;
   }
   .singleListPage {
     flex-wrap: wrap;
@@ -742,10 +734,7 @@ padding: 1em;
   width: 90%;
   margin: auto;
  }
- .reactTrashList {
-  padding: .5em;
- }
- .listDivEl a, .listDivElToggle a {
+ .listDivEl a {
   padding: .5em;
  }
  .listDivEl {
@@ -763,12 +752,6 @@ padding: 1em;
 
 }
 
-@media (max-width: 800px) {
-  .listDivElToggle a, .reactTrashList {
-    font-size: 14px;
-  }
-}
-
 @media (max-width: 460px) {
   .itemMapDiv div a {
     margin: .3em;
@@ -781,16 +764,6 @@ padding: 1em;
     font-weight: 100;
   }
   
-  .listDivElToggle {
-    width: 100%;
-  }
-  .listDivElToggle .listComponent {
-    width: 60%;
-  }
-
-  .listDivElToggle a, .reactTrashList {
-    font-size: 12px;
-  }
 }
 
 /* MODAL BASIC THING_______________________________________________________________________________ */
