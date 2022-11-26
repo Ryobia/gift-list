@@ -12,7 +12,6 @@ import Item from "../components/Item";
 
 const SingleList = () => {
   const [isAllowedToView, setIsAllowedToView] = useState(false);
-  const [orderItems, setOrderItems] = useState('oldest');
   const [modalView, setModalView] = useState('createItem');
   const [modalOpen, setModalOpen] = useState(false);
   const [isOwnList, setIsOwnList] = useState(false);
@@ -50,11 +49,26 @@ const SingleList = () => {
     }
   };
 
-  const orderDateNewestFirst = () => {
-    let arr = data.list.items.reverse();
-    console.log(arr)
+  const orderDateOldestFirst = () => {
+    let arr = [...data.list.items];
+    setItemsArray(arr.reverse())
   }
-
+  const orderDateNewestFirst = () => {
+    let arr = [...data.list.items];
+    setItemsArray(arr)
+  }
+  const orderPriceLowestFirst = () => {
+    let arr = [...data.list.items];
+    setItemsArray(arr.sort(function (a,b) {
+      return a.itemPrice - b.itemPrice;
+    }))
+  }
+  const orderPriceHighestFirst = () => {
+    let arr = [...data.list.items];
+    setItemsArray(arr.sort(function (a,b) {
+      return b.itemPrice - a.itemPrice;
+    }))
+  }
   useEffect(() => {
     getIslistLoaded();
   }, [data, meData]);
@@ -112,14 +126,14 @@ const SingleList = () => {
             </div>
             {itemsArray.length > 0 ? (
               <div className="itemMapDiv">
-                {/* <div className="itemSortDiv">
+                <div className="itemSortDiv">
                   <h3>Sorting Options</h3>
 
-                  <button className="insetBtnInverse" onClick={orderDateNewestFirst} disabled={orderItems === 's'}>Oldest First</button>
-                  <button className="insetBtnInverse">Newest First</button>
-                  <button className="insetBtnInverse">Price low to high</button>
-                  <button className="insetBtnInverse">Price high to low</button>
-                    </div> */}
+                  <button className="insetBtnInverse" onClick={orderDateNewestFirst}>Oldest First</button>
+                  <button className="insetBtnInverse" onClick={orderDateOldestFirst}>Newest First</button>
+                  <button className="insetBtnInverse" onClick={orderPriceLowestFirst}>Price low to high</button>
+                  <button className="insetBtnInverse" onClick={orderPriceHighestFirst}>Price high to low</button>
+                    </div>
                 {itemsArray.map((item) => (
                   <div key={item._id}>
                     <Link
