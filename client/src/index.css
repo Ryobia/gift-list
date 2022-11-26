@@ -16,12 +16,23 @@
   font-family: "Kanit", sans-serif;
 }
 
+button {
+  border-width: 0;
+}
+
 html {
   height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background: rgb(57,96,61);
-background: -moz-linear-gradient(0deg, rgba(57,96,61,0.6755077030812324) 20%, rgba(255,255,255,1) 100%);
-background: -webkit-linear-gradient(0deg, rgba(57,96,61,0.6755077030812324) 20%, rgba(255,255,255,1) 100%);
-background: linear-gradient(0deg, rgba(57,96,61,0.6755077030812324) 20%, rgba(255,255,255,1) 100%);
+background: -moz-linear-gradient(0deg, rgba(57,96,61,0.5242471988795518) 73%, rgba(255,255,255,1) 100%);
+background: -webkit-linear-gradient(0deg, rgba(57,96,61,0.5242471988795518) 73%, rgba(255,255,255,1) 100%);
+background: linear-gradient(0deg, rgba(57,96,61,0.5242471988795518) 73%, rgba(255,255,255,1) 100%) fixed;
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#39603d",endColorstr="#ffffff",GradientType=1);
 }
 
@@ -29,6 +40,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#39603d",endCo
 header {
   display: flex;
   justify-content: space-between;
+  border: 1px solid var(--color3);
   background-color: var(--color1);
   border-radius: 5px;
   padding: 1em;
@@ -68,7 +80,7 @@ nav a:hover {
   justify-content: center;
 }
 
-.insetBtn {
+.homeInsetBtn {
   border-radius: 5px;
   padding: 0.25em 0.8em;
   margin: 0.5em;
@@ -76,8 +88,21 @@ nav a:hover {
   background-color: var(--color4);
 }
 
-.insetBtn:hover {
+.homeInsetBtn:hover {
   box-shadow: inset 0 0 0 2.5em var(--color1);
+  cursor: pointer;
+}
+
+.insetBtn {
+  border-radius: 5px;
+  padding: 0.25em 0.8em;
+  margin: 0.5em;
+  transition: 0.3s;
+  background-color: var(--color1);
+}
+
+.insetBtn:hover {
+  box-shadow: inset 0 0 0 2.5em var(--color4);
   cursor: pointer;
 }
 
@@ -86,12 +111,15 @@ nav a:hover {
   padding: 0.25em 0.8em;
   margin: 0.5em;
   transition: 0.25s;
-  background-color: var(--color2);
+  border: 1px solid var(--color3);
+  color: var(--color5);
+  background-color: var(--color3);
 }
 
 .insetBtnInverse:hover {
-  box-shadow: inset 0 0 0 2em var(--color3);
-  color: var(--color5);
+  border: 1px solid var(--color3);
+  box-shadow: inset 0 0 0 2.5em var(--color1);
+  color: var(--color3);
   cursor: pointer;
 }
 
@@ -134,9 +162,6 @@ nav a:hover {
     font-size: 18px;
   }
 
-  header {
-    padding: .25em;
-  }
 
   .backBtnSection {
     font-size: 10px;
@@ -163,7 +188,7 @@ nav a:hover {
   border-radius: 5px;
   padding: 2em;
   margin: 1em;
-  background-color: var(--color4);
+  background-color: var(--color1);
   text-align: center;
 }
 
@@ -254,14 +279,13 @@ label {
   margin: auto;
   padding: 1em;
   margin-top: 15em;
-  color: var(--color1);
+  color: var(--color5);
   border-radius: 5px;
   text-align: center;
 }
 
 .needLoginSection a h3 {
   padding: 0.5em;
-  color: black;
 }
 
 /* PROFILE PAGE !#$%@#^@$%^@#$%@#$%&^@$%^@%#@&%^#%^&#%^&#%^ */
@@ -311,7 +335,7 @@ padding: 1em;
 }
 
 .accountDiv span:nth-child(even) {
-  background-color: var(--color4);
+  background-color: var(--color2);
 }
 
 .accountForm {
@@ -409,11 +433,11 @@ padding: 1em;
 }
 
 .createListComponent {
-  color: var(--color3);
+  color: var(--color5);
   border-radius: 5px;
   padding: 2em;
   margin: 1em;
-  background-color: var(--color1);
+  background-color: var(--color4);
   text-align: center;
 }
 
@@ -593,7 +617,7 @@ padding: 1em;
 }
 
 .itemLink {
-  color: var(--color6);
+  color: var(--color4);
   text-decoration: underline;
   font-weight: bold;
 }
@@ -713,7 +737,7 @@ padding: 1em;
   }
   .singleListPage .myListLeft {
     width: fit-content;
-    min-width: 50%;
+    min-width: 70%;
     margin: auto;
   }
   .listHidden {
