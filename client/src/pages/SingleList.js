@@ -1,9 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { QUERY_LIST, QUERY_ME } from "../utils/queries";
-import { REMOVE_ITEM } from "../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import { BsTrashFill, BsPlusCircleFill, BsPersonPlusFill, BsFillXSquareFill } from "react-icons/bs";
 import Loader from "../components/Loader";
@@ -14,7 +13,7 @@ import Item from "../components/Item";
 const SingleList = () => {
   const [isAllowedToView, setIsAllowedToView] = useState(false);
   const [modalView, setModalView] = useState('createItem');
-  const [modalOpen, setModalOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false);
   const [isOwnList, setIsOwnList] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [itemsArray, setItemsArray] = useState([]);
@@ -23,7 +22,6 @@ const SingleList = () => {
   const { error, data } = useQuery(QUERY_LIST, {
     variables: { _id: listId },
   });
-  const navigate = useNavigate();
 
   let dateOptions = {
     hour: "numeric",
@@ -92,10 +90,12 @@ const SingleList = () => {
                     ))}
                   </span>
                 </p>
+              {isOwnList ? 
                 <div id="listIcon" className="listIcon">
                 <span ><BsPlusCircleFill onClick={() => {setModalOpen(true); setModalView('createItem')}}/></span>
                 <span ><BsPersonPlusFill onClick={() => {setModalOpen(true); setModalView('addUser')}}/></span>
                 </div>
+              :null}
               </div>
               {isOwnList ? 
               <div className="listHidden">
@@ -106,6 +106,13 @@ const SingleList = () => {
             </div>
             {itemsArray.length > 0 ? (
               <div className="itemMapDiv">
+                <div className="itemSortDiv">
+                  <h3>Sorting Options</h3>
+                  <button className="insetBtnInverse">Newest First</button>
+                  <button className="insetBtnInverse">Oldest First</button>
+                  <button className="insetBtnInverse">Price low to high</button>
+                  <button className="insetBtnInverse">Price high to low</button>
+                    </div>
                 {itemsArray.map((item) => (
                   <div key={item._id}>
                     <Link

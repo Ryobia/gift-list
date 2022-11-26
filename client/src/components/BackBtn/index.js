@@ -5,7 +5,7 @@ const BackBtn = () => {
 const navigate = useNavigate();
   return (
     <section className="backBtnSection" >
-        <div className="insetBtn" onClick={() => navigate(-1)}>
+        <div className="" onClick={() => navigate(-1)}>
             <h3>Back</h3>
         </div>
 

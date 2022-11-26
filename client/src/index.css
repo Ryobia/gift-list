@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
 
 :root {
-  --color1: #1a052e;
-  --color2: #bcb8b1;
-  --color3: #39274b;
-  --color4: #353831;
-  --color5: #AD5D4E;
-  --color6: #3E78B2;
+  --color1: #DADED4;
+  --color2: #A3BCB6;
+  --color3: #3C403D;
+  --color4: #4272BF;
+  --color5: #FFFFFF;
+  --color6: #39603D;
 }
 
 * {
@@ -17,12 +17,14 @@
 }
 
 html {
-  height: 1vh;
+  height: 100%;
+  background: rgb(57,96,61);
+background: -moz-linear-gradient(0deg, rgba(57,96,61,0.6755077030812324) 20%, rgba(255,255,255,1) 100%);
+background: -webkit-linear-gradient(0deg, rgba(57,96,61,0.6755077030812324) 20%, rgba(255,255,255,1) 100%);
+background: linear-gradient(0deg, rgba(57,96,61,0.6755077030812324) 20%, rgba(255,255,255,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#39603d",endColorstr="#ffffff",GradientType=1);
 }
 
-body {
-  background: var(--color2);
-}
 
 header {
   display: flex;
@@ -31,7 +33,7 @@ header {
   border-radius: 5px;
   padding: 1em;
   margin: 1em;
-  color: white;
+  color: var(--color3);
   align-items: center;
 }
 
@@ -40,13 +42,16 @@ header h1 {
 }
 
 nav a {
-  color: white;
+  color: var(--color3);
   display: flex;
   justify-content: center;
+  transition: .1s linear;
 }
 
 nav a:hover {
-  color: #c8c8c8;
+  scale: 1.01;
+  cursor: pointer;
+  color: black;
 }
 
 .loader {
@@ -65,21 +70,19 @@ nav a:hover {
 
 .insetBtn {
   border-radius: 5px;
-  border: solid 2px var(--color1);
   padding: 0.25em 0.8em;
   margin: 0.5em;
   transition: 0.3s;
-  background-color: var(--color1);
+  background-color: var(--color4);
 }
 
 .insetBtn:hover {
-  box-shadow: inset 0 0 0 2.5em var(--color3);
+  box-shadow: inset 0 0 0 2.5em var(--color1);
   cursor: pointer;
 }
 
 .insetBtnInverse {
   border-radius: 5px;
-  border: solid 2px var(--color2);
   padding: 0.25em 0.8em;
   margin: 0.5em;
   transition: 0.25s;
@@ -87,23 +90,23 @@ nav a:hover {
 }
 
 .insetBtnInverse:hover {
-  box-shadow: inset 0 0 0 2em var(--color4);
-  color: white;
+  box-shadow: inset 0 0 0 2em var(--color3);
+  color: var(--color5);
   cursor: pointer;
 }
 
 .homeSection a {
   width: 45%;
-  color: white;
+  color: var(--color3);
   border-radius: 5px;
   height: 100%;
   margin: 1em;
-  background-color: var(--color1);
+  background-color: var(--color4);
   text-align: center;
 }
 
 .homeSection div:hover {
-  background-color: var(--color3);
+  background-color: var(--color1);
   cursor: pointer;
 }
 
@@ -111,6 +114,7 @@ nav a:hover {
   padding: 2em;
   font-size: 35px;
 }
+
 
 
 @media (max-width: 750px) {
@@ -155,7 +159,7 @@ nav a:hover {
 }
 
 .sectionTitleDiv {
-  color: white;
+  color: var(--color3);
   border-radius: 5px;
   padding: 2em;
   margin: 1em;
@@ -166,7 +170,7 @@ nav a:hover {
 /* LOGIN ******************************************************************************************************************* */
 
 .loginSection {
-  color: white;
+  color: var(--color3);
   display: flex;
   flex-wrap: wrap;
   text-align: center;
@@ -245,12 +249,12 @@ label {
 }
 
 .needLoginSection {
-  background-color: var(--color1);
+  background-color: var(--color4);
   width: fit-content;
   margin: auto;
   padding: 1em;
   margin-top: 15em;
-  color: white;
+  color: var(--color1);
   border-radius: 5px;
   text-align: center;
 }
@@ -300,7 +304,7 @@ padding: 1em;
 
 .accountDiv {
   background-color: var(--color1);
-  color: white;
+  color: var(--color3);
   padding: 1em;
   border-radius: 5px;
   width: 60%;
@@ -322,7 +326,7 @@ padding: 1em;
 
 .accountForm div {
   width: 80%;
-  color: white;
+  color: var(--color3);
 }
 
 .infoBtnDiv {
@@ -405,7 +409,7 @@ padding: 1em;
 }
 
 .createListComponent {
-  color: white;
+  color: var(--color3);
   border-radius: 5px;
   padding: 2em;
   margin: 1em;
@@ -414,7 +418,7 @@ padding: 1em;
 }
 
 .editItem:hover {
-  background-color: var(--color3);
+  background-color: var(--color4);
 }
 .myListLeft {
   width: 35%;
@@ -434,45 +438,29 @@ padding: 1em;
 
 .listDivEl {
   display: flex;
-  align-items: center;
-  transition: .15s linear;
   width: 100%;
 }
 
-.listDivEl .listComponent, .listDivElToggle .listComponent {
+.listDivEl a {
   background-color: var(--color1);
-  color: white;
+  color: var(--color3);
   text-align: center;
-  width: 90%;
-  margin: auto;
+  width: 80%;
   padding: 1em;
   margin-top: 1em;
   overflow: hidden;
   border-radius: 5px;
 }
 
-.listDivElToggle .listComponent {
-  width: 70%;
-}
-
-
-
-.listDivElToggle {
-  transition: .15s linear;
-  display: flex;
-  align-items: center;
-  width: 80%;
-}
-
-.listDivEl .listComponent:hover, .listDivElToggle .listComponent:hover {
+.listDivEl a:hover {
   cursor: pointer;
-  background-color: var(--color3);
+  background-color: var(--color4);
   scale: 1.01;
 }
 
-.listDivEl a, .listDivElToggle a {
+.listDivEl a {
   background-color: var(--color1);
-  color: white;
+  color: var(--color3);
   padding: 1em;
   border-radius: 5px;
   transition: 0.2s;
@@ -480,7 +468,7 @@ padding: 1em;
 
 .reactTrashList {
   background-color: var(--color1);
-  color: white;
+  color: var(--color3);
   padding: 1em;
   margin: auto;
   border-radius: 5px;
@@ -489,7 +477,7 @@ padding: 1em;
 
 .reactTrash {
   background-color: var(--color1);
-  color: white;
+  color: var(--color3);
   padding: 1em;
   border-radius: 5px;
   transition: 0.2s;
@@ -520,6 +508,8 @@ padding: 1em;
   width: 100%;
 }
 
+
+
 .itemMapDiv div {
   width: 47%;
   display: flex;
@@ -527,16 +517,31 @@ padding: 1em;
   height: fit-content;
 }
 
+.itemMapDiv .itemSortDiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  text-align: center;
+  width: 90%;
+  padding: 1em;
+  border-radius: 5px;
+  background-color: var(--color4);
+}
+
+.itemSortDiv h3 {
+  width: 100%;
+}
+
 .itemMapDiv div a {
   width: 100%;
   background-color: var(--color1);
   border-radius: 5px;
   margin: 1em;
-  color: white;
+  color: var(--color3);
 }
 
 .itemMapDiv div a:hover {
-  background-color: var(--color3);
+  background-color: var(--color4);
 }
 
 .itemMapDiv div span {
@@ -693,16 +698,15 @@ padding: 1em;
 }
 
 @media (max-width: 1100px) {
+  .listDivEl a {
+    width: 90%;
+  }
 
   .listsPage .myListLeft, .singleListPage .myListLeft {
     width: 50%;
   }
   .itemMapDiv div {
     width: 95%;
-  }
-
-  .listDivElToggle {
-    width: 80%;
   }
   .singleListPage {
     flex-wrap: wrap;
@@ -718,7 +722,7 @@ padding: 1em;
   .listIcon {
     display: flex;
     justify-content: space-around;
-    color: white;
+    color: var(--color3);
   }
   .listIcon span {
     width: fit-content;
@@ -742,10 +746,7 @@ padding: 1em;
   width: 90%;
   margin: auto;
  }
- .reactTrashList {
-  padding: .5em;
- }
- .listDivEl a, .listDivElToggle a {
+ .listDivEl a {
   padding: .5em;
  }
  .listDivEl {
@@ -763,12 +764,6 @@ padding: 1em;
 
 }
 
-@media (max-width: 800px) {
-  .listDivElToggle a, .reactTrashList {
-    font-size: 14px;
-  }
-}
-
 @media (max-width: 460px) {
   .itemMapDiv div a {
     margin: .3em;
@@ -781,16 +776,6 @@ padding: 1em;
     font-weight: 100;
   }
   
-  .listDivElToggle {
-    width: 100%;
-  }
-  .listDivElToggle .listComponent {
-    width: 60%;
-  }
-
-  .listDivElToggle a, .reactTrashList {
-    font-size: 12px;
-  }
 }
 
 /* MODAL BASIC THING_______________________________________________________________________________ */
