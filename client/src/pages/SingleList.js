@@ -12,6 +12,7 @@ import Item from "../components/Item";
 
 const SingleList = () => {
   const [isAllowedToView, setIsAllowedToView] = useState(false);
+  const [orderItems, setOrderItems] = useState('oldest');
   const [modalView, setModalView] = useState('createItem');
   const [modalOpen, setModalOpen] = useState(false);
   const [isOwnList, setIsOwnList] = useState(false);
@@ -48,6 +49,11 @@ const SingleList = () => {
       }
     }
   };
+
+  const orderDateNewestFirst = () => {
+    let arr = data.list.items.reverse();
+    console.log(arr)
+  }
 
   useEffect(() => {
     getIslistLoaded();
@@ -106,13 +112,14 @@ const SingleList = () => {
             </div>
             {itemsArray.length > 0 ? (
               <div className="itemMapDiv">
-                <div className="itemSortDiv">
+                {/* <div className="itemSortDiv">
                   <h3>Sorting Options</h3>
+
+                  <button className="insetBtnInverse" onClick={orderDateNewestFirst} disabled={orderItems === 's'}>Oldest First</button>
                   <button className="insetBtnInverse">Newest First</button>
-                  <button className="insetBtnInverse">Oldest First</button>
                   <button className="insetBtnInverse">Price low to high</button>
                   <button className="insetBtnInverse">Price high to low</button>
-                    </div>
+                    </div> */}
                 {itemsArray.map((item) => (
                   <div key={item._id}>
                     <Link

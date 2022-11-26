@@ -6,17 +6,17 @@ const Home = () => {
     <main>
       <section className="homeSection">
       <Link to="/lists">
-        <div className="insetBtn">
+        <div className="homeInsetBtn">
           <h1>MY LISTS</h1>
         </div>
         </Link>
         <Link to="/profile">
-        <div className="insetBtn">
+        <div className="homeInsetBtn">
           <h1>PROFILE</h1>
         </div>
         </Link>
         <Link to="/friends">
-        <div className="insetBtn">
+        <div className="homeInsetBtn">
           <h1>FRIENDS</h1>
         </div>
         </Link>
