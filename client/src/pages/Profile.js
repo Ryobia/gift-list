@@ -90,8 +90,9 @@ const Profile = () => {
 
   useEffect(() => {
     getIsItemLoaded();
+    if (data) {
     setChangeInfoState({ username: data.me.username, email: data.me.email });
-
+    }
   }, [data]);
 
   if (Auth.loggedIn() === true) {

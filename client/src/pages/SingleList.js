@@ -90,10 +90,12 @@ const SingleList = () => {
                     ))}
                   </span>
                 </p>
+              {isOwnList ? 
                 <div id="listIcon" className="listIcon">
                 <span ><BsPlusCircleFill onClick={() => {setModalOpen(true); setModalView('createItem')}}/></span>
                 <span ><BsPersonPlusFill onClick={() => {setModalOpen(true); setModalView('addUser')}}/></span>
                 </div>
+              :null}
               </div>
               {isOwnList ? 
               <div className="listHidden">
@@ -104,7 +106,13 @@ const SingleList = () => {
             </div>
             {itemsArray.length > 0 ? (
               <div className="itemMapDiv">
-                <div className="itemSortDiv">SORTING DIV</div>
+                <div className="itemSortDiv">
+                  <h3>Sorting Options</h3>
+                  <button className="insetBtnInverse">Newest First</button>
+                  <button className="insetBtnInverse">Oldest First</button>
+                  <button className="insetBtnInverse">Price low to high</button>
+                  <button className="insetBtnInverse">Price high to low</button>
+                    </div>
                 {itemsArray.map((item) => (
                   <div key={item._id}>
                     <Link
