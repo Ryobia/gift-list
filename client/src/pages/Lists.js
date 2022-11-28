@@ -45,6 +45,7 @@ const Lists = () => {
 
       setMyLists(arr3);
       setIsLoading(false);
+      console.log(arr3)
     }
   };
 

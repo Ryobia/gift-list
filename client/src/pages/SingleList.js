@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { QUERY_LIST, QUERY_ME } from "../utils/queries";
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { BsTrashFill, BsPlusCircleFill, BsPersonPlusFill, BsFillXSquareFill } from "react-icons/bs";
 import Loader from "../components/Loader";
 import AddUserToList from "../components/AddUserToList";
@@ -31,6 +31,8 @@ const SingleList = () => {
     minute: "2-digit",
   };
 
+  
+
 
   const getIslistLoaded = () => {
     if (data) {
@@ -46,6 +48,7 @@ const SingleList = () => {
       if (meData.me.username === data.list.listUser) {
         setIsOwnList(true);
       }
+      console.log(itemsArray);
     }
   };
 
@@ -63,10 +66,24 @@ const SingleList = () => {
       return a.itemPrice - b.itemPrice;
     }))
   }
+  
   const orderPriceHighestFirst = () => {
     let arr = [...data.list.items];
     setItemsArray(arr.sort(function (a,b) {
       return b.itemPrice - a.itemPrice;
+    }))
+  }
+  const orderPriorityHighestFirst = () => {
+    let arr = [...data.list.items];
+    setItemsArray(arr.sort(function (a,b) {
+      return a.priority - b.priority;
+    }))
+  }
+  const orderPriorityLowestFirst = () => {
+    let arr = [...data.list.items];
+    setItemsArray(arr.sort(function (a,b) {
+      
+      return b.priority - a.priority;
     }))
   }
   useEffect(() => {
@@ -133,6 +150,8 @@ const SingleList = () => {
                   <button className="insetBtnInverse" onClick={orderDateOldestFirst}>Newest First</button>
                   <button className="insetBtnInverse" onClick={orderPriceLowestFirst}>Price low to high</button>
                   <button className="insetBtnInverse" onClick={orderPriceHighestFirst}>Price high to low</button>
+                  <button className="insetBtnInverse" onClick={orderPriorityLowestFirst}>Priority low to high</button>
+                  <button className="insetBtnInverse" onClick={orderPriorityHighestFirst}>Priority high to low</button>
                     </div>
                 {itemsArray.map((item) => (
                   <div key={item._id}>

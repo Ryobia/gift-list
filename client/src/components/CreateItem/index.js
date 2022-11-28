@@ -37,7 +37,7 @@ const CreateItem = () => {
         const mutationResponse = await addItem({
           variables: {
             listId: listId,
-            itemUser: meData.me.username,
+            itemUser: meData.me._id,
             itemName: formState.name,
             itemLink: formState.link,
             itemDetails: formState.details,

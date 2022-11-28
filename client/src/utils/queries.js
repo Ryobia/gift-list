@@ -100,7 +100,10 @@ export const QUERY_ALL_LISTS = gql`
       listUser
       listName
       listUsers {
+        _id
         username
+        firstName
+        lastName
       }
     }
   }

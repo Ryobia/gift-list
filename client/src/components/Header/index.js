@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import BackBtn from "../BackBtn";
 
 import Auth from "../../utils/auth";
 
@@ -10,6 +11,7 @@ const Header = () => {
         <Link className="" to="/">
           <h3>Home</h3>
         </Link>
+        <BackBtn />
       </nav>
       <nav>
         <Link className="" to="/">
