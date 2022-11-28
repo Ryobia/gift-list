@@ -47,6 +47,21 @@ const SingleItem = (props) => {
     }
   };
 
+  const handleChangePriority = async (val) => {
+    try {
+      const response = await updateItem({
+        variables: {
+          _id: itemId,
+          priority: val,
+        },
+      });
+      navigate(0);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handlePurchaseItem = async () => {
     try {
       const response = await updateItem({
@@ -74,6 +89,7 @@ const SingleItem = (props) => {
       if (meData.me.username === data.item.itemUser) {
         setIsOwnItem(true);
       }
+      console.log(data)
     }
   };
 
@@ -137,12 +153,22 @@ const SingleItem = (props) => {
               </div>
             ) : null}
             {isOwnItem ? (
+              <div className="singleItemOptions">
               <span
                 onClick={() => handleRemoveItem(data.item._id)}
                 className="reactTrash"
               >
                 <BsTrashFill />
               </span>
+              <div className="priorityDivSingleItem">
+                Set Priority (1 = I want this the most):
+                <span className={data.item.priority === 1 ? 'prioActive' : ''} onClick={() => handleChangePriority(1)} id="1">1</span>
+                <span className={data.item.priority === 2 ? 'prioActive' : ''} onClick={() => handleChangePriority(2)} id="2">2</span>
+                <span className={data.item.priority === 3 ? 'prioActive' : ''} onClick={() => handleChangePriority(3)} id="3">3</span>
+                <span className={data.item.priority === 4 ? 'prioActive' : ''} onClick={() => handleChangePriority(4)} id="4">4</span>
+                <span className={data.item.priority === 5 ? 'prioActive' : ''} onClick={() => handleChangePriority(5)} id="5">5</span>
+              </div>
+              </div>
             ) : null}
           </div>
         </div>

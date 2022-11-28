@@ -11,6 +11,7 @@ const List = (props) => {
     year: "2-digit",
     minute: "2-digit",
   };
+  console.log(list);
 
   return (
     <section className="listComponent">

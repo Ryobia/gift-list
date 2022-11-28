@@ -40,8 +40,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#39603d",endCo
 header {
   display: flex;
   justify-content: space-between;
-  border: 1px solid var(--color3);
-  background-color: var(--color1);
+  background-color: var(--color2);
   border-radius: 5px;
   padding: 1em;
   margin: 1em;
@@ -143,7 +142,10 @@ nav a:hover {
   font-size: 35px;
 }
 
-
+.backBtnSection div:hover {
+  cursor: pointer;
+  color: black;
+}
 
 @media (max-width: 750px) {
   .homeSection a {
@@ -585,6 +587,46 @@ padding: 1em;
   text-align: center;
 }
 
+.singleItemOptions {
+  display: flex;
+  justify-content: center;
+}
+
+
+.priorityDiv {
+  display: flex;
+  width: 100%;
+}
+
+.priorityDiv span, .priorityDivSingleItem span {
+  border-radius: 5px;
+  font-size: 14px;
+  border: 1px solid var(--color4);
+  width: 1em;
+  padding: .1em;
+  text-align: center;
+}
+.priorityDiv span {
+  width: 100%;
+}
+.priorityDivSingleItem {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: 2em;
+}
+.prioActive {
+  background-color: var(--color4);
+}
+.priorityDivSingleItem span {
+  margin-left: .4em;
+}
+
+.priorityDivSingleItem span:hover {
+  cursor: pointer;
+  background-color: var(--color4);
+}
+
 .singleItemTitleDiv {
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -612,8 +654,8 @@ padding: 1em;
 .myItem .reactTrash {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: fit-content;
-  margin: auto;
 }
 
 .itemLink {
