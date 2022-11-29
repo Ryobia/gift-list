@@ -135,7 +135,7 @@ const Profile = () => {
                   </span>
                 </div>
                 <div className="changeInfoDiv">
-                  <button className="insetBtnInverse" onClick={() => setProfileView('changeInfo')}>Change User Info</button>
+                  <button className="insetBtnInverse" onClick={() => setProfileView('')}>Change User Info</button>
                   <button className="insetBtnInverse" onClick={() => setProfileView('changePass')}>Change Password</button>
                 </div>
               </div>
