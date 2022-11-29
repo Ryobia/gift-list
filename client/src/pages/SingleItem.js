@@ -81,12 +81,12 @@ const SingleItem = (props) => {
     if (data && meData) {
       setIsLoading(false);
       if (
-        listData.list.listUsers.filter((e) => e.email === meData.me.email)
+        listData.list.listUsers.filter((e) => e._id === meData.me._id)
           .length > 0
       ) {
         setIsAllowedToView(true);
       }
-      if (meData.me.username === data.item.itemUser) {
+      if (meData.me._id === data.item.itemUser._id) {
         setIsOwnItem(true);
       }
       console.log(data)
@@ -123,8 +123,8 @@ const SingleItem = (props) => {
               </p>
               <p>
                 <span>Added by:</span>
-                <span></span>
-                {data.item.itemUser}
+                <span> {data.item.itemUser.firstName} {data.item.itemUser.lastName}</span>
+                
               </p>
               <p>
                 Details: <span>{data.item.itemDetails}</span>

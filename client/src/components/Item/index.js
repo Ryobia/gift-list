@@ -29,7 +29,7 @@ const Item = (props) => {
   if (isLoaded) {
     return (
       <section className="itemComponent">
-        {meData.me.username !== item.itemUser ? (
+        {meData.me._id !== item.itemUser._id ? (
           <label className="purchased" htmlFor="isPurchased">
             <input
               type="checkbox"

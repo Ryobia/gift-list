@@ -23,7 +23,7 @@ const List = (props) => {
             dateOptions
           )}
         </p>
-        <p>Created by: {list.listUser}</p>
+        <p>Created by: {list.listUser.firstName} {list.listUser.lastName}</p>
       </div>
       
     </section>

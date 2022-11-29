@@ -5,11 +5,12 @@ const listSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  listUser: {
-    type: String,
-  },
   listName: {
     type: String,
+  },
+  listUser: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
   },
   listUsers: [
     {

@@ -7,7 +7,8 @@ const itemSchema = new Schema(
       default: Date.now,
     },
     itemUser: {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: 'User'
     },
     itemName: {
       type: String,

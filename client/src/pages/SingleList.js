@@ -39,13 +39,13 @@ const SingleList = () => {
       setItemsArray(data.list.items);
       setIsLoading(false);
       if (
-        meData.me.username === data.list.listUser ||
-        data.list.listUsers.filter((e) => e.email === meData.me.email)
+        meData.me._id === data.list.listUser._id ||
+        data.list.listUsers.filter((e) => e._id === meData.me._id)
           .length > 0
       ) {
         setIsAllowedToView(true);
       }
-      if (meData.me.username === data.list.listUser) {
+      if (meData.me._id === data.list.listUser._id) {
         setIsOwnList(true);
       }
       console.log(itemsArray);
@@ -118,7 +118,7 @@ const SingleList = () => {
                     dateOptions
                   )}
                 </p>
-                <p>List Owner: {data.list.listUser}</p>
+                <p>List Owner: {data.list.listUser.firstName} {data.list.listUser.lastName}</p>
                 <p>
                   Members of this list:
                   <span>

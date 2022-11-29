@@ -37,9 +37,9 @@ const Lists = () => {
 
   const getIslistLoaded = () => {
     if (meData && allListsData) {
-      let arr1 = meData.me.lists;
+      let arr1 = allListsData.allLists.filter((m) => m.listUser._id === meData.me._id);
       let arr2 = allListsData.allLists.filter((x) =>
-        x.listUsers.some((y) => y.username === meData.me.username)
+        x.listUsers.some((y) => y._id === meData.me._id)
       );
       let arr3 = [...arr1, ...arr2];
 
@@ -84,7 +84,7 @@ const Lists = () => {
                       <List list={list} />
                       </Link>
                     
-                    {list.listUser === meData.me.username ? (
+                    {list.listUser._id === meData.me._id ? (
                       <span
                         onClick={() => handleRemoveList(list._id)}
                         className="reactTrashList"
