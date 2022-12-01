@@ -399,6 +399,63 @@ padding: 1em;
     padding: .3em;
     }
  }
+/* FRIEND PAGE ___________________________________________FASASDFAEAWEAW$t5q23ASDFAEFASFAEFASDaj;wlk3j4a;l5kjw;elakJF:SDoiUW:O#4 */
+
+.friendSection {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.addFriendComponent {
+  color: var(--color5);
+  width: 100%;
+  border-radius: 5px;
+  padding: 2em;
+  margin: 1em;
+  background-color: var(--color4);
+  text-align: center;
+}
+
+.friendsListDiv {
+  background-color: var(--color4);
+  width: 100%;
+  margin: 1em;
+  border-radius: 5px;
+}
+
+.friendsListDiv h3 {
+  text-align: center;
+}
+
+.friendsListDiv .friendEl {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color1);
+  margin: .5em;
+  padding: 0 1em 0 1em ;
+  transition: .1s linear;
+  border-radius: 5px;
+}
+
+.friendsListDiv .friendEl:hover {
+  cursor: pointer;
+  background-color: var(--color3);
+  color: var(--color1);
+}
+
+@media (max-width: 600px) {
+  .friendsListDiv .friendEl {
+    font-size: 12px;
+  }
+
+  .addFriendComponent, .friendsListDiv {
+    margin: 1em 0 0 0;
+  }
+}
+
+
+
 
 /* CREATE LIST **************************************________*_*__*__*_***&_*(_*%(^&_*(_(#%^_&*($_&*($_^&*(_$ */
 

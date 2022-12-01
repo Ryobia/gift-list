@@ -18,6 +18,12 @@ export const QUERY_ME = gql`
           itemName
         }
       }
+      friends {
+        _id
+        firstName
+        lastName
+        email
+      }
     }
   }
 `;

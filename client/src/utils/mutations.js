@@ -103,11 +103,10 @@ export const UPDATE_ITEM = gql`
 
 
 export const ADD_FRIEND = gql`
-  mutation addFriend($username: String!) {
-    addFriend(username: $username) {
+  mutation addFriend($friendId: ID!) {
+    addFriend(friendId: $friendId) {
       _id
       username
-      friendCount
       friends {
         _id
         username
