@@ -41,7 +41,7 @@ const CreateList = () => {
 
   return (
     <section>
-      <div className="createListComponent">
+      <div className="createListComponent standardShadow">
         <h2>CREATE NEW LIST</h2>
 
       

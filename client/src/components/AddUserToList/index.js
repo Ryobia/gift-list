@@ -47,7 +47,7 @@ const AddUserToList = (props) => {
 
   return (
     <section>
-      <div className="createListComponent">
+      <div className="createListComponent standardShadow">
         <h2>ADD USER TO THIS LIST</h2>
 
       

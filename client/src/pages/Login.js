@@ -43,7 +43,7 @@ const Login = (props) => {
   if (Auth.loggedIn() === false) {
     return (
       <section className="loginSection">
-        <div className="form-div">
+        <div className="form-div standardShadow">
           <h4>Login</h4>
           <div className="form-object">
             <form onSubmit={handleFormSubmit}>

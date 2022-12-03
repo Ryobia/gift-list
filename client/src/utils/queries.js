@@ -14,9 +14,6 @@ export const QUERY_ME = gql`
         listDate
         listUser
         listName
-        items {
-          itemName
-        }
       }
       friends {
         _id
@@ -27,7 +24,24 @@ export const QUERY_ME = gql`
     }
   }
 `;
-
+export const QUERY_MY_FRIENDS = gql`
+  {
+    myFriends {
+      _id
+      friends {
+        _id
+        firstName
+        lastName
+        email
+        lists {
+          _id
+          listName
+          listDate
+        }
+      }
+    }
+  }
+`;
 
 export const QUERY_USER = gql`
   query user($email: String!) {
@@ -38,6 +52,15 @@ export const QUERY_USER = gql`
       lastName
       friends {
         username
+      }
+      lists {
+        _id
+        listName
+        listUser
+        listDate
+        listUsers {
+          _id
+        }
       }
     }
   }

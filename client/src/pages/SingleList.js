@@ -110,7 +110,7 @@ const SingleList = () => {
             </div>
             :null}
             <div className="myListLeft">
-              <div className="sectionTitleDiv">
+              <div className="sectionTitleDiv standardShadow">
                 <h2>{data.list.listName}</h2>
                 <p>
                   {new Date(parseInt(data.list.listDate)).toLocaleDateString(
@@ -143,7 +143,7 @@ const SingleList = () => {
             </div>
             {itemsArray.length > 0 ? (
               <div className="itemMapDiv">
-                <div className="itemSortDiv">
+                <div className="itemSortDiv standardShadow">
                   <h3>Sorting Options</h3>
 
                   <button className="insetBtnInverse" onClick={orderDateNewestFirst}>Oldest First</button>

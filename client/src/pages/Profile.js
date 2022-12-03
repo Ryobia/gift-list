@@ -103,11 +103,11 @@ const Profile = () => {
         ) : (
           <section className="profileSection sectionTitle">
             <div className="profileDiv">
-                <div className="sectionTitleDiv">
+                <div className="sectionTitleDiv standardShadow">
                   <h2>PROFILE</h2>
                 </div>
               <div className="profileInfoDiv">
-                <div className="accountDiv">
+                <div className="accountDiv standardShadow">
                   <h3>Account Info</h3>
 
                   <span>
@@ -134,13 +134,13 @@ const Profile = () => {
                     </p>{" "}
                   </span>
                 </div>
-                <div className="changeInfoDiv">
+                <div className="changeInfoDiv standardShadow">
                   <button className="insetBtnInverse" onClick={() => setProfileView('')}>Change User Info</button>
                   <button className="insetBtnInverse" onClick={() => setProfileView('changePass')}>Change Password</button>
                 </div>
               </div>
               {profileView === 'changeInfo' ?
-            <form className="accountForm" onSubmit={handleInfoSubmit}>
+            <form className="accountForm standardShadow" onSubmit={handleInfoSubmit}>
             <div className="form-el ">
               <label className="form-label" htmlFor="username">
                 Username:
@@ -189,7 +189,7 @@ const Profile = () => {
             </div>
           </form>
             : profileView === 'changePass' ?
-            <form className="accountForm" onSubmit={handlePassSubmit}>
+            <form className="accountForm standardShadow" onSubmit={handlePassSubmit}>
           <div className="form-el">
             <label className="form-label" htmlFor="password">
               New Password:

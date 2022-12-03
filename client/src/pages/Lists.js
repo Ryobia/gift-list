@@ -36,7 +36,7 @@ const Lists = () => {
   };
 
   const getIslistLoaded = () => {
-    if (meData && allListsData) {
+    if (meData?.me.lists && allListsData?.allLists) {
       let arr1 = meData.me.lists;
       let arr2 = allListsData.allLists.filter((x) =>
         x.listUsers.some((y) => y.username === meData.me.username)
@@ -67,7 +67,7 @@ const Lists = () => {
         ) : (
           <section className="myListSection sectionMain listsPage">
             <div className="myListLeft">
-              <div className="sectionTitleDiv">
+              <div className="sectionTitleDiv standardShadow">
                 <h2>MY LISTS</h2>
               </div>
               <CreateList />
@@ -87,7 +87,7 @@ const Lists = () => {
                     {list.listUser === meData.me.username ? (
                       <span
                         onClick={() => handleRemoveList(list._id)}
-                        className="reactTrashList"
+                        className="reactTrashList standardShadow"
                       >
                         <BsTrashFill />
                       </span>

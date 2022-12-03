@@ -6,7 +6,7 @@ const NeedLogin = () => {
 
 
   return (
-    <section className="needLoginSection" >
+    <section className="needLoginSection standardShadow" >
         <h2>Must be logged in</h2>
         <Link to="/login">
             <h3 className="insetBtnInverse">Click here to Login</h3>

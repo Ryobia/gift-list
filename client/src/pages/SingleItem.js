@@ -104,7 +104,7 @@ const SingleItem = (props) => {
       ) : (
         <div className="myListSection sectionMain">
           <div className="myItem">
-            <div className="sectionTitleDiv singleItemTitleDiv">
+            <div className="sectionTitleDiv singleItemTitleDiv standardShadow">
               <h1>
                 <span>Name: </span>
                 <span> {data.item.itemName}</span>
@@ -156,7 +156,7 @@ const SingleItem = (props) => {
               <div className="singleItemOptions">
               <span
                 onClick={() => handleRemoveItem(data.item._id)}
-                className="reactTrash"
+                className="reactTrash standardShadow"
               >
                 <BsTrashFill />
               </span>

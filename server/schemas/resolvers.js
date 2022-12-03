@@ -21,15 +21,34 @@ const resolvers = {
 
       throw new AuthenticationError("You are not logged in");
     },
+    myFriends: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id })
+          .select("-__v -password")
+          .populate("lists")
+          .populate("items")
+          .populate("listUsers")
+          .populate("friends");
+
+        return userData;
+      }
+
+      throw new AuthenticationError("You are not logged in");
+    },
 
     users: async () => {
-      return User.find().select("-__v -password");
+      return User.find()
+        .select("-__v -password")
+        .populate("friends")
+        .populate("lists")
+        .populate("items");
     },
     user: async (parent, { email }) => {
       return User.findOne({ email })
         .select("-__v -password")
         .populate("lists")
         .populate("items")
+        .populate("users")
         .populate("friends");
     },
     list: async (parent, { _id }) => {
@@ -37,6 +56,7 @@ const resolvers = {
         .select("-__v")
         .populate("items")
         .populate("listUsers")
+        .populate("friends")
         .populate("lists");
     },
     item: async (parent, { _id }) => {
@@ -44,10 +64,11 @@ const resolvers = {
     },
     allLists: async () => {
       return List.find()
-      .select("-__v")
-      .populate("lists")
-      .populate("items")
-      .populate("listUsers");
+        .select("-__v")
+        .populate("lists")
+        .populate("items")
+        .populate("friends")
+        .populate("listUsers");
     },
 
     allItems: async () => {
@@ -93,8 +114,8 @@ const resolvers = {
           { new: true, multi: true }
         ).populate("lists", "items");
 
-        await List.findByIdAndDelete({_id: _id}).populate("lists", "users");
-        
+        await List.findByIdAndDelete({ _id: _id }).populate("lists", "users");
+
         return updatedUser;
       }
 
@@ -144,21 +165,21 @@ const resolvers = {
           { new: true, multi: true }
         ).populate("lists", "items", "users");
 
-        await Item.findByIdAndDelete({_id: _id}).populate("lists", "users");
-
+        await Item.findByIdAndDelete({ _id: _id }).populate("lists", "users");
 
         return deletedList;
       }
 
       throw new AuthenticationError("Not logged in");
     },
-    
+
     updateItem: async (parent, args, context) => {
       console.log(args);
-      let {_id, ...rest} = args;
+      let { _id, ...rest } = args;
       if (context.user) {
         return await Item.findByIdAndUpdate(_id, rest, {
-          new: true, multi: true
+          new: true,
+          multi: true,
         }).populate("items", "lists", "users");
       }
 

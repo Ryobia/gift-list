@@ -30,21 +30,27 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background: rgb(57,96,61);
-background: -moz-linear-gradient(0deg, rgba(57,96,61,0.5242471988795518) 73%, rgba(255,255,255,1) 100%);
-background: -webkit-linear-gradient(0deg, rgba(57,96,61,0.5242471988795518) 73%, rgba(255,255,255,1) 100%);
-background: linear-gradient(0deg, rgba(57,96,61,0.5242471988795518) 73%, rgba(255,255,255,1) 100%) fixed;
+background: -moz-linear-gradient(0deg, rgba(57,96,61,0.5242471988795518) 63%, rgba(255,255,255,1) 100%);
+background: -webkit-linear-gradient(0deg, rgba(57,96,61,0.5242471988795518) 63%, rgba(255,255,255,1) 100%);
+background: linear-gradient(0deg, rgba(57,96,61,0.5242471988795518) 63%, rgba(255,255,255,1) 100%) fixed;
 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#39603d",endColorstr="#ffffff",GradientType=1);
 }
 
+.standardShadow {
+  box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5);
 
+}
+ 
 header {
   display: flex;
   justify-content: space-between;
-  background-color: var(--color2);
+  background-color: var(--color1);
   border-radius: 5px;
   padding: 1em;
   margin: 1em;
   color: var(--color3);
+  box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5),
+              -5px -5px 9px 0px;
   align-items: center;
 }
 
@@ -315,7 +321,7 @@ label {
   justify-content: space-evenly;
   border-radius: 5px;
   padding: .5em;
-  background-color: var(--color1);
+  background-color: var(--color4);
 }
 
 .changeInfoDiv button {
@@ -329,8 +335,7 @@ padding: 1em;
 }
 
 .accountDiv {
-  background-color: var(--color1);
-  color: var(--color3);
+  background-color: var(--color4);
   padding: 1em;
   border-radius: 5px;
   width: 60%;
@@ -401,6 +406,16 @@ padding: 1em;
  }
 /* FRIEND PAGE ___________________________________________FASASDFAEAWEAW$t5q23ASDFAEFASFAEFASDaj;wlk3j4a;l5kjw;elakJF:SDoiUW:O#4 */
 
+.friendDiv {
+  display: flex;
+  flex-wrap: wrap;
+  width: 45%;
+}
+
+.friendDiv .sectionTitleDiv {
+  width: 100%;
+}
+
 .friendSection {
   display: flex;
   flex-wrap: nowrap;
@@ -411,7 +426,7 @@ padding: 1em;
   color: var(--color5);
   width: 100%;
   border-radius: 5px;
-  padding: 2em;
+  padding: 1em;
   margin: 1em;
   background-color: var(--color4);
   text-align: center;
@@ -428,24 +443,89 @@ padding: 1em;
   text-align: center;
 }
 
-.friendsListDiv .friendEl {
+.friendEl {
   display: flex;
   justify-content: space-between;
   background-color: var(--color1);
-  margin: .5em;
-  padding: 0 1em 0 1em ;
+  margin: 1em .5em;
+  padding: .5em 1em .2em 1em ;
   transition: .1s linear;
   border-radius: 5px;
 }
 
-.friendsListDiv .friendEl:hover {
+.friendEl:hover {
   cursor: pointer;
   background-color: var(--color3);
   color: var(--color1);
 }
 
-@media (max-width: 600px) {
-  .friendsListDiv .friendEl {
+.expandedFriendDiv {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  padding: .5em;
+  margin-top: 1em;
+  height: fit-content;
+  width: 52%;
+  background-color: var(--color4);
+}
+
+.expandedFriendDiv h3 {
+  text-align: center;
+  margin: auto;
+  padding: .5em 1em;
+  border-radius: 5px;
+  background-color: var(--color3);
+  color: var(--color1);
+}
+
+.expandedFriendDiv a {
+  color: var(--color3);
+  width: 100%;
+  margin-top: 1em;
+  border-radius: 5px;
+  padding: .5em 1em .2em 1em ;
+  background-color: var(--color1);
+  transition: .1s linear;
+}
+
+.expandedFriendDiv a:hover {
+  background-color: var(--color3);
+  color: var(--color1);
+}
+
+.noFriendSelected {
+  margin: auto;
+}
+
+.listShown {
+  display: none;
+}
+@media (max-width: 1100px) {
+  .friendDiv {
+    width: 70%;
+    margin: auto;
+  }
+
+  .listShown {
+    display: block;
+  }
+
+  .expandedFriendDiv {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .expandedFriendDiv a {
+
+  }
+  
+}
+
+@media (max-width: 800px) {
+  .friendEl {
     font-size: 12px;
   }
 
@@ -454,7 +534,15 @@ padding: 1em;
   }
 }
 
-
+@media (max-width: 550px) {
+  .friendDiv {
+    width: 95%;
+  }
+  .friendEl {
+    font-size: 10px;
+  }
+ 
+}
 
 
 /* CREATE LIST **************************************________*_*__*__*_***&_*(_*%(^&_*(_(#%^_&*($_&*($_^&*(_$ */
@@ -925,7 +1013,9 @@ padding: 1em;
   transform: translate(-50%, -50%);
   padding: .5em;
   border-radius: 5px;
-  background: var(--color1);
+  background: var(--color4);
+  box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5);
+
 }
 
 .cancelModal {
