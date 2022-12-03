@@ -6,7 +6,7 @@ import Auth from "../../utils/auth";
 
 const Header = () => {
   return (
-    <header>
+    <header className="">
       <nav>
         <Link className="" to="/">
           <h3>Home</h3>

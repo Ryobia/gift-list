@@ -10,6 +10,7 @@ const listSchema = new Schema({
   },
   listName: {
     type: String,
+    required: true
   },
   listUsers: [
     {

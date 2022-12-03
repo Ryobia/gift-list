@@ -5,17 +5,17 @@ const Home = () => {
   return (
     <main>
       <section className="homeSection">
-      <Link to="/lists">
-        <div className="homeInsetBtn">
+      <Link className="standardShadow" to="/lists">
+        <div className="homeInsetBtn ">
           <h1>MY LISTS</h1>
         </div>
         </Link>
-        <Link to="/profile">
+        <Link className="standardShadow" to="/profile">
         <div className="homeInsetBtn">
           <h1>PROFILE</h1>
         </div>
         </Link>
-        <Link to="/friends">
+        <Link className="standardShadow" to="/friends">
         <div className="homeInsetBtn">
           <h1>FRIENDS</h1>
         </div>
