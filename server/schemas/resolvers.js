@@ -192,12 +192,26 @@ const resolvers = {
           { _id: context.user._id },
           { $addToSet: { friends: friendId } },
           { new: true }
-        ).populate("friends");
+        ).populate("friends", "users");
 
         return updatedUser;
       }
 
       throw new AuthenticationError("You need to be logged in!");
+    },
+    removeFriend: async (parent, { friendId }, context) => {
+      if (context.user) {
+        const removedFriend = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $pull: { friends: friendId } },
+          { new: true, multi: true }
+        ).populate("users", "friends");
+
+
+        return removedFriend;
+      }
+
+      throw new AuthenticationError("Not logged in");
     },
     updateUser: async (parent, args, context) => {
       console.log(context);

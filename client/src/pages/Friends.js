@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
-import { ADD_FRIEND } from "../utils/mutations";
-import { BsFillXSquareFill } from "react-icons/bs";
+import { ADD_FRIEND, REMOVE_FRIEND } from "../utils/mutations";
+import { BsFillXSquareFill, BsTrash } from "react-icons/bs";
 import { QUERY_USER, QUERY_MY_FRIENDS } from "../utils/queries";
 import { useQuery, useMutation, useLazyQuery } from "@apollo/react-hooks";
 import Auth from "../utils/auth";
@@ -15,6 +15,8 @@ const Friends = () => {
   const [friendArray, setFriendArray] = useState();
   const [selectedFriendLists, setSelectedFriendLists] = useState();
   const [addFriend, { error: addFriendError }] = useMutation(ADD_FRIEND);
+  const [removeFriend, { error: removeFriendError }] =
+    useMutation(REMOVE_FRIEND);
   const [changeInfoState, setChangeInfoState] = useState({
     email: "",
   });
@@ -41,6 +43,24 @@ const Friends = () => {
         },
       });
       console.log(mutationResponse);
+      setChangeInfoState({
+        ...changeInfoState,
+        email: "",
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleRemoveFriend = async (id) => {
+    try {
+      const mutationResponse = await removeFriend({
+        variables: {
+          friendId: id,
+        },
+      });
+      console.log(mutationResponse);
+      setModalOpen(false);
     } catch (e) {
       console.log(e);
     }
@@ -95,7 +115,7 @@ const Friends = () => {
                   >
                     <BsFillXSquareFill className="insetBtnInverse " />
                   </span>
-                  {selectedFriend?.lists ? (
+                  {selectedFriend?.lists?.length > 0 ? (
                     <div className="expandedFriendDiv">
                       <h3>
                         {selectedFriend.firstName} {selectedFriend.lastName}'s
@@ -110,8 +130,30 @@ const Friends = () => {
                           <h4>{list.listName}</h4>
                         </Link>
                       ))}
+                      <span
+                        className="removeFriend"
+                        onClick={() => handleRemoveFriend(selectedFriend._id)}
+                      >
+                        Remove Friend
+                        <BsTrash className="insetBtnInverse" />
+                      </span>
                     </div>
-                  ) : null}
+                  ) : (
+                    <div className="expandedFriendDiv">
+                      <h3>
+                        {selectedFriend.firstName} {selectedFriend.lastName}'s
+                        Lists
+                      </h3>
+                      <p>You have not been added to any of this User's lists</p>
+                      <span
+                        className="removeFriend"
+                        onClick={() => handleRemoveFriend(selectedFriend._id)}
+                      >
+                        Remove Friend
+                        <BsTrash className="insetBtnInverse" />
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             ) : null}
@@ -128,6 +170,7 @@ const Friends = () => {
                     name="email"
                     type="email"
                     id="email"
+                    value={changeInfoState.email}
                     onChange={handleChange}
                   />
 
@@ -159,11 +202,10 @@ const Friends = () => {
                   <div
                     className="friendEl standardShadow"
                     key={friend._id}
-                    onClick={() =>{
+                    onClick={() => {
                       getUser({ variables: { email: friend.email } });
                       setModalOpen(true);
-                    }
-                    }
+                    }}
                   >
                     <span>
                       {friend.firstName} {friend.lastName}
@@ -173,7 +215,7 @@ const Friends = () => {
                 ))}
               </div>
             </div>
-            {selectedFriend?.lists ? (
+            {selectedFriend?.lists?.length > 0 ? (
               <div className="expandedFriendDiv standardShadow listHidden">
                 <h3>
                   {selectedFriend.firstName} {selectedFriend.lastName}'s Lists
@@ -187,11 +229,33 @@ const Friends = () => {
                     <h4>{list.listName}</h4>
                   </Link>
                 ))}
+                <span
+                        className="removeFriend"
+                        onClick={() => handleRemoveFriend(selectedFriend._id)}
+                      >
+                        Remove Friend
+                        <BsTrash className="insetBtnInverse" />
+                      </span>
               </div>
-            ) : (
+            ) : selectedFriend === "" ? (
               <h3 className="noFriendSelected listHidden">
                 Select a Friend to view their lists
               </h3>
+            ) :  (
+              <div className="expandedFriendDiv standardShadow listHidden">
+                <h3>
+                  {selectedFriend.firstName} {selectedFriend.lastName}'s
+                  Lists
+                </h3>
+                <p>You have not been added to any of this User's lists</p>
+                <span
+                  className="removeFriend"
+                  onClick={() => handleRemoveFriend(selectedFriend._id)}
+                >
+                  Remove Friend
+                  <BsTrash className="insetBtnInverse" />
+                </span>
+              </div>
             )}
           </section>
         )}

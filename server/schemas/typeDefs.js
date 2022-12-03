@@ -74,6 +74,7 @@ const typeDefs = gql`
     removeList(_id: ID!): User
     removeItem(_id: ID!, listId: String): List
     addFriend(friendId: ID!): User
+    removeFriend(friendId: ID!): User
     addUserToList(_id: ID!, userId: ID!): List
     updateItem(
       _id: ID
