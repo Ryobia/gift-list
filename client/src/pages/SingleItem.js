@@ -161,7 +161,7 @@ const SingleItem = (props) => {
                 <BsTrashFill />
               </span>
               <div className="priorityDivSingleItem">
-                Set Priority (1 = I want this the most):
+                <p>Set Priority (1 = I want this the most):</p>
                 <span className={data.item.priority === 1 ? 'prioActive' : ''} onClick={() => handleChangePriority(1)} id="1">1</span>
                 <span className={data.item.priority === 2 ? 'prioActive' : ''} onClick={() => handleChangePriority(2)} id="2">2</span>
                 <span className={data.item.priority === 3 ? 'prioActive' : ''} onClick={() => handleChangePriority(3)} id="3">3</span>
