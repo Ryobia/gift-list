@@ -102,7 +102,7 @@ const SingleList = () => {
               <div>
               <span className="cancelModal" onClick={() => setModalOpen(false)}><BsFillXSquareFill className="insetBtnInverse "/></span>
                 {modalView === 'addUser' ? (
-              <AddUserToList listId={listId} />
+              <AddUserToList data={meData.me} />
                 ) : modalView === 'createItem' ? (
               <CreateItem listId={listId} />
                 ):null}
@@ -136,7 +136,7 @@ const SingleList = () => {
               </div>
               {isOwnList ? 
               <div className="listHidden">
-              <AddUserToList listId={listId} />
+              <AddUserToList data={meData.me} />
               <CreateItem listId={listId} />
               </div>
               :null}
