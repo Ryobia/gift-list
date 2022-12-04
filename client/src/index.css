@@ -522,6 +522,44 @@ padding: 1em;
   padding: .3em;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+  background-color: var(--color1);
+  color: var(--color3);
+  padding: .5em;
+  border-radius: 5px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  color: var(--color3);
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content p {
+  padding: .2em;
+}
+
+.dropdown-content p:hover {
+  cursor: pointer;
+  background-color: var(--color3);
+  color: var(--color1);
+} 
+
+.dropdown:hover {
+  background-color: var(--color3);
+  color: var(--color1);
+  cursor: pointer;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 @media (max-width: 1100px) {
   .friendDiv {
     width: 70%;
