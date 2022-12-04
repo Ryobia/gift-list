@@ -100,7 +100,7 @@ const SingleList = () => {
             {modalOpen ? 
             <div id="open-modal" className="modal-window">
               <div>
-              <span className="cancelModal" onClick={() => setModalOpen(false)}><BsFillXSquareFill className="insetBtnInverse "/></span>
+              <span className="cancelModal"><BsFillXSquareFill onClick={() => setModalOpen(false)} className="insetBtnInverse "/></span>
                 {modalView === 'addUser' ? (
               <AddUserToList data={meData.me} />
                 ) : modalView === 'createItem' ? (
