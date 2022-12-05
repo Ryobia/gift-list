@@ -50,8 +50,9 @@ const CreateItem = () => {
         setError(true);
         console.log(e);
       }
-    }
+    } else {
     setError(true)
+    }
   };
 
   return (

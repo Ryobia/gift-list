@@ -72,7 +72,7 @@ const Lists = () => {
               </div>
               <CreateList />
             </div>
-            {meData ? (
+            {meData?.me ? (
               <div className="listDiv">
                 {myLists.map((list) => (
                   <div className="listDivEl" key={list._id}>

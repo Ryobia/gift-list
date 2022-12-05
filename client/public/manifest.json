@@ -1,6 +1,6 @@
 {
-  "short_name": "Deep Thoughts",
-  "name": "Deep Thoughts",
+  "short_name": "Anonylists",
+  "name": "Anonylists",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "anonylist192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "anonylist512.png",
       "type": "image/png",
       "sizes": "512x512"
     }

@@ -35,7 +35,7 @@ const SingleList = () => {
 
 
   const getIslistLoaded = () => {
-    if (data) {
+    if (data && meData?.me) {
       setItemsArray(data.list.items);
       setIsLoading(false);
       if (
