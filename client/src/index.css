@@ -40,6 +40,18 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#39603d",endCo
   box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5);
 
 }
+
+.desktopStandardShadow {
+  box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5);
+
+}
+
+@media (max-width: 1100px) {
+  .desktopStandardShadow {
+
+    box-shadow: 0 0 0 0;
+  }
+}
  
 header {
   display: flex;
@@ -632,6 +644,37 @@ padding: 1em;
 }
 
 /* LISTS )(!)@#(!)@()()()()()(((((((()))))))!@(#)!($)!*%)*^)!*#$)^!*#$%)!*#^$)!*^#)!*^)#*$^)!#*$^)!#*^$ */
+.deleteModalBtnDiv {
+  width: 200px;
+  text-align: center;
+  margin: auto;
+}
+
+.deleteModalBtnDiv div {
+  margin-top: 2em;
+}
+
+.deleteModalText {
+  width: 200px;
+  text-align: center;
+  margin: auto;
+  color: var(--color3);
+
+}
+
+.modal-delete-window > div {
+  width: 260px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: .5em;
+  border-radius: 5px;
+  background: var(--color4);
+  box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5);
+
+}
+
 .listIcon {
   display: none;
 }
@@ -1053,7 +1096,7 @@ padding: 1em;
 
 /* MODAL BASIC THING_______________________________________________________________________________ */
 
-.modal-window {
+.modal-window, .modal-delete-window {
   position: fixed;
   background-color: rgba(255, 255, 255, 0.40);
   top: 0;

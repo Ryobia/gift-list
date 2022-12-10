@@ -11,6 +11,7 @@ import Loader from "../components/Loader";
 const SingleItem = (props) => {
   const [isOwnItem, setIsOwnItem] = useState(false);
   const [isAllowedToView, setIsAllowedToView] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const { id: itemId, listId: listId } = useParams();
   const [updateItem, { error: updateError }] = useMutation(UPDATE_ITEM);
@@ -103,6 +104,20 @@ const SingleItem = (props) => {
         <Loader />
       ) : (
         <div className="myListSection sectionMain">
+          {deleteModal ? 
+            <div id="open-modal" className="modal-delete-window">
+              <div>
+              <div className="deleteModalText">
+                <h3>Are you sure you want to delete this Item?</h3>
+                <p>Deleting an Item removes it permanently. Keep in mind that someone may have bought this item already.</p>
+              </div>
+              <div className="deleteModalBtnDiv">
+                <div className="insetBtnInverse" onClick={() => setDeleteModal(false)}>Nevermind</div>
+                <div className="insetBtnInverse" onClick={() => handleRemoveItem(data.item._id)}>Yes, I'm Sure</div>
+                </div>
+              </div>
+            </div>
+            :null}
           <div className="myItem">
             <div className="sectionTitleDiv singleItemTitleDiv standardShadow">
               <h1>
@@ -155,7 +170,7 @@ const SingleItem = (props) => {
             {isOwnItem ? (
               <div className="singleItemOptions">
               <span
-                onClick={() => handleRemoveItem(data.item._id)}
+                onClick={() => setDeleteModal(true)}
                 className="reactTrash standardShadow"
               >
                 <BsTrashFill />

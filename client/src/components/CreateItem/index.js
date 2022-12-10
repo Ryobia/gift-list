@@ -57,7 +57,7 @@ const CreateItem = () => {
 
   return (
     <section>
-      <div className="createListComponent ">
+      <div className="createListComponent desktopStandardShadow">
         <h2>ADD NEW ITEM</h2>
 
         <form onSubmit={handleAddItem}>

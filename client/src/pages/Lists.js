@@ -4,7 +4,7 @@ import CreateList from "../components/CreateList";
 import AddUserToList from "../components/AddUserToList";
 import NeedLogin from "../components/NeedLogin";
 import Loader from "../components/Loader";
-import { BsTrashFill, BsFillArrowUpRightSquareFill, BsFillPencilFill } from "react-icons/bs";
+import { BsTrashFill, BsFillXSquareFill } from "react-icons/bs";
 import List from "../components/List";
 import { QUERY_ME, QUERY_ALL_LISTS } from "../utils/queries";
 import { useQuery } from "@apollo/react-hooks";
@@ -13,6 +13,8 @@ import { REMOVE_LIST } from "../utils/mutations";
 import Auth from "../utils/auth";
 const Lists = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [selectedList, setSelectedList] = useState();
   const { loading: allListsLoading, data: allListsData } =
     useQuery(QUERY_ALL_LISTS);
   const { loading, error: meError, data: meData } = useQuery(QUERY_ME);
@@ -66,6 +68,20 @@ const Lists = () => {
           <Loader />
         ) : (
           <section className="myListSection sectionMain listsPage">
+            {deleteModal ? 
+            <div id="open-modal" className="modal-delete-window">
+              <div>
+              <div className="deleteModalText">
+                <h3>Are you sure you want to delete this List?</h3>
+                <p>Deleting a list removes it, and all items within permanently.</p>
+              </div>
+              <div className="deleteModalBtnDiv">
+                <div className="insetBtnInverse" onClick={() => {setDeleteModal(false); setSelectedList()}}>Nevermind</div>
+                <div className="insetBtnInverse" onClick={() => handleRemoveList(selectedList)}>Yes, I'm Sure</div>
+                </div>
+              </div>
+            </div>
+            :null}
             <div className="myListLeft">
               <div className="sectionTitleDiv standardShadow">
                 <h2>MY LISTS</h2>
@@ -86,7 +102,7 @@ const Lists = () => {
                     
                     {list.listUser === meData.me.username ? (
                       <span
-                        onClick={() => handleRemoveList(list._id)}
+                        onClick={() => {setDeleteModal(true); setSelectedList(list._id);}}
                         className="reactTrashList standardShadow"
                       >
                         <BsTrashFill />
