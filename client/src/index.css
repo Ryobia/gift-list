@@ -979,6 +979,32 @@ padding: 1em;
   display: none;
 }
 
+.addItemPrio {
+  width: 100%;
+  background-color: white;
+  margin: 1em;
+  color: var(--color3);
+  font-size: 14px;
+}
+
+.addItemPrioOption {
+  display: flex;
+  justify-content: space-around;
+  padding: .3em;
+}
+
+.addItemPrioOption span {
+  border: var(--color3) 1px solid;
+  width: 1em;
+  border-radius: 5px;
+}
+
+.addItemPrioOption span:hover {
+  cursor: pointer;
+  background-color: var(--color3);
+  color: var(--color1);
+}
+
 @media (max-width: 1400px) {
   .singleItemTitleDiv h1 {
     font-size: 18px;

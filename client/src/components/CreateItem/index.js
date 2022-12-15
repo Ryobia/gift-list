@@ -8,7 +8,7 @@ import { QUERY_ME } from "../../utils/queries";
 const CreateItem = () => {
   const { id: listId } = useParams();
   const [error, setError] = useState(false);
-
+  const [prio, setPrio] = useState(5);
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
     name: "",
@@ -42,6 +42,7 @@ const CreateItem = () => {
             itemLink: formState.link,
             itemDetails: formState.details,
             itemPrice: parseInt(formState.price, 10),
+            priority: prio,
           },
         });
         navigate(0);
@@ -97,7 +98,16 @@ const CreateItem = () => {
             id="price"
             onChange={handleChange}
           />
-
+          <div className="addItemPrio">
+                <p>Set Priority (1 = I want this the most):</p>
+                <div className="addItemPrioOption">
+                  <span className={prio === 1 ? 'prioActive' : ''} onClick={() => setPrio(1)} id="1">1</span>
+                  <span className={prio === 2 ? 'prioActive' : ''} onClick={() => setPrio(2)} id="2">2</span>
+                  <span className={prio === 3 ? 'prioActive' : ''} onClick={() => setPrio(3)} id="3">3</span>
+                  <span className={prio === 4 ? 'prioActive' : ''} onClick={() => setPrio(4)} id="4">4</span>
+                  <span className={prio === 5 ? 'prioActive' : ''} onClick={() => setPrio(5)} id="5">5</span>
+                </div>
+              </div>
           <button className="insetBtnInverse" type="submit">
             Add Item
           </button>

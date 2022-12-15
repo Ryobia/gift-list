@@ -47,14 +47,15 @@ export const ADD_LIST = gql`
 `;
 
 export const ADD_ITEM = gql`
-  mutation addItem($listId: String!, $itemDate: String, $itemUser: String, $itemName: String, $itemLink: String, $itemDetails: String, $itemPrice: Float) {
-    addItem(listId: $listId, itemDate: $itemDate, itemUser: $itemUser, itemName: $itemName, itemLink: $itemLink, itemDetails: $itemDetails, itemPrice: $itemPrice) {
+  mutation addItem($listId: String!, $itemDate: String, $itemUser: String, $itemName: String, $itemLink: String, $itemDetails: String, $priority: Float, $itemPrice: Float) {
+    addItem(listId: $listId, itemDate: $itemDate, itemUser: $itemUser, itemName: $itemName, itemLink: $itemLink, itemDetails: $itemDetails, priority: $priority, itemPrice: $itemPrice) {
       _id
       itemDate
       itemUser
       itemName
       itemDetails
       itemPrice
+      priority
     }
   }
 
