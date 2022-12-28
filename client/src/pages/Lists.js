@@ -39,15 +39,17 @@ const Lists = () => {
 
   const getIslistLoaded = () => {
     if (meData?.me.lists && allListsData?.allLists) {
-      let arr1 = meData.me.lists;
+      let arr1 = allListsData.allLists.filter(
+        (m) => m.listUser._id === meData.me._id
+      );
       let arr2 = allListsData.allLists.filter((x) =>
-        x.listUsers.some((y) => y.username === meData.me.username)
+        x.listUsers.some((y) => y._id === meData.me._id)
       );
       let arr3 = [...arr1, ...arr2];
 
       setMyLists(arr3);
       setIsLoading(false);
-      console.log(arr3)
+      console.log(arr3);
     }
   };
 
@@ -68,20 +70,36 @@ const Lists = () => {
           <Loader />
         ) : (
           <section className="myListSection sectionMain listsPage">
-            {deleteModal ? 
-            <div id="open-modal" className="modal-delete-window">
-              <div>
-              <div className="deleteModalText">
-                <h3>Are you sure you want to delete this List?</h3>
-                <p>Deleting a list removes it, and all items within permanently.</p>
-              </div>
-              <div className="deleteModalBtnDiv">
-                <div className="insetBtnInverse" onClick={() => {setDeleteModal(false); setSelectedList()}}>Nevermind</div>
-                <div className="insetBtnInverse" onClick={() => handleRemoveList(selectedList)}>Yes, I'm Sure</div>
+            {deleteModal ? (
+              <div id="open-modal" className="modal-delete-window">
+                <div>
+                  <div className="deleteModalText">
+                    <h3>Are you sure you want to delete this List?</h3>
+                    <p>
+                      Deleting a list removes it, and all items within
+                      permanently.
+                    </p>
+                  </div>
+                  <div className="deleteModalBtnDiv">
+                    <div
+                      className="insetBtnInverse"
+                      onClick={() => {
+                        setDeleteModal(false);
+                        setSelectedList();
+                      }}
+                    >
+                      Nevermind
+                    </div>
+                    <div
+                      className="insetBtnInverse"
+                      onClick={() => handleRemoveList(selectedList)}
+                    >
+                      Yes, I'm Sure
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            :null}
+            ) : null}
             <div className="myListLeft">
               <div className="sectionTitleDiv standardShadow">
                 <h2>MY LISTS</h2>
@@ -98,11 +116,14 @@ const Lists = () => {
                       to={`/lists/${list._id}`}
                     >
                       <List list={list} />
-                      </Link>
-                    
-                    {list.listUser === meData.me.username ? (
+                    </Link>
+
+                    {list.listUser._id === meData.me._id ? (
                       <span
-                        onClick={() => {setDeleteModal(true); setSelectedList(list._id);}}
+                        onClick={() => {
+                          setDeleteModal(true);
+                          setSelectedList(list._id);
+                        }}
                         className="reactTrashList standardShadow"
                       >
                         <BsTrashFill />

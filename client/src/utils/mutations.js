@@ -35,11 +35,13 @@ export const UPDATE_USER = gql`
 `;
 
 export const ADD_LIST = gql`
-  mutation addList($listDate: String, $listUser: String, $listName: String) {
+  mutation addList($listDate: String, $listUser: ID, $listName: String) {
     addList(listDate: $listDate, listUser: $listUser, listName: $listName) {
       _id
       listDate
-      listUser
+      listUser {
+        _id
+      }
       listName
     }
   }
@@ -47,11 +49,15 @@ export const ADD_LIST = gql`
 `;
 
 export const ADD_ITEM = gql`
-  mutation addItem($listId: String!, $itemDate: String, $itemUser: String, $itemName: String, $itemLink: String, $itemDetails: String, $priority: Float, $itemPrice: Float) {
+  mutation addItem($listId: String!, $itemDate: String, $itemUser: ID, $itemName: String, $itemLink: String, $itemDetails: String, $priority: Float, $itemPrice: Float) {
     addItem(listId: $listId, itemDate: $itemDate, itemUser: $itemUser, itemName: $itemName, itemLink: $itemLink, itemDetails: $itemDetails, priority: $priority, itemPrice: $itemPrice) {
       _id
       itemDate
-      itemUser
+      itemUser {
+        _id
+        firstName
+        lastName
+      }
       itemName
       itemDetails
       itemPrice
@@ -118,6 +124,26 @@ export const REMOVE_FRIEND = gql`
     removeFriend(friendId: $friendId) {
       _id
       friends {
+        _id
+      }
+    }
+  }
+`;
+export const ADD_FRIEND_REQUEST = gql`
+  mutation addFriendRequest($userId: ID!, $friendId: ID!) {
+    addFriendRequest(userId: $userId, friendId: $friendId) {
+      _id
+      friendRequests {
+        _id
+      }
+    }
+  }
+`;
+export const REMOVE_FRIEND_REQUEST = gql`
+  mutation removeFriendRequest($friendId: ID!) {
+    removeFriendRequest(friendId: $friendId) {
+      _id
+      friendRequests {
         _id
       }
     }

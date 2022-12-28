@@ -27,7 +27,7 @@ const CreateList = () => {
       try {
         const mutationResponse = await addList({
           variables: {
-            listUser: meData.me.username,
+            listUser: meData.me._id,
             listName: formState.name,
           },
         });

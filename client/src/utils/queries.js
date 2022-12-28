@@ -12,7 +12,11 @@ export const QUERY_ME = gql`
       lists {
         _id
         listDate
-        listUser
+        listUser {
+          _id
+          firstName
+          lastName
+        }
         listName
       }
       friends {
@@ -20,6 +24,9 @@ export const QUERY_ME = gql`
         firstName
         lastName
         email
+      }
+      friendRequests {
+        _id
       }
     }
   }
@@ -56,7 +63,11 @@ export const QUERY_USER = gql`
       lists {
         _id
         listName
-        listUser
+        listUser {
+          _id
+          firstName
+          lastName
+        }
         listDate
         listUsers {
           _id
@@ -82,7 +93,11 @@ export const QUERY_LIST = gql`
   query list($_id: ID!) {
     list(_id: $_id) {
       listDate
-      listUser
+      listUser {
+        _id
+        firstName
+        lastName
+      }
       listName
       listUsers {
         _id
@@ -93,7 +108,11 @@ export const QUERY_LIST = gql`
       items {
         _id
         itemDate
-        itemUser
+        itemUser {
+          _id
+          firstName
+          lastName
+        }
         itemName
         itemLink
         itemDetails
@@ -110,7 +129,11 @@ export const QUERY_ITEM = gql`
     item(_id: $_id) {
         _id
         itemDate
-        itemUser
+        itemUser {
+          _id
+          firstName
+          lastName
+        }
         itemLink
         itemName
         itemDetails
@@ -126,7 +149,11 @@ export const QUERY_ALL_LISTS = gql`
     allLists {
       _id
       listDate
-      listUser
+      listUser {
+        _id
+        firstName
+        lastName
+      }
       listName
       listUsers {
         _id

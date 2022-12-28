@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
-import { ADD_FRIEND, REMOVE_FRIEND } from "../utils/mutations";
+import { ADD_FRIEND_REQUEST, REMOVE_FRIEND_REQUEST, ADD_FRIEND, REMOVE_FRIEND } from "../utils/mutations";
 import { BsFillXSquareFill, BsTrash } from "react-icons/bs";
 import { QUERY_USER, QUERY_MY_FRIENDS } from "../utils/queries";
 import { useQuery, useMutation, useLazyQuery } from "@apollo/react-hooks";
@@ -15,8 +15,9 @@ const Friends = () => {
   const [friendArray, setFriendArray] = useState();
   const [selectedFriendLists, setSelectedFriendLists] = useState();
   const [addFriend, { error: addFriendError }] = useMutation(ADD_FRIEND);
-  const [removeFriend, { error: removeFriendError }] =
-    useMutation(REMOVE_FRIEND);
+  const [removeFriend, { error: removeFriendError }] = useMutation(REMOVE_FRIEND);
+  const [addFriendRequest, { error: addFriendRequestError }] = useMutation(ADD_FRIEND_REQUEST);
+  const [removeFriendRequest, { error: removeFriendRequestError }] = useMutation(REMOVE_FRIEND_REQUEST);
   const [changeInfoState, setChangeInfoState] = useState({
     email: "",
   });
@@ -39,6 +40,22 @@ const Friends = () => {
     try {
       const mutationResponse = await addFriend({
         variables: {
+          friendId: data.user._id,
+        },
+      });
+      console.log(mutationResponse);
+     
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleSendFriendRequest = async (event) => {
+    event.preventDefault();
+    try {
+      const mutationResponse = await addFriendRequest({
+        variables: {
+          userId: meData.myFriends._id,
           friendId: data.user._id,
         },
       });
@@ -163,7 +180,7 @@ const Friends = () => {
               </div>
               <div className="addFriendComponent standardShadow">
                 <h2>ADD FRIEND</h2>
-                <form onSubmit={handleAddFriend}>
+                <form onSubmit={handleSendFriendRequest}>
                   <input
                     className="form-input"
                     placeholder="Enter User's Email"

@@ -13,6 +13,7 @@ const resolvers = {
           .select("-__v -password")
           .populate("lists")
           .populate("items")
+          .populate("listUser")
           .populate("listUsers")
           .populate("friends");
 
@@ -47,6 +48,7 @@ const resolvers = {
       return User.findOne({ email })
         .select("-__v -password")
         .populate("lists")
+        .populate("listUser")
         .populate("items")
         .populate("users")
         .populate("friends");
@@ -55,18 +57,25 @@ const resolvers = {
       return List.findById(_id)
         .select("-__v")
         .populate("items")
+        .populate("listUser")
         .populate("listUsers")
         .populate("friends")
         .populate("lists");
     },
     item: async (parent, { _id }) => {
-      return Item.findById(_id).select("-__v");
+      return Item.findById(_id)
+        .select("-__v")
+        .populate("items")
+        .populate("listUser")
+        .populate("listUsers")
+        .populate("lists");
     },
     allLists: async () => {
       return List.find()
         .select("-__v")
         .populate("lists")
         .populate("items")
+        .populate("listUser")
         .populate("friends")
         .populate("listUsers");
     },
@@ -207,8 +216,33 @@ const resolvers = {
           { new: true, multi: true }
         ).populate("users", "friends");
 
-
         return removedFriend;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+    addFriendRequest: async (parent, { friendId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { friendRequests: friendId } },
+          { new: true }
+        ).populate("friends", "users");
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError("You need to be logged in!");
+    },
+    removeFriendRequest: async (parent, { friendId }, context) => {
+      if (context.user) {
+        const removedFriendRequest = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $pull: { friendRequests: friendId } },
+          { new: true, multi: true }
+        ).populate("users", "friends");
+
+        return removedFriendRequest;
       }
 
       throw new AuthenticationError("Not logged in");
