@@ -198,13 +198,19 @@ const resolvers = {
 
     addFriend: async (parent, { friendId }, context) => {
       if (context.user) {
-        const updatedUser = await User.findOneAndUpdate(
+        const updatedUser1 = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { friends: friendId } },
           { new: true }
         ).populate("friends", "users");
+        await User.findOneAndUpdate(
+          { _id: friendId },
+          { $addToSet: { friends: context.user._id } },
+          { new: true }
+        ).populate("friends", "users");
+        
 
-        return updatedUser;
+        return (updatedUser1);
       }
 
       throw new AuthenticationError("You need to be logged in!");
@@ -216,17 +222,21 @@ const resolvers = {
           { $pull: { friends: friendId } },
           { new: true, multi: true }
         ).populate("users", "friends");
-
+        await User.findByIdAndUpdate(
+          { _id: friendId },
+          { $pull: { friends: context.user._id } },
+          { new: true, multi: true }
+        ).populate("users", "friends");
         return removedFriend;
       }
 
       throw new AuthenticationError("Not logged in");
     },
-    addFriendRequest: async (parent, { friendId }, context) => {
+    addFriendRequest: async (parent, { userId, friendId }, context) => {
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { friendRequests: friendId } },
+          { _id: friendId },
+          { $addToSet: { friendRequests: userId } },
           { new: true }
         ).populate("friends", "users");
 

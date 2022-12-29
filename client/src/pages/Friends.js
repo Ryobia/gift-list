@@ -76,6 +76,20 @@ const Friends = () => {
     }
   };
 
+  const handleRemoveFriendRequest = async (id) => {
+    try {
+      const mutationResponse = await removeFriendRequest({
+        variables: {
+          friendId: id,
+        },
+      });
+      console.log(mutationResponse);
+      
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   const handleRemoveFriend = async (id) => {
     try {
       const mutationResponse = await removeFriend({
@@ -103,7 +117,6 @@ const Friends = () => {
       setIsLoading(false);
       setFriendArray(meData.myFriends.friends);
       setFriendRequestArray(meData.myFriends.friendRequests)
-      console.log(meData);
     }
   };
 
@@ -113,14 +126,12 @@ const Friends = () => {
 
   useEffect(() => {
     if (userData?.user) {
-      console.log(userData.user.lists);
       setSelectedFriend(userData.user);
       setSelectedFriendLists(
         userData.user.lists.filter((x) =>
           x.listUsers.some((y) => y._id === meData.myFriends._id)
         )
       );
-      console.log(selectedFriendLists);
     }
   }, [userData]);
 
@@ -204,10 +215,10 @@ const Friends = () => {
                 </form>
               </div>
               <div className="toggleShownFriendList">
-                <div className="insetBtn" onClick={() => setSelectedFriend('request')}>Show Friend Requests</div>
-                <div className="insetBtn" onClick={() => setSelectedFriend('friend')}>Show Friends List</div>
+                <div className="insetBtn" onClick={() => setSelectedList('request')}>Show Friend Requests</div>
+                <div className="insetBtn" onClick={() => setSelectedList('friend')}>Show Friends List</div>
               </div>
-              {selectedFriend === 'friend' ? 
+              {selectedList === 'friend' ? 
               <div className="friendsListDiv standardShadow">
                 <h3>Friends List</h3>
                 {friendArray.map((friend) => (
@@ -239,7 +250,7 @@ const Friends = () => {
                       {friend.firstName} {friend.lastName}
                     </span>{" "}
                     <button className="insetBtn" onClick={() => handleAddFriend(friend._id)}>Accept</button>
-                    <button className="insetBtn">Reject</button>
+                    <button className="insetBtn" onClick={() => handleRemoveFriendRequest(friend._id)}>Reject</button>
                   </div>
                 ))}
               </div>}
