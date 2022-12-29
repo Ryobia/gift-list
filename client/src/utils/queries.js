@@ -46,6 +46,12 @@ export const QUERY_MY_FRIENDS = gql`
           listDate
         }
       }
+      friendRequests {
+        _id
+        email
+        firstName
+        lastName
+      }
     }
   }
 `;

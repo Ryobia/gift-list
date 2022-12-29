@@ -54,7 +54,7 @@ const Login = (props) => {
                 name="email"
                 type="email"
                 id="email"
-                value={formState.email}
+                value={formState.email.toLowerCase()}
                 onChange={handleChange}
               />
               <label htmlFor="password">Pasword</label>

@@ -11,8 +11,10 @@ import NeedLogin from "../components/NeedLogin";
 const Friends = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedList, setSelectedList] = useState('friend')
   const [selectedFriend, setSelectedFriend] = useState("");
   const [friendArray, setFriendArray] = useState();
+  const [friendRequestArray, setFriendRequestArray] = useState();
   const [selectedFriendLists, setSelectedFriendLists] = useState();
   const [addFriend, { error: addFriendError }] = useMutation(ADD_FRIEND);
   const [removeFriend, { error: removeFriendError }] = useMutation(REMOVE_FRIEND);
@@ -35,15 +37,20 @@ const Friends = () => {
     pollInterval: 1000,
   });
 
-  const handleAddFriend = async (event) => {
-    event.preventDefault();
+  const handleAddFriend = async (id) => {
     try {
       const mutationResponse = await addFriend({
         variables: {
-          friendId: data.user._id,
+          friendId: id,
         },
       });
       console.log(mutationResponse);
+      const removeRequestResponse = await removeFriendRequest({
+        variables: {
+          friendId: id,
+        }
+      });
+      console.log(removeRequestResponse);
      
     } catch (e) {
       console.log(e);
@@ -95,6 +102,7 @@ const Friends = () => {
     if (meData && data) {
       setIsLoading(false);
       setFriendArray(meData.myFriends.friends);
+      setFriendRequestArray(meData.myFriends.friendRequests)
       console.log(meData);
     }
   };
@@ -124,7 +132,7 @@ const Friends = () => {
         ) : (
           <section className="friendSection sectionTitle ">
             {modalOpen ? (
-              <div id="open-modal" className="modal-window">
+              <div id="open-modal" className="modal-window listShown">
                 <div>
                   <span
                     className="cancelModal"
@@ -190,30 +198,17 @@ const Friends = () => {
                     value={changeInfoState.email}
                     onChange={handleChange}
                   />
-
                   <button className="insetBtnInverse" type="submit">
-                    Add User
+                    Send Friend Request
                   </button>
                 </form>
               </div>
-              <div className="friendsListDiv standardShadow listHidden">
-                <h3>Friends List</h3>
-                {friendArray.map((friend) => (
-                  <div
-                    className="friendEl standardShadow"
-                    key={friend._id}
-                    onClick={() =>
-                      getUser({ variables: { email: friend.email } })
-                    }
-                  >
-                    <span>
-                      {friend.firstName} {friend.lastName}
-                    </span>{" "}
-                    <span>Email: {friend.email}</span>
-                  </div>
-                ))}
+              <div className="toggleShownFriendList">
+                <div className="insetBtn" onClick={() => setSelectedFriend('request')}>Show Friend Requests</div>
+                <div className="insetBtn" onClick={() => setSelectedFriend('friend')}>Show Friends List</div>
               </div>
-              <div className="friendsListDiv standardShadow listShown">
+              {selectedFriend === 'friend' ? 
+              <div className="friendsListDiv standardShadow">
                 <h3>Friends List</h3>
                 {friendArray.map((friend) => (
                   <div
@@ -231,6 +226,23 @@ const Friends = () => {
                   </div>
                 ))}
               </div>
+              :
+              <div className="friendsListDiv standardShadow">
+                <h3>Friend Requests</h3>
+                {friendRequestArray.map((friend) => (
+                  <div
+                    className="friendRequestEl standardShadow"
+                    key={friend._id}
+                    
+                  >
+                    <span>
+                      {friend.firstName} {friend.lastName}
+                    </span>{" "}
+                    <button className="insetBtn" onClick={() => handleAddFriend(friend._id)}>Accept</button>
+                    <button className="insetBtn">Reject</button>
+                  </div>
+                ))}
+              </div>}
             </div>
             {selectedFriend?.lists?.length > 0 ? (
               <div className="expandedFriendDiv standardShadow listHidden">
@@ -247,7 +259,7 @@ const Friends = () => {
                   </Link>
                 ))}
                 <span
-                        className="removeFriend"
+                        className="removeFriend "
                         onClick={() => handleRemoveFriend(selectedFriend._id)}
                       >
                         Remove Friend

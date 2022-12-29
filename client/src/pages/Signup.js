@@ -89,6 +89,7 @@ const Signup = () => {
                 name="email"
                 type="email"
                 id="email"
+                value={signupState.email.toLowerCase()}
                 onChange={handleSignupChange}
               />
               <div className='pass-input'>

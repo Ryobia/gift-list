@@ -29,6 +29,7 @@ const resolvers = {
           .populate("lists")
           .populate("items")
           .populate("listUsers")
+          .populate("friendRequests")
           .populate("friends");
 
         return userData;
