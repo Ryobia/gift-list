@@ -95,6 +95,7 @@ const CreateItem = () => {
             placeholder="Price"
             name="price"
             type="number"
+            step=".01"
             id="price"
             onChange={handleChange}
           />

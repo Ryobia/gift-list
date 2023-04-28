@@ -879,6 +879,7 @@ padding: 1em;
 .singleItemOptions {
   display: flex;
   justify-content: center;
+  margin-top: 1em;
 }
 
 
@@ -935,6 +936,37 @@ padding: 1em;
 .singleItemDetails span {
   width: 100%;
   text-align: center;
+}
+
+.itemForm {
+  display: flex;
+  flex-wrap: wrap;
+  width: 95%;
+  margin: auto;
+  margin-top: 1em;
+  border-radius: 5px;
+  background-color: var(--color1);
+}
+
+.itemForm div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 95%;
+  color: var(--color3);
+}
+
+.item-form-input {
+  width: 80%;
+  margin-top: 1em;
+  padding: 0.3em;
+}
+
+.item-form-label {
+font-size: 14px;
+    margin-top: 1em;
+    text-align: center;
+width: fit-content;
 }
 
 .myItem {
@@ -1160,6 +1192,16 @@ padding: 1em;
     font-size: 10px;
     font-weight: 100;
   }
+
+  .item-form-label {
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+    }
+
+    .item-form-input {
+      width: 100%;
+    }
   
 }
 
