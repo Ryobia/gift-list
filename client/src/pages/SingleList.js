@@ -165,7 +165,7 @@ const SingleList = () => {
                   </div>
                 ))}
               </div>
-            ) : <div>No Items have been added to this list</div>}
+            ) : <div className="nothingToShow">No Items have been added to this list</div>}
           </div>
         )}
       </section>

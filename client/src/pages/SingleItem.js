@@ -133,7 +133,7 @@ const SingleItem = (props) => {
                 )}
               </p>
               <p>
-                <span>Price:</span>
+                <span>Price: </span>
                 <span>${data.item.itemPrice}</span>
               </p>
               <p>

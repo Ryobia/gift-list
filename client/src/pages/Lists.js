@@ -133,9 +133,7 @@ const Lists = () => {
                 ))}
               </div>
             ) : (
-              <div>
-                <h3>No Lists to Display</h3>
-              </div>
+              <div className="nothingToShow">No Lists to Display</div>
             )}
           </section>
         )}

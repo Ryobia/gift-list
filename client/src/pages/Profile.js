@@ -134,9 +134,9 @@ const Profile = () => {
                     </p>{" "}
                   </span>
                 </div>
-                <div className="changeInfoDiv standardShadow">
-                  <button className="insetBtnInverse" onClick={() => setProfileView('')}>Change User Info</button>
-                  <button className="insetBtnInverse" onClick={() => setProfileView('changePass')}>Change Password</button>
+                <div className="changeInfoDiv">
+                  <button className="insetBtnInverse standardShadow" onClick={() => setProfileView('')}>Change User Info</button>
+                  <button className="insetBtnInverse standardShadow" onClick={() => setProfileView('changePass')}>Change Password</button>
                 </div>
               </div>
               {profileView === 'changeInfo' ?
