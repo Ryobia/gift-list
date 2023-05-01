@@ -37,8 +37,5 @@ const listSchema = new Schema(
 
 const List = model("List", listSchema);
 
-listSchema.virtual("listUsersCount").get(function () {
-  return this.listUsers.length;
-});
 
 module.exports = List;

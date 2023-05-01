@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import { ADD_LIST, ADD_USER_TO_LIST } from "../../utils/mutations";
+import {
+  ADD_USER_TO_LIST,
+  REMOVE_USER_TO_LIST,
+} from "../../utils/mutations";
+import { BsTrashFill } from "react-icons/bs";
 import { useQuery } from "@apollo/react-hooks";
 import { QUERY_ME, QUERY_USER } from "../../utils/queries";
 import { useNavigate, useParams } from "react-router-dom";
@@ -16,6 +20,9 @@ const AddUserToList = (props) => {
   });
   const [addUserToList, { error: addUserError }] =
     useMutation(ADD_USER_TO_LIST);
+
+  const [removeUserToList, { error: removeUserError }] =
+    useMutation(REMOVE_USER_TO_LIST);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -46,6 +53,8 @@ const AddUserToList = (props) => {
     }
   };
 
+  
+
   useEffect(() => {
     console.log(userData);
   }, [props]);
@@ -53,15 +62,22 @@ const AddUserToList = (props) => {
   return (
     <section>
       <div className="createListComponent desktopStandardShadow">
-        <h2>ADD USER TO THIS LIST</h2>
+        
         <div className="dropdown">
           <span>ADD FROM FRIENDS</span>
           <div className="dropdown-content">
             {userData.friends.map((friend) => (
-              <p key={friend._id} onClick={() => setFormState({email: friend.email})}>{friend.email}</p>
+              <p
+                key={friend._id}
+                onClick={() => setFormState({ email: friend.email })}
+              >
+                {friend.email}
+              </p>
             ))}
           </div>
         </div>
+
+        <div></div>
 
         <form onSubmit={handleAddUserToList}>
           <input

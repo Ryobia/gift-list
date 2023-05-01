@@ -600,6 +600,11 @@ padding: 1em;
   display: block !important;
 }
 
+.removeUserFromList:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 @media (max-width: 1100px) {
   .friendDiv {
     width: 70%;
@@ -709,8 +714,75 @@ padding: 1em;
 
 }
 
+.listMemberList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.listMember {
+  border-radius: 5px;
+  transition: .1s linear;
+  border: 1px dotted var(--color3);
+  list-style: none;
+  margin: .3em;
+  padding-right: .3em;
+  width: fit-content;
+}
+
+.listMember:hover {
+  cursor: pointer;
+  background-color: var(--color4);
+
+}
+
+.removeFromListModal {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: fit-content;
+background-color: var(--color5);
+}
+
+.removeFromListModal button {
+  border-radius: 5px;
+  padding: .2em;
+  margin-top: 1em;
+  transition: .1s linear;
+}
+
+.removeFromListModal button:hover {
+  cursor: pointer;
+  color: var(--color5);
+  background-color: var(--color4);
+}
+
+
 .listIcon {
   display: none;
+}
+
+.listTitle {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.editListBtnDiv {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.fullscreenEditList {
+  font-size: 1em;
+  margin-left: 1em;
+}
+
+.fullscreenEditList:hover {
+  cursor: pointer;
+  color: var(--color4);
 }
 
 .createListComponent {
@@ -722,8 +794,9 @@ padding: 1em;
   text-align: center;
 }
 
-.editItem:hover {
+.editItem {
   background-color: var(--color4);
+  border: 1px black solid;
 }
 .myListLeft {
   width: 35%;
@@ -1115,6 +1188,10 @@ width: fit-content;
 }
 
 @media (max-width: 1100px) {
+  .fullscreenEditList {
+    display: none;
+  }
+
   .listDivEl a {
     width: 90%;
   }
@@ -1137,16 +1214,23 @@ width: fit-content;
     display: none;
   }
   .listIcon {
+    margin-top: 1em;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     color: var(--color3);
   }
-  .listIcon span {
+  .listIconSpan {
     width: fit-content;
-    padding: .5em;
+    padding: .1em;
     background-color: var(--color1); 
     border-radius: 5px;
     transition: 0.2s;
+  }
+
+  .listIconSpan svg {
+    font-size: 1.3em;
+    padding: .1em;
   }
   
   .listIcon span:hover {
