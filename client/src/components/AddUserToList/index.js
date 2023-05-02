@@ -79,8 +79,8 @@ const AddUserToList = (props) => {
         
         <div className="dropdown">
           <span>ADD FROM FRIENDS</span>
+          {unusedFriends.length > 0 ? (
           <div className="dropdown-content">
-            
             {unusedFriends.map((friend) => (
               <p
                 key={friend._id}
@@ -89,7 +89,13 @@ const AddUserToList = (props) => {
                 {friend.email}
               </p>
             ))}
+            
           </div>
+          ) :
+           <div className="dropdown-content">
+              <span>All friends already added to list</span>
+           </div>
+           }
         </div>
 
         <div></div>
