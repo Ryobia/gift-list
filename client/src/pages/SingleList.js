@@ -253,6 +253,7 @@ function SingleList() {
                 ) : null}
                 <div>
                   Members of this list:
+                  {isOwnList ? (
                   <ul className="listMemberList">
                     {data.list.listUsers.map((user) => (
                       <li
@@ -264,6 +265,18 @@ function SingleList() {
                       </li>
                     ))}
                   </ul>
+                  ) :
+                  <ul className="listMemberList">
+                    {data.list.listUsers.map((user) => (
+                      <li
+                        className="listMember"
+                        key={user._id}
+                      >
+                        {user.firstName + " " + user.lastName}
+                      </li>
+                    ))}
+                  </ul>
+  }
                 </div>
                 {modalVisible && (
                   <Modal
