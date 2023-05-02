@@ -80,6 +80,18 @@ export const ADD_USER_TO_LIST = gql`
   }
 `;
 
+export const REMOVE_USER_TO_LIST = gql`
+  mutation removeUserToList($_id: ID!, $userId: ID!) {
+    removeUserToList(_id: $_id, userId: $userId) {
+      _id
+      listUsersCount
+      listUsers {
+        username
+      }
+    }
+  }
+`;
+
 export const REMOVE_LIST = gql`
   mutation removeList($_id: ID!) {
     removeList(_id: $_id) {
@@ -87,6 +99,15 @@ export const REMOVE_LIST = gql`
       }
     }
   
+`;
+
+export const UPDATE_LIST = gql`
+    mutation updateList($_id: ID!, $listName: String!) {
+      updateList(_id: $_id, listName: $listName) {
+      _id
+      listName
+    }
+  }
 `;
 
 export const REMOVE_ITEM = gql`

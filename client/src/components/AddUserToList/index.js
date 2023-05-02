@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import { ADD_LIST, ADD_USER_TO_LIST } from "../../utils/mutations";
+import {
+  ADD_USER_TO_LIST,
+} from "../../utils/mutations";
 import { useQuery } from "@apollo/react-hooks";
-import { QUERY_ME, QUERY_USER } from "../../utils/queries";
+import { QUERY_USER, QUERY_LIST } from "../../utils/queries";
 import { useNavigate, useParams } from "react-router-dom";
 
 const AddUserToList = (props) => {
@@ -11,12 +13,29 @@ const AddUserToList = (props) => {
   const { id: listId } = useParams();
   const navigate = useNavigate();
   const [formState, setFormState] = useState({ email: "" });
+  const [friendList, setFriendList] = useState([]);
+  const [availableFriends, setAvailableFriends] = useState([]);
+  const [unusedFriends, setUnusedFriends] = useState([]);
   const { loading, data } = useQuery(QUERY_USER, {
     variables: { email: formState.email },
   });
   const [addUserToList, { error: addUserError }] =
     useMutation(ADD_USER_TO_LIST);
+    const {
+      error: listError,
+      data: listData,
+      loading: listLoading,
+    } = useQuery(QUERY_LIST, {
+      variables: { _id: listId },
+    });
 
+
+  const handleComponentLoad = () => {
+      setFriendList(props.data.friends)
+      setAvailableFriends(listData.list.listUsers)
+      
+  }
+    
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -26,15 +45,14 @@ const AddUserToList = (props) => {
     });
   };
 
-  const handleAddUserToList = async (event) => {
+  const handleAddUserToList = async (_id) => {
     setError(false);
-    event.preventDefault();
     if (formState.name !== "") {
       try {
         const mutationResponse = await addUserToList({
           variables: {
             _id: listId,
-            userId: data.user._id,
+            userId: data.user ? data.user._id : _id,
           },
         });
         navigate(0);
@@ -47,21 +65,40 @@ const AddUserToList = (props) => {
   };
 
   useEffect(() => {
-    console.log(userData);
-  }, [props]);
+    handleComponentLoad();
+    if (availableFriends?.length > 0 && friendList?.length > 0) {
+      setUnusedFriends(friendList.filter(f => {
+        return !availableFriends.some(y => y._id === f._id)
+      }))
+      }
+  },[listLoading, availableFriends]);
 
   return (
     <section>
       <div className="createListComponent desktopStandardShadow">
-        <h2>ADD USER TO THIS LIST</h2>
+        
         <div className="dropdown">
           <span>ADD FROM FRIENDS</span>
+          {unusedFriends.length > 0 ? (
           <div className="dropdown-content">
-            {userData.friends.map((friend) => (
-              <p key={friend._id} onClick={() => setFormState({email: friend.email})}>{friend.email}</p>
+            {unusedFriends.map((friend) => (
+              <p
+                key={friend._id}
+                onClick={() => {setFormState({ email: friend.email }); handleAddUserToList(friend._id)}}
+              >
+                {friend.email}
+              </p>
             ))}
+            
           </div>
+          ) :
+           <div className="dropdown-content">
+              <span>All friends already added to list</span>
+           </div>
+           }
         </div>
+
+        <div></div>
 
         <form onSubmit={handleAddUserToList}>
           <input

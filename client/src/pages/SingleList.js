@@ -1,27 +1,54 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/react-hooks";
 import { useParams } from "react-router-dom";
+import { Async } from "react-async";
 import { QUERY_LIST, QUERY_ME } from "../utils/queries";
+import { REMOVE_USER_TO_LIST, UPDATE_LIST } from "../utils/mutations";
 import { useQuery } from "@apollo/client";
-import { BsTrashFill, BsPlusCircleFill, BsPersonPlusFill, BsFillXSquareFill } from "react-icons/bs";
+import {
+  BsTrashFill,
+  BsPlusCircleFill,
+  BsPersonPlusFill,
+  BsFillXSquareFill,
+} from "react-icons/bs";
+import { FaEdit } from "react-icons/fa";
 import Loader from "../components/Loader";
+import Modal from "../components/RemoveFromListModal";
 import AddUserToList from "../components/AddUserToList";
 import CreateItem from "../components/CreateItem";
+import { useNavigate } from "react-router-dom";
 import Item from "../components/Item";
 
-const SingleList = () => {
+function SingleList() {
   const [isAllowedToView, setIsAllowedToView] = useState(false);
-  const [modalView, setModalView] = useState('createItem');
+  const [modalView, setModalView] = useState("createItem");
   const [modalOpen, setModalOpen] = useState(false);
   const [isOwnList, setIsOwnList] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [listName, setListName] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalUser, setModalUser] = useState(null);
+  const [modalX, setModalX] = useState(0);
+  const [modalY, setModalY] = useState(0);
   const [itemsArray, setItemsArray] = useState([]);
+  const [formState, setFormState] = useState({ email: "" });
+  const navigate = useNavigate();
   const { loading, error: meError, data: meData } = useQuery(QUERY_ME);
   const { id: listId } = useParams();
-  const { error, data } = useQuery(QUERY_LIST, {
+  const {
+    error,
+    data,
+    loading: listLoading,
+  } = useQuery(QUERY_LIST, {
     variables: { _id: listId },
   });
+  const [removeUserToList, { error: removeUserError }] =
+    useMutation(REMOVE_USER_TO_LIST);
+
+  const [updateList, { error: updateListError }] = useMutation(UPDATE_LIST);
 
   let dateOptions = {
     hour: "numeric",
@@ -31,17 +58,67 @@ const SingleList = () => {
     minute: "2-digit",
   };
 
-  
+  function handleClick(event, user) {
+    showModal(user, event.clientX, event.clientY);
+  }
 
+  function showModal(user, x, y) {
+    setModalUser(user);
+    setModalX(x);
+    setModalY(y);
+    setModalVisible(true);
+  }
+
+  function hideModal() {
+    setModalVisible(false);
+  }
+
+  const handleRemoveUserToList = async () => {
+    if (formState.name !== "") {
+      try {
+        const mutationResponse = await removeUserToList({
+          variables: {
+            _id: listId,
+            userId: modalUser._id,
+          },
+        });
+        hideModal();
+        navigate(0);
+        console.log(mutationResponse);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
+
+  const handleListNameChange = (event) => {
+    setListName(event.target.value);
+  };
+
+  const handleUpdateList = async () => {
+    console.log(listName)
+    try {
+      const mutationResponse = await updateList({
+        variables: {
+          _id: listId,
+          listName: listName,
+        },
+      });
+        console.log(mutationResponse);
+        navigate(0);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const getIslistLoaded = () => {
-    if (data && meData?.me) {
+    if (data?.list?.listUser && meData?.me) {
       setItemsArray(data.list.items);
       setIsLoading(false);
+      setListName(data.list.listName)
       if (
         meData.me._id === data.list.listUser._id ||
-        data.list.listUsers.filter((e) => e._id === meData.me._id)
-          .length > 0
+        data.list.listUsers.filter((e) => e._id === meData.me._id).length > 0
       ) {
         setIsAllowedToView(true);
       }
@@ -54,105 +131,227 @@ const SingleList = () => {
 
   const orderDateOldestFirst = () => {
     let arr = [...data.list.items];
-    setItemsArray(arr.reverse())
-  }
+    setItemsArray(arr.reverse());
+  };
   const orderDateNewestFirst = () => {
     let arr = [...data.list.items];
-    setItemsArray(arr)
-  }
+    setItemsArray(arr);
+  };
   const orderPriceLowestFirst = () => {
     let arr = [...data.list.items];
-    setItemsArray(arr.sort(function (a,b) {
-      return a.itemPrice - b.itemPrice;
-    }))
-  }
-  
+    setItemsArray(
+      arr.sort(function (a, b) {
+        return a.itemPrice - b.itemPrice;
+      })
+    );
+  };
+
   const orderPriceHighestFirst = () => {
     let arr = [...data.list.items];
-    setItemsArray(arr.sort(function (a,b) {
-      return b.itemPrice - a.itemPrice;
-    }))
-  }
+    setItemsArray(
+      arr.sort(function (a, b) {
+        return b.itemPrice - a.itemPrice;
+      })
+    );
+  };
   const orderPriorityHighestFirst = () => {
     let arr = [...data.list.items];
-    setItemsArray(arr.sort(function (a,b) {
-      return a.priority - b.priority;
-    }))
-  }
+    setItemsArray(
+      arr.sort(function (a, b) {
+        return a.priority - b.priority;
+      })
+    );
+  };
   const orderPriorityLowestFirst = () => {
     let arr = [...data.list.items];
-    setItemsArray(arr.sort(function (a,b) {
-      
-      return b.priority - a.priority;
-    }))
-  }
+    setItemsArray(
+      arr.sort(function (a, b) {
+        return b.priority - a.priority;
+      })
+    );
+  };
   useEffect(() => {
-    getIslistLoaded();
-  }, [data, meData]);
+    if (data?.list?.listUser) {
+      getIslistLoaded();
+    }
+  }, [listLoading, loading]);
 
   if (isAllowedToView) {
     return (
       <section>
-        {isLoading ? (
+        {listLoading ? (
           <Loader />
         ) : (
           <div className="myListSection sectionMain singleListPage">
-            {modalOpen ? 
-            <div id="open-modal" className="modal-window">
-              <div>
-              <span className="cancelModal"><BsFillXSquareFill onClick={() => setModalOpen(false)} className="insetBtnInverse "/></span>
-                {modalView === 'addUser' ? (
-              <AddUserToList data={meData.me} />
-                ) : modalView === 'createItem' ? (
-              <CreateItem listId={listId} />
-                ):null}
+            {modalOpen ? (
+              <div id="open-modal" className="modal-window">
+                <div>
+                  <span className="cancelModal">
+                    <BsFillXSquareFill
+                      onClick={() => setModalOpen(false)}
+                      className="insetBtnInverse "
+                    />
+                  </span>
+                  {modalView === "addUser" ? (
+                    <AddUserToList data={meData.me} />
+                  ) : modalView === "createItem" ? (
+                    <CreateItem listId={listId} />
+                  ) : null}
+                </div>
               </div>
-            </div>
-            :null}
+            ) : null}
             <div className="myListLeft">
               <div className="sectionTitleDiv standardShadow">
-                <h2>{data.list.listName}</h2>
+                {isOwnList ? (
+                  <div className="listTitle">
+                    {isEditing ? (
+                      <div>
+                      <input
+                      style={{
+                        lineHeight: '2em'
+                      }}
+                        type="text"
+                        value={listName}
+                        onChange={handleListNameChange}
+                      />
+                      <div className="editListBtnDiv">
+                      <button className="insetBtnInverse" onClick={handleUpdateList}>Save</button>
+                      <button className="insetBtnInverse" onClick={() => setIsEditing(false)}>Cancel</button>
+                      </div>
+                      </div>
+                    ) : (
+                      <h2>
+                        {data.list.listName}
+                        <span className="fullscreenEditList">
+                          <FaEdit
+                            onClick={() => {
+                              setIsEditing(true);
+                            }}
+                          />
+                        </span>
+                      </h2>
+                    )}
+                  </div>
+                ) : (
+                  <h2>{data.list.listName}</h2>
+                )}
                 <p>
                   {new Date(parseInt(data.list.listDate)).toLocaleDateString(
                     "en-US",
                     dateOptions
                   )}
                 </p>
-                <p>List Owner: {data.list.listUser.firstName} {data.list.listUser.lastName}</p>
-                <p>
+                {data.list.listUser.firstName ? (
+                  <p>
+                    List Owner:{" "}
+                    {data.list.listUser &&
+                    data.list.listUser.firstName &&
+                    data.list.listUser.lastName
+                      ? `${data.list.listUser.firstName} ${data.list.listUser.lastName}`
+                      : "Loading..."}
+                  </p>
+                ) : null}
+                <div>
                   Members of this list:
-                  <span>
+                  <ul className="listMemberList">
                     {data.list.listUsers.map((user) => (
-                      <span key={user._id}>{" - " + user.firstName +" " + user.lastName}</span>
+                      <li
+                        className="listMember"
+                        key={user._id}
+                        onClick={(event) => handleClick(event, user)}
+                      >
+                        {user.firstName + " " + user.lastName}
+                      </li>
                     ))}
-                  </span>
-                </p>
-              {isOwnList ? 
-                <div id="listIcon" className="listIcon">
-                <span ><BsPlusCircleFill onClick={() => {setModalOpen(true); setModalView('createItem')}}/></span>
-                <span ><BsPersonPlusFill onClick={() => {setModalOpen(true); setModalView('addUser')}}/></span>
+                  </ul>
                 </div>
-              :null}
+                {modalVisible && (
+                  <Modal
+                    user={modalUser}
+                    x={modalX}
+                    y={modalY}
+                    handleRemoveUserToList={handleRemoveUserToList}
+                    hideModal={hideModal}
+                  />
+                )}
+                {isOwnList ? (
+                  <div id="listIcon" className="listIcon">
+                    <span className="listIconSpan">
+                      <BsPlusCircleFill
+                        onClick={() => {
+                          setModalOpen(true);
+                          setModalView("createItem");
+                        }}
+                      />
+                    </span>
+                    <span className="listIconSpan">
+                      <BsPersonPlusFill
+                        onClick={() => {
+                          setModalOpen(true);
+                          setModalView("addUser");
+                        }}
+                      />
+                    </span>
+                    <span className="listIconSpan">
+                      <FaEdit
+                        onClick={() => {
+                          setIsEditing(true);
+                        }}
+                      />
+                    </span>
+                  </div>
+                ) : null}
+                {isOwnList ? (
+                  <div className="listHidden">
+                    <AddUserToList data={meData.me} />
+                    <CreateItem listId={listId} />
+                  </div>
+                ) : null}
               </div>
-              {isOwnList ? 
-              <div className="listHidden">
-              <AddUserToList data={meData.me} />
-              <CreateItem listId={listId} />
-              </div>
-              :null}
             </div>
+
             {itemsArray.length > 0 ? (
               <div className="itemMapDiv">
                 <div className="itemSortDiv standardShadow">
                   <h3>Sorting Options</h3>
 
-                  <button className="insetBtnInverse" onClick={orderDateNewestFirst}>Oldest First</button>
-                  <button className="insetBtnInverse" onClick={orderDateOldestFirst}>Newest First</button>
-                  <button className="insetBtnInverse" onClick={orderPriceLowestFirst}>Price low to high</button>
-                  <button className="insetBtnInverse" onClick={orderPriceHighestFirst}>Price high to low</button>
-                  <button className="insetBtnInverse" onClick={orderPriorityLowestFirst}>Priority low to high</button>
-                  <button className="insetBtnInverse" onClick={orderPriorityHighestFirst}>Priority high to low</button>
-                    </div>
+                  <button
+                    className="insetBtnInverse"
+                    onClick={orderDateNewestFirst}
+                  >
+                    Oldest First
+                  </button>
+                  <button
+                    className="insetBtnInverse"
+                    onClick={orderDateOldestFirst}
+                  >
+                    Newest First
+                  </button>
+                  <button
+                    className="insetBtnInverse"
+                    onClick={orderPriceLowestFirst}
+                  >
+                    Price low to high
+                  </button>
+                  <button
+                    className="insetBtnInverse"
+                    onClick={orderPriceHighestFirst}
+                  >
+                    Price high to low
+                  </button>
+                  <button
+                    className="insetBtnInverse"
+                    onClick={orderPriorityLowestFirst}
+                  >
+                    Priority low to high
+                  </button>
+                  <button
+                    className="insetBtnInverse"
+                    onClick={orderPriorityHighestFirst}
+                  >
+                    Priority high to low
+                  </button>
+                </div>
                 {itemsArray.map((item) => (
                   <div key={item._id}>
                     <Link
@@ -161,22 +360,33 @@ const SingleList = () => {
                     >
                       <Item item={item} />
                     </Link>
-             
                   </div>
                 ))}
               </div>
-            ) : <div className="nothingToShow">No Items have been added to this list</div>}
+            ) : (
+              <div className="nothingToShow">
+                No Items have been added to this list
+              </div>
+            )}
           </div>
         )}
       </section>
     );
   } else {
     return (
-    <div>
-      <h2>You do not have permission to view this list</h2>
-    </div>
-      );
+      <div>
+        <h2>You do not have permission to view this list</h2>
+      </div>
+    );
   }
-};
+}
 
-export default SingleList;
+function AsyncMyComponent() {
+  return (
+    <Async promiseFn={() => QUERY_LIST}>
+      <SingleList />
+    </Async>
+  );
+}
+
+export default AsyncMyComponent;

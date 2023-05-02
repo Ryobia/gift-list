@@ -101,6 +101,9 @@ const SingleItem = (props) => {
   };
 
   const handlePurchaseItem = async () => {
+    if (data.item.purchased === false) {
+
+    
     try {
       const response = await updateItem({
         variables: {
@@ -113,6 +116,21 @@ const SingleItem = (props) => {
     } catch (err) {
       console.log(err);
     }
+  } else {
+    
+    try {
+      const response = await updateItem({
+        variables: {
+          _id: itemId,
+          purchased: false,
+        },
+      });
+      // navigate(0);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  }
   };
 
   const getIsItemLoaded = () => {
@@ -217,12 +235,14 @@ const SingleItem = (props) => {
             {isAllowedToView && data.item.purchased === false ? (
               <div
                 onClick={handlePurchaseItem}
-                className="createListComponent editItem insetBtn"
+                className="createListComponent editItem insetBtnInverse"
               >
                 <h2>MARK ITEM AS PURCHASED</h2>
               </div>
             ) : isAllowedToView && data.item.purchased === true ? (
-              <div className="createListComponent">
+              <div className="createListComponent insetBtnInverse editItem"
+              onClick={handlePurchaseItem}
+              >
                 <h2>PURCHASED</h2>
               </div>
             ) : null}

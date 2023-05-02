@@ -19,7 +19,6 @@ const Item = (props) => {
 
   const getIsLoaded = () => {
     if (meData) setIsLoaded(true);
-    console.log(item);
   };
 
   useEffect(() => {

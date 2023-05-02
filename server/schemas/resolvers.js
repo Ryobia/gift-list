@@ -131,6 +131,19 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
+
+    updateList: async (parent, args, context) => {
+      console.log(args);
+      let { _id, ...rest } = args;
+      if (context.user) {
+        return await List.findByIdAndUpdate(_id, rest, {
+          new: true,
+          multi: true,
+        }).populate("items", "lists");
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
     addItem: async (parent, args, context) => {
       const { listId, ...rest } = args;
       if (context.user) {
@@ -157,6 +170,22 @@ const resolvers = {
         const updatedUserList = await List.findByIdAndUpdate(
           { _id: _id },
           { $addToSet: { listUsers: userId } },
+          { new: true, multi: true }
+        ).populate("listUsers");
+
+        return updatedUserList;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    removeUserToList: async (parent, { _id, userId }, context) => {
+      if (context.user) {
+        console.log(userId, _id);
+
+        const updatedUserList = await List.findByIdAndUpdate(
+          { _id: _id },
+          { $pull: { listUsers: userId } },
           { new: true, multi: true }
         ).populate("listUsers");
 

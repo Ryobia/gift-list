@@ -80,6 +80,7 @@ const typeDefs = gql`
     addFriendRequest(userId: ID!, friendId: ID!): User
     removeFriendRequest(friendId: ID!): User
     addUserToList(_id: ID!, userId: ID!): List
+    removeUserToList(_id: ID!, userId: ID!): List
     updateItem(
       _id: ID
       itemName: String
@@ -89,6 +90,7 @@ const typeDefs = gql`
       priority: Float
       purchased: Boolean
     ): Item
+    updateList(_id: ID!, listName: String!): List
     updateUser(
       username: String
       firstName: String
