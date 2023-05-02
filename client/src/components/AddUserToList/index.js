@@ -66,12 +66,18 @@ const AddUserToList = (props) => {
 
   useEffect(() => {
     handleComponentLoad();
-    if (availableFriends?.length > 0 && friendList?.length > 0) {
+    if (availableFriends && friendList?.length > 0) {
       setUnusedFriends(friendList.filter(f => {
         return !availableFriends.some(y => y._id === f._id)
       }))
       }
   },[listLoading, availableFriends]);
+
+  useEffect(() => {
+    console.log(unusedFriends);
+    console.log(availableFriends);
+    console.log(friendList);
+  }, [unusedFriends]);
 
   return (
     <section>
