@@ -174,7 +174,7 @@ function SingleList() {
     if (data?.list?.listUser) {
       getIslistLoaded();
     }
-  }, [data, meData]);
+  }, [listLoading, loading]);
 
   if (isAllowedToView) {
     return (
@@ -260,7 +260,7 @@ function SingleList() {
                         key={user._id}
                         onClick={(event) => handleClick(event, user)}
                       >
-                        {" - " + user.firstName + " " + user.lastName}
+                        {user.firstName + " " + user.lastName}
                       </li>
                     ))}
                   </ul>

@@ -726,7 +726,7 @@ padding: 1em;
   border: 1px dotted var(--color3);
   list-style: none;
   margin: .3em;
-  padding-right: .3em;
+  padding: 0em .3em;
   width: fit-content;
 }
 
