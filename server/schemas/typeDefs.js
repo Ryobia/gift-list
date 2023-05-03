@@ -13,12 +13,20 @@ const typeDefs = gql`
     friendRequests: [User]
   }
 
+  type Folder {
+    _id: ID
+    folderDate: String
+    folderName: String!
+    folderItems: [Item]
+  }
+
   type List {
     _id: ID
     listDate: String
     listUser: User
     listName: String
     listUsersCount: Int
+    listFolders: [Folder]
     items: [Item]
     listUsers: [User]
   }
@@ -47,6 +55,7 @@ const typeDefs = gql`
     users: [User]
     user(email: String!): User
     list(_id: ID): List
+    folder(_id: ID): Folder
     item(_id: ID): Item
     allLists: [List]
     allItems: [Item]
@@ -62,6 +71,8 @@ const typeDefs = gql`
       password: String!
     ): Auth
     addList(listDate: String, listUser: ID, listName: String): List
+    createFolder(folderDate: String, folderName: String): Folder
+    removeFolder(_id: ID!, listId: ID!): List
     addItem(
       listId: String!
       itemDate: String
@@ -79,6 +90,8 @@ const typeDefs = gql`
     removeFriend(friendId: ID!): User
     addFriendRequest(userId: ID!, friendId: ID!): User
     removeFriendRequest(friendId: ID!): User
+    addItemToFolder(_id: ID!, itemId: ID!): Folder
+    removeItemFromFolder(_id: ID!, itemId: ID!): Folder
     addUserToList(_id: ID!, userId: ID!): List
     removeUserToList(_id: ID!, userId: ID!): List
     updateItem(
@@ -87,6 +100,7 @@ const typeDefs = gql`
       itemLink: String
       itemDetails: String
       itemPrice: Float
+      folder: ID
       priority: Float
       purchased: Boolean
     ): Item

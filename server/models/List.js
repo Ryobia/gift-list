@@ -14,6 +14,12 @@ const listSchema = new Schema(
       type: String,
       required: true,
     },
+    listFolders: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Folder",
+      }
+    ],
     listUsers: [
       {
         type: Schema.Types.ObjectId,

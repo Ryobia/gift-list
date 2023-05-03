@@ -130,6 +130,31 @@ export const QUERY_LIST = gql`
   }
 `;
 
+export const QUERY_FOLDER = gql`
+  query folder($_id: ID!) {
+    folder(_id: $_id) {
+      _id
+      folderDate
+      folderName
+      folderItems {
+        _id
+        itemDate
+        itemUser {
+          _id
+          firstName
+          lastName
+        }
+        itemLink
+        itemName
+        itemDetails
+        itemPrice
+        priority
+        purchased
+      }
+    }
+  }
+`;
+
 export const QUERY_ITEM = gql`
   query item($_id: ID!) {
     item(_id: $_id) {

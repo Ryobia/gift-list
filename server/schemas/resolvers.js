@@ -2,7 +2,7 @@ const {
   AuthenticationError,
   UserInputError,
 } = require("apollo-server-express");
-const { User, List, Item } = require("../models");
+const { User, List, Item, Folder } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -61,6 +61,14 @@ const resolvers = {
         .populate("listUser")
         .populate("listUsers")
         .populate("friends")
+        .populate("lists");
+    },
+    folder: async (parent, { _id }) => {
+      return Folder.findById(_id)
+        .select("-__v")
+        .populate("items")
+        .populate("listUser")
+        .populate("listUsers")
         .populate("lists");
     },
     item: async (parent, { _id }) => {
@@ -158,6 +166,75 @@ const resolvers = {
         );
 
         return item;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    createFolder: async (parent, args, context) => {
+      const { listId, ...rest } = args;
+      console.log(context);
+      if (context.user) {
+        const folder = await Folder.create(args);
+
+        await List.findByIdAndUpdate(
+          { _id: listId },
+          { $push: { listFolders: folder._id } },
+          { new: true }
+        );
+
+        return list;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    removeFolder: async (parent, { _id, listId }, context) => {
+      console.log(context);
+      if (context.user) {
+        const updatedFolder = await List.findByIdAndUpdate(
+          { _id: listId },
+          { $pull: { listFolders: _id } },
+          { new: true, multi: true }
+        ).populate("lists", "items", "folders");
+
+        await Folder.findByIdAndDelete({ _id: _id }).populate("lists", "users", "folders");
+
+        return updatedFolder;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    addItemToFolder: async (parent, { _id, itemId }, context) => {
+      if (context.user) {
+        console.log(itemId, _id);
+
+        const updatedFolder = await Folder.findByIdAndUpdate(
+          { _id: _id },
+          { $addToSet: { folderItems: itemId } },
+          { new: true, multi: true }
+        ).populate("lists")
+        .populate("folders");
+
+        return updatedFolder;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    removeItemFromFolder: async (parent, { _id, itemId }, context) => {
+      if (context.user) {
+        console.log(itemId, _id);
+
+        const updatedFolder = await Folder.findByIdAndUpdate(
+          { _id: _id },
+          { $pull: { folderItems: itemId } },
+          { new: true, multi: true }
+        ).populate("lists")
+        .populate("folders");
+
+        return updatedFolder;
       }
 
       throw new AuthenticationError("Not logged in");

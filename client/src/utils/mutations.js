@@ -110,6 +110,51 @@ export const UPDATE_LIST = gql`
   }
 `;
 
+export const CREATE_FOLDER = gql`
+  mutation createFolder($folderDate: String, $folderName: ID) {
+    createFolder(folderDate: $folderDate, folderName: $folderName) {
+      _id
+      folderDate
+      folderName
+      
+    }
+  }
+
+`;
+
+export const REMOVE_FOLDER = gql`
+  mutation removeFolder($_id: ID!, $listId: String) {
+    removeFolder(_id: $_id, listId: $listId) {
+      _id
+      }
+    }
+  
+`;
+
+export const ADD_ITEM_TO_FOLDER = gql`
+  mutation addItemToFolder($_id: ID!, $itemId: ID!) {
+    addItemToFolder(_id: $_id, itemId: $itemId) {
+      _id
+      folderItems {
+        _id
+        itemName
+      }
+    }
+  }
+`;
+
+export const REMOVE_ITEM_FROM_FOLDER = gql`
+  mutation removeItemFromFolder($_id: ID!, $itemId: ID!) {
+    removeItemFromFolder(_id: $_id, itemId: $itemId) {
+      _id
+      folderItems {
+        _id
+        itemName
+      }
+    }
+  }
+`;
+
 export const REMOVE_ITEM = gql`
   mutation removeItem($_id: ID!, $listId: String) {
     removeItem(_id: $_id, listId: $listId) {

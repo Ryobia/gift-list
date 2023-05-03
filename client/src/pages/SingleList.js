@@ -96,7 +96,7 @@ function SingleList() {
   };
 
   const handleUpdateList = async () => {
-    console.log(listName)
+    console.log(listName);
     try {
       const mutationResponse = await updateList({
         variables: {
@@ -104,8 +104,8 @@ function SingleList() {
           listName: listName,
         },
       });
-        console.log(mutationResponse);
-        navigate(0);
+      console.log(mutationResponse);
+      navigate(0);
     } catch (e) {
       console.log(e);
     }
@@ -115,7 +115,7 @@ function SingleList() {
     if (data?.list?.listUser && meData?.me) {
       setItemsArray(data.list.items);
       setIsLoading(false);
-      setListName(data.list.listName)
+      setListName(data.list.listName);
       if (
         meData.me._id === data.list.listUser._id ||
         data.list.listUsers.filter((e) => e._id === meData.me._id).length > 0
@@ -206,18 +206,28 @@ function SingleList() {
                   <div className="listTitle">
                     {isEditing ? (
                       <div>
-                      <input
-                      style={{
-                        lineHeight: '2em'
-                      }}
-                        type="text"
-                        value={listName}
-                        onChange={handleListNameChange}
-                      />
-                      <div className="editListBtnDiv">
-                      <button className="insetBtnInverse" onClick={handleUpdateList}>Save</button>
-                      <button className="insetBtnInverse" onClick={() => setIsEditing(false)}>Cancel</button>
-                      </div>
+                        <input
+                          style={{
+                            lineHeight: "2em",
+                          }}
+                          type="text"
+                          value={listName}
+                          onChange={handleListNameChange}
+                        />
+                        <div className="editListBtnDiv">
+                          <button
+                            className="insetBtnInverse"
+                            onClick={handleUpdateList}
+                          >
+                            Save
+                          </button>
+                          <button
+                            className="insetBtnInverse"
+                            onClick={() => setIsEditing(false)}
+                          >
+                            Cancel
+                          </button>
+                        </div>
                       </div>
                     ) : (
                       <h2>
@@ -254,29 +264,26 @@ function SingleList() {
                 <div>
                   Members of this list:
                   {isOwnList ? (
-                  <ul className="listMemberList">
-                    {data.list.listUsers.map((user) => (
-                      <li
-                        className="listMember"
-                        key={user._id}
-                        onClick={(event) => handleClick(event, user)}
-                      >
-                        {user.firstName + " " + user.lastName}
-                      </li>
-                    ))}
-                  </ul>
-                  ) :
-                  <ul className="listMemberList">
-                    {data.list.listUsers.map((user) => (
-                      <li
-                        className="listMember"
-                        key={user._id}
-                      >
-                        {user.firstName + " " + user.lastName}
-                      </li>
-                    ))}
-                  </ul>
-  }
+                    <ul className="listMemberList">
+                      {data.list.listUsers.map((user) => (
+                        <li
+                          className="listMember"
+                          key={user._id}
+                          onClick={(event) => handleClick(event, user)}
+                        >
+                          {user.firstName + " " + user.lastName}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <ul className="listMemberList">
+                      {data.list.listUsers.map((user) => (
+                        <li className="listMember" key={user._id}>
+                          {user.firstName + " " + user.lastName}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
                 {modalVisible && (
                   <Modal
