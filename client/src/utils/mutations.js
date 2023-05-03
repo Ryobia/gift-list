@@ -111,8 +111,8 @@ export const UPDATE_LIST = gql`
 `;
 
 export const CREATE_FOLDER = gql`
-  mutation createFolder($folderDate: String, $folderName: ID) {
-    createFolder(folderDate: $folderDate, folderName: $folderName) {
+  mutation createFolder($listId: ID!, $folderDate: String, $folderName: String ) {
+    createFolder(listId: $listId, folderDate: $folderDate, folderName: $folderName) {
       _id
       folderDate
       folderName
@@ -123,7 +123,7 @@ export const CREATE_FOLDER = gql`
 `;
 
 export const REMOVE_FOLDER = gql`
-  mutation removeFolder($_id: ID!, $listId: String) {
+  mutation removeFolder($_id: ID!, $listId: ID!) {
     removeFolder(_id: $_id, listId: $listId) {
       _id
       }

@@ -15,6 +15,7 @@ const resolvers = {
           .populate("items")
           .populate("listUser")
           .populate("listUsers")
+          .populate("folders")
           .populate("friends");
 
         return userData;
@@ -27,8 +28,10 @@ const resolvers = {
         const userData = await User.findOne({ _id: context.user._id })
           .select("-__v -password")
           .populate("lists")
-          .populate("items")
+        .populate("listFolders")
+        .populate("items")
           .populate("listUsers")
+          .populate("folders")
           .populate("friendRequests")
           .populate("friends");
 
@@ -43,6 +46,8 @@ const resolvers = {
         .select("-__v -password")
         .populate("friends")
         .populate("lists")
+        .populate("listFolders")
+        .populate("folders")
         .populate("items");
     },
     user: async (parent, { email }) => {
@@ -51,7 +56,9 @@ const resolvers = {
         .populate("lists")
         .populate("listUser")
         .populate("items")
+        .populate("listFolders")
         .populate("users")
+        .populate("folders")
         .populate("friends");
     },
     list: async (parent, { _id }) => {
@@ -60,21 +67,26 @@ const resolvers = {
         .populate("items")
         .populate("listUser")
         .populate("listUsers")
+        .populate("listFolders")
         .populate("friends")
-        .populate("lists");
+        .populate("lists")
+        .populate("folders");
     },
     folder: async (parent, { _id }) => {
       return Folder.findById(_id)
         .select("-__v")
         .populate("items")
         .populate("listUser")
+        .populate("listFolders")
         .populate("listUsers")
+        .populate("folders")
         .populate("lists");
     },
     item: async (parent, { _id }) => {
       return Item.findById(_id)
         .select("-__v")
         .populate("items")
+        .populate("listFolders")
         .populate("listUser")
         .populate("listUsers")
         .populate("lists");
@@ -83,9 +95,11 @@ const resolvers = {
       return List.find()
         .select("-__v")
         .populate("lists")
+        .populate("listFolders")
         .populate("items")
         .populate("listUser")
         .populate("friends")
+        .populate("folders")
         .populate("listUsers");
     },
 
@@ -173,9 +187,9 @@ const resolvers = {
 
     createFolder: async (parent, args, context) => {
       const { listId, ...rest } = args;
-      console.log(context);
+      console.log(args);
       if (context.user) {
-        const folder = await Folder.create(args);
+        const folder = await Folder.create(rest);
 
         await List.findByIdAndUpdate(
           { _id: listId },
@@ -183,7 +197,7 @@ const resolvers = {
           { new: true }
         );
 
-        return list;
+        return folder;
       }
 
       throw new AuthenticationError("Not logged in");

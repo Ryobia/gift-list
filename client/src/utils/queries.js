@@ -111,6 +111,10 @@ export const QUERY_LIST = gql`
         firstName
         lastName
       }
+      listFolders {
+        _id
+        folderName
+      }
       items {
         _id
         itemDate

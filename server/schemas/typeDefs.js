@@ -71,7 +71,7 @@ const typeDefs = gql`
       password: String!
     ): Auth
     addList(listDate: String, listUser: ID, listName: String): List
-    createFolder(folderDate: String, folderName: String): Folder
+    createFolder(folderDate: String, folderName: String, listId: ID!): Folder
     removeFolder(_id: ID!, listId: ID!): List
     addItem(
       listId: String!

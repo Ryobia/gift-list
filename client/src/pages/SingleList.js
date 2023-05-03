@@ -5,7 +5,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { useParams } from "react-router-dom";
 import { Async } from "react-async";
 import { QUERY_LIST, QUERY_ME } from "../utils/queries";
-import { REMOVE_USER_TO_LIST, UPDATE_LIST } from "../utils/mutations";
+import { REMOVE_USER_TO_LIST, UPDATE_LIST, CREATE_FOLDER, REMOVE_FOLDER } from "../utils/mutations";
 import { useQuery } from "@apollo/client";
 import {
   BsTrashFill,
@@ -16,10 +16,13 @@ import {
 import { FaEdit } from "react-icons/fa";
 import Loader from "../components/Loader";
 import Modal from "../components/RemoveFromListModal";
+import RemoveFolderModal from "../components/removeFolderModal";
 import AddUserToList from "../components/AddUserToList";
 import CreateItem from "../components/CreateItem";
+import CreateFolder from "../components/CreateFolder";
 import { useNavigate } from "react-router-dom";
 import Item from "../components/Item";
+import Folder from "../components/Folder";
 
 function SingleList() {
   const [isAllowedToView, setIsAllowedToView] = useState(false);
@@ -30,9 +33,12 @@ function SingleList() {
   const [listName, setListName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [removeModalVisible, setRemoveModalVisible] = useState(false);
   const [modalUser, setModalUser] = useState(null);
+  const [modalFolder, setModalFolder] = useState(null);
   const [modalX, setModalX] = useState(0);
   const [modalY, setModalY] = useState(0);
+  const [foldersArray, setfoldersArray] = useState([]);
   const [itemsArray, setItemsArray] = useState([]);
   const [formState, setFormState] = useState({ email: "" });
   const navigate = useNavigate();
@@ -47,6 +53,8 @@ function SingleList() {
   });
   const [removeUserToList, { error: removeUserError }] =
     useMutation(REMOVE_USER_TO_LIST);
+    const [removeFolder, { error: removeFolderError }] =
+    useMutation(REMOVE_FOLDER);
 
   const [updateList, { error: updateListError }] = useMutation(UPDATE_LIST);
 
@@ -62,6 +70,10 @@ function SingleList() {
     showModal(user, event.clientX, event.clientY);
   }
 
+  function handleFolderClick(event, folder) {
+    showRemoveFolderModal(folder, event.clientX, event.clientY);
+  }
+
   function showModal(user, x, y) {
     setModalUser(user);
     setModalX(x);
@@ -69,8 +81,19 @@ function SingleList() {
     setModalVisible(true);
   }
 
+  function showRemoveFolderModal(folder, x, y) {
+    setModalFolder(folder);
+    setModalX(x);
+    setModalY(y);
+    setRemoveModalVisible(true);
+  }
+
   function hideModal() {
     setModalVisible(false);
+  }
+
+  function hideRemoveFolderModal() {
+    setRemoveModalVisible(false);
   }
 
   const handleRemoveUserToList = async () => {
@@ -80,6 +103,24 @@ function SingleList() {
           variables: {
             _id: listId,
             userId: modalUser._id,
+          },
+        });
+        hideModal();
+        navigate(0);
+        console.log(mutationResponse);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
+
+  const handleRemoveFolder = async () => {
+    if (formState.name !== "") {
+      try {
+        const mutationResponse = await removeFolder({
+          variables: {
+            _id: modalFolder._id,
+            listId: listId,
           },
         });
         hideModal();
@@ -113,7 +154,9 @@ function SingleList() {
 
   const getIslistLoaded = () => {
     if (data?.list?.listUser && meData?.me) {
+      console.log(data.list)
       setItemsArray(data.list.items);
+      setfoldersArray(data.list.listFolders);
       setIsLoading(false);
       setListName(data.list.listName);
       if (
@@ -294,6 +337,15 @@ function SingleList() {
                     hideModal={hideModal}
                   />
                 )}
+                {removeModalVisible && (
+                  <RemoveFolderModal
+                    folder={modalFolder}
+                    x={modalX}
+                    y={modalY}
+                    handleRemoveFolder={handleRemoveFolder}
+                    hideRemoveFolderModal={hideRemoveFolderModal}
+                  />
+                )}
                 {isOwnList ? (
                   <div id="listIcon" className="listIcon">
                     <span className="listIconSpan">
@@ -325,6 +377,7 @@ function SingleList() {
                   <div className="listHidden">
                     <AddUserToList data={meData.me} />
                     <CreateItem listId={listId} />
+                    <CreateFolder listId={listId} />
                   </div>
                 ) : null}
               </div>
@@ -371,7 +424,18 @@ function SingleList() {
                   >
                     Priority high to low
                   </button>
+                  
                 </div>
+                {foldersArray && (
+                <div>
+                {foldersArray.map((folder) => (
+                  <div className="listMember" key={folder._id} onClick={(event) => handleFolderClick(event, folder)}>
+                    
+                      <Folder  folder={folder} />
+                  </div>
+                ))}
+                </div>
+                )}
                 {itemsArray.map((item) => (
                   <div key={item._id}>
                     <Link

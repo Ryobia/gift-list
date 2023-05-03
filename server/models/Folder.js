@@ -10,6 +10,10 @@ const folderSchema = new Schema(
       type: String,
       required: true,
     },
+    listFolder: {
+      type: Schema.Types.ObjectId,
+      ref: "List",
+    },
     folderItems: [
       {
         type: Schema.Types.ObjectId,
