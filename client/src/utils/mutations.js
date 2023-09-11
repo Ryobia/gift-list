@@ -132,8 +132,8 @@ export const REMOVE_FOLDER = gql`
 `;
 
 export const ADD_ITEM_TO_FOLDER = gql`
-  mutation addItemToFolder($_id: ID!, $itemId: ID!) {
-    addItemToFolder(_id: $_id, itemId: $itemId) {
+  mutation addItemToFolder($itemId: ID!, $folderId: ID!) {
+    addItemToFolder(itemId: $itemId, folderId: $folderId) {
       _id
       folderItems {
         _id
@@ -156,8 +156,8 @@ export const REMOVE_ITEM_FROM_FOLDER = gql`
 `;
 
 export const REMOVE_ITEM = gql`
-  mutation removeItem($_id: ID!, $listId: String) {
-    removeItem(_id: $_id, listId: $listId) {
+  mutation removeItem($_id: ID!, $listId: String, $folderId: ID) {
+    removeItem(_id: $_id, listId: $listId, folderId: $folderId) {
       _id
       }
     }

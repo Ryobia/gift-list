@@ -114,6 +114,10 @@ export const QUERY_LIST = gql`
       listFolders {
         _id
         folderName
+        folderItems {
+          _id
+          itemName
+        }
       }
       items {
         _id
@@ -145,8 +149,7 @@ export const QUERY_FOLDER = gql`
         itemDate
         itemUser {
           _id
-          firstName
-          lastName
+          
         }
         itemLink
         itemName
@@ -195,6 +198,10 @@ export const QUERY_ALL_LISTS = gql`
         username
         firstName
         lastName
+      }
+      listFolders {
+        _id
+        folderName
       }
     }
   }

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import { ADD_ITEM } from "../../utils/mutations";
+import { ADD_ITEM, ADD_ITEM_TO_FOLDER } from "../../utils/mutations";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import { QUERY_ME } from "../../utils/queries";
 
 const CreateItem = () => {
-  const { id: listId } = useParams();
+  const { listId: listId, folderId: folderId } = useParams();
   const [error, setError] = useState(false);
   const [prio, setPrio] = useState(5);
   const navigate = useNavigate();
@@ -17,6 +17,7 @@ const CreateItem = () => {
     price: 0,
   });
   const [addItem, { error: addItemError }] = useMutation(ADD_ITEM);
+  const [addItemToFolder, { error: addToFolderError }] = useMutation(ADD_ITEM_TO_FOLDER);
   const { loading, error: meError, data: meData } = useQuery(QUERY_ME);
 
   const handleChange = (event) => {
@@ -45,6 +46,15 @@ const CreateItem = () => {
             priority: prio,
           },
         });
+        if (folderId){
+          const addToFolderResponse = await addItemToFolder({
+            variables: {
+              itemId: mutationResponse.data.addItem._id,
+              folderId: folderId
+            }
+          });
+          console.log(addToFolderResponse)
+        };
         navigate(0);
         console.log(mutationResponse);
       } catch (e) {

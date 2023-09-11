@@ -8,7 +8,6 @@ const folderSchema = new Schema(
     },
     folderName: {
       type: String,
-      required: true,
     },
     listFolder: {
       type: Schema.Types.ObjectId,

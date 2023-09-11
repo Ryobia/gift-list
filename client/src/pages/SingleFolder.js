@@ -3,9 +3,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
 import { useParams } from "react-router-dom";
-import { Async } from "react-async";
-import { QUERY_LIST, QUERY_ME } from "../utils/queries";
-import { REMOVE_USER_TO_LIST, UPDATE_LIST, REMOVE_FOLDER } from "../utils/mutations";
+import { QUERY_FOLDER, QUERY_ME, QUERY_LIST } from "../utils/queries";
+import { REMOVE_FOLDER } from "../utils/mutations";
 import { useQuery } from "@apollo/client";
 import {
   BsTrashFill,
@@ -15,35 +14,37 @@ import {
 } from "react-icons/bs";
 import { FaEdit } from "react-icons/fa";
 import Loader from "../components/Loader";
-import Modal from "../components/RemoveFromListModal";
 import RemoveFolderModal from "../components/removeFolderModal";
-import AddUserToList from "../components/AddUserToList";
 import CreateItem from "../components/CreateItem";
-import CreateFolder from "../components/CreateFolder";
 import { useNavigate } from "react-router-dom";
 import Item from "../components/Item";
-import Folder from "../components/Folder";
 
-function SingleList() {
+function SingleFolder() {
   const [isAllowedToView, setIsAllowedToView] = useState(false);
   const [modalView, setModalView] = useState("createItem");
   const [modalOpen, setModalOpen] = useState(false);
   const [isOwnList, setIsOwnList] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [listName, setListName] = useState("");
+  const [listName, setFolderName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
   const [removeModalVisible, setRemoveModalVisible] = useState(false);
-  const [modalUser, setModalUser] = useState(null);
   const [modalFolder, setModalFolder] = useState(null);
   const [modalX, setModalX] = useState(0);
   const [modalY, setModalY] = useState(0);
   const [foldersArray, setfoldersArray] = useState([]);
   const [itemsArray, setItemsArray] = useState([]);
+  const [filteredItemsArray, setFilteredItemsArray] = useState([]);
   const [formState, setFormState] = useState({ email: "" });
   const navigate = useNavigate();
   const { loading, error: meError, data: meData } = useQuery(QUERY_ME);
-  const { listId: listId } = useParams();
+  const { folderId: folderId, listId: listId } = useParams();
+  const {
+    error: folderError,
+    data: folderData,
+    loading: folderLoading,
+  } = useQuery(QUERY_FOLDER, {
+    variables: { _id: folderId },
+  });
   const {
     error,
     data,
@@ -51,12 +52,10 @@ function SingleList() {
   } = useQuery(QUERY_LIST, {
     variables: { _id: listId },
   });
-  const [removeUserToList, { error: removeUserError }] =
-    useMutation(REMOVE_USER_TO_LIST);
+  
     const [removeFolder, { error: removeFolderError }] =
     useMutation(REMOVE_FOLDER);
 
-  const [updateList, { error: updateListError }] = useMutation(UPDATE_LIST);
 
   let dateOptions = {
     hour: "numeric",
@@ -66,20 +65,13 @@ function SingleList() {
     minute: "2-digit",
   };
 
-  function handleClick(event, user) {
-    showModal(user, event.clientX, event.clientY);
-  }
+ 
 
   function handleFolderClick(event, folder) {
     showRemoveFolderModal(folder, event.clientX, event.clientY);
   }
 
-  function showModal(user, x, y) {
-    setModalUser(user);
-    setModalX(x);
-    setModalY(y);
-    setModalVisible(true);
-  }
+  
 
   function showRemoveFolderModal(folder, x, y) {
     setModalFolder(folder);
@@ -88,42 +80,23 @@ function SingleList() {
     setRemoveModalVisible(true);
   }
 
-  function hideModal() {
-    setModalVisible(false);
-  }
 
   function hideRemoveFolderModal() {
     setRemoveModalVisible(false);
   }
 
-  const handleRemoveUserToList = async () => {
-    if (formState.name !== "") {
-      try {
-        const mutationResponse = await removeUserToList({
-          variables: {
-            _id: listId,
-            userId: modalUser._id,
-          },
-        });
-        hideModal();
-        navigate(0);
-        console.log(mutationResponse);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-  };
+ 
 
   const handleRemoveFolder = async () => {
     if (formState.name !== "") {
       try {
         const mutationResponse = await removeFolder({
           variables: {
-            _id: modalFolder._id,
+            _id: folderId,
             listId: listId,
           },
         });
-        hideModal();
+        
         navigate(0);
         console.log(mutationResponse);
       } catch (e) {
@@ -132,33 +105,31 @@ function SingleList() {
     }
   };
 
-  const handleListNameChange = (event) => {
-    setListName(event.target.value);
+  const handleFolderNameChange = (event) => {
+    setFolderName(event.target.value);
   };
 
-  const handleUpdateList = async () => {
-    console.log(listName);
-    try {
-      const mutationResponse = await updateList({
-        variables: {
-          _id: listId,
-          listName: listName,
-        },
-      });
-      console.log(mutationResponse);
-      navigate(0);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+//   const handleUpdateList = async () => {
+//     console.log(listName);
+//     try {
+//       const mutationResponse = await updateList({
+//         variables: {
+//           _id: listId,
+//           listName: listName,
+//         },
+//       });
+//       console.log(mutationResponse);
+//       navigate(0);
+//     } catch (e) {
+//       console.log(e);
+//     }
+//   };
 
   const getIslistLoaded = () => {
-    if (data?.list?.listUser && meData?.me) {
-      console.log(data.list)
-      setItemsArray(data.list.items);
-      setfoldersArray(data.list.listFolders);
+    if (data?.list?.listUser && meData?.me && folderData?.folder?.folderName) {
+      console.log(folderData.folder)
+      setItemsArray(folderData.folder.folderItems);
       setIsLoading(false);
-      setListName(data.list.listName);
       if (
         meData.me._id === data.list.listUser._id ||
         data.list.listUsers.filter((e) => e._id === meData.me._id).length > 0
@@ -173,15 +144,15 @@ function SingleList() {
   };
 
   const orderDateOldestFirst = () => {
-    let arr = [...data.list.items];
+    let arr = [...folderData.folder.folderItems];
     setItemsArray(arr.reverse());
   };
   const orderDateNewestFirst = () => {
-    let arr = [...data.list.items];
+    let arr = [...folderData.folder.folderItems];
     setItemsArray(arr);
   };
   const orderPriceLowestFirst = () => {
-    let arr = [...data.list.items];
+    let arr = [...folderData.folder.folderItems];
     setItemsArray(
       arr.sort(function (a, b) {
         return a.itemPrice - b.itemPrice;
@@ -190,7 +161,7 @@ function SingleList() {
   };
 
   const orderPriceHighestFirst = () => {
-    let arr = [...data.list.items];
+    let arr = [...folderData.folder.folderItems];
     setItemsArray(
       arr.sort(function (a, b) {
         return b.itemPrice - a.itemPrice;
@@ -198,7 +169,7 @@ function SingleList() {
     );
   };
   const orderPriorityHighestFirst = () => {
-    let arr = [...data.list.items];
+    let arr = [...folderData.folder.folderItems];
     setItemsArray(
       arr.sort(function (a, b) {
         return a.priority - b.priority;
@@ -206,7 +177,7 @@ function SingleList() {
     );
   };
   const orderPriorityLowestFirst = () => {
-    let arr = [...data.list.items];
+    let arr = [...folderData.folder.folderItems];
     setItemsArray(
       arr.sort(function (a, b) {
         return b.priority - a.priority;
@@ -217,32 +188,20 @@ function SingleList() {
     if (data?.list?.listUser) {
       getIslistLoaded();
     }
-  }, [listLoading, loading]);
+  }, [listLoading, loading, folderLoading]);
+
+  useEffect(() => {
+setFilteredItemsArray(itemsArray.filter(obj => obj.itemName !== null));
+  }, [itemsArray])
 
   if (isAllowedToView) {
     return (
       <section>
-        {listLoading ? (
+        {folderLoading ? (
           <Loader />
         ) : (
           <div className="myListSection sectionMain singleListPage">
-            {modalOpen ? (
-              <div id="open-modal" className="modal-window">
-                <div>
-                  <span className="cancelModal">
-                    <BsFillXSquareFill
-                      onClick={() => setModalOpen(false)}
-                      className="insetBtnInverse "
-                    />
-                  </span>
-                  {modalView === "addUser" ? (
-                    <AddUserToList data={meData.me} />
-                  ) : modalView === "createItem" ? (
-                    <CreateItem listId={listId} />
-                  ) : null}
-                </div>
-              </div>
-            ) : null}
+            
             <div className="myListLeft">
               <div className="sectionTitleDiv standardShadow">
                 {isOwnList ? (
@@ -255,12 +214,12 @@ function SingleList() {
                           }}
                           type="text"
                           value={listName}
-                          onChange={handleListNameChange}
+                          onChange={handleFolderNameChange}
                         />
                         <div className="editListBtnDiv">
                           <button
                             className="insetBtnInverse"
-                            onClick={handleUpdateList}
+                            // onClick={handleUpdateList}
                           >
                             Save
                           </button>
@@ -274,7 +233,7 @@ function SingleList() {
                       </div>
                     ) : (
                       <h2>
-                        {data.list.listName}
+                        Folder: {folderData.folder.folderName}
                         <span className="fullscreenEditList">
                           <FaEdit
                             onClick={() => {
@@ -282,61 +241,25 @@ function SingleList() {
                             }}
                           />
                         </span>
+                        <p>List: {data.list.listName}</p>
                       </h2>
+                      
                     )}
+                    
+                        
                   </div>
                 ) : (
                   <h2>{data.list.listName}</h2>
                 )}
-                <p>
-                  {new Date(parseInt(data.list.listDate)).toLocaleDateString(
+                <p>Created on: 
+                  {new Date(parseInt(folderData.folder.folderDate)).toLocaleDateString(
                     "en-US",
                     dateOptions
                   )}
                 </p>
-                {data.list.listUser.firstName ? (
-                  <p>
-                    List Owner:{" "}
-                    {data.list.listUser &&
-                    data.list.listUser.firstName &&
-                    data.list.listUser.lastName
-                      ? `${data.list.listUser.firstName} ${data.list.listUser.lastName}`
-                      : "Loading..."}
-                  </p>
-                ) : null}
-                <div>
-                  Members of this list:
-                  {isOwnList ? (
-                    <ul className="listMemberList">
-                      {data.list.listUsers.map((user) => (
-                        <li
-                          className="listMember"
-                          key={user._id}
-                          onClick={(event) => handleClick(event, user)}
-                        >
-                          {user.firstName + " " + user.lastName}
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <ul className="listMemberList">
-                      {data.list.listUsers.map((user) => (
-                        <li className="listMember" key={user._id}>
-                          {user.firstName + " " + user.lastName}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-                {modalVisible && (
-                  <Modal
-                    user={modalUser}
-                    x={modalX}
-                    y={modalY}
-                    handleRemoveUserToList={handleRemoveUserToList}
-                    hideModal={hideModal}
-                  />
-                )}
+                
+                
+                
                 {removeModalVisible && (
                   <RemoveFolderModal
                     folder={modalFolder}
@@ -375,9 +298,7 @@ function SingleList() {
                 ) : null}
                 {isOwnList ? (
                   <div className="listHidden">
-                    <AddUserToList data={meData.me} />
-                    <CreateItem listId={listId} />
-                    <CreateFolder listId={listId} />
+                    <CreateItem listId={listId} folderId={folderId}/>
                   </div>
                 ) : null}
               </div>
@@ -426,21 +347,8 @@ function SingleList() {
                   </button>
                   
                 </div>
-                {foldersArray && (
-                <section className="folder-div">
-                {foldersArray.map((folder) => (
-                  <div className="folderEl" key={folder._id} onClick={(event) => handleFolderClick(event, folder)}>
-                    <Link
-                      to={`/lists/${listId}/folder/${folder._id}`}
-                      className="insetBtn"
-                      >
-                      <Folder  folder={folder} />
-                      </Link>
-                  </div>
-                ))}
-                </section>
-                )}
-                {itemsArray.map((item) => (
+                
+                {filteredItemsArray.map((item) => (
                   <div key={item._id}>
                     <Link
                       to={`/lists/${listId}/item/${item._id}`}
@@ -453,7 +361,7 @@ function SingleList() {
               </div>
             ) : (
               <div className="nothingToShow">
-                No Items have been added to this list
+                No Items have been added to this folder
               </div>
             )}
           </div>
@@ -463,18 +371,10 @@ function SingleList() {
   } else {
     return (
       <div>
-        <h2>You do not have permission to view this list</h2>
+        <h2>You do not have permission to view this folder</h2>
       </div>
     );
   }
 }
 
-function AsyncMyComponent() {
-  return (
-    <Async promiseFn={() => QUERY_LIST}>
-      <SingleList />
-    </Async>
-  );
-}
-
-export default AsyncMyComponent;
+export default SingleFolder;

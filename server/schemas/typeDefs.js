@@ -16,7 +16,7 @@ const typeDefs = gql`
   type Folder {
     _id: ID
     folderDate: String
-    folderName: String!
+    folderName: String
     folderItems: [Item]
   }
 
@@ -54,6 +54,7 @@ const typeDefs = gql`
     myFriends: User
     users: [User]
     user(email: String!): User
+    listFolders(_id: ID): List
     list(_id: ID): List
     folder(_id: ID): Folder
     item(_id: ID): Item
@@ -85,12 +86,12 @@ const typeDefs = gql`
       purchased: Boolean
     ): Item
     removeList(_id: ID!): User
-    removeItem(_id: ID!, listId: String): List
+    removeItem(_id: ID!, listId: String, folderId: ID): List
     addFriend(friendId: ID!): User
     removeFriend(friendId: ID!): User
     addFriendRequest(userId: ID!, friendId: ID!): User
     removeFriendRequest(friendId: ID!): User
-    addItemToFolder(_id: ID!, itemId: ID!): Folder
+    addItemToFolder(itemId: ID!, folderId: ID!): Folder
     removeItemFromFolder(_id: ID!, itemId: ID!): Folder
     addUserToList(_id: ID!, userId: ID!): List
     removeUserToList(_id: ID!, userId: ID!): List

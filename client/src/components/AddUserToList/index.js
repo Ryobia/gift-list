@@ -10,7 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 const AddUserToList = (props) => {
   const { data: userData } = props;
   const [error, setError] = useState(false);
-  const { id: listId } = useParams();
+  const { listId: listId } = useParams();
   const navigate = useNavigate();
   const [formState, setFormState] = useState({ email: "" });
   const [friendList, setFriendList] = useState([]);

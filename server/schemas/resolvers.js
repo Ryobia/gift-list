@@ -14,7 +14,7 @@ const resolvers = {
           .populate("lists")
           .populate("items")
           .populate("listUser")
-          .populate("listUsers")
+        .populate("listUsers")
           .populate("folders")
           .populate("friends");
 
@@ -220,12 +220,11 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
 
-    addItemToFolder: async (parent, { _id, itemId }, context) => {
+    addItemToFolder: async (parent, { itemId, folderId }, context) => {
       if (context.user) {
-        console.log(itemId, _id);
 
         const updatedFolder = await Folder.findByIdAndUpdate(
-          { _id: _id },
+          { _id: folderId },
           { $addToSet: { folderItems: itemId } },
           { new: true, multi: true }
         ).populate("lists")

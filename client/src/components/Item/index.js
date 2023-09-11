@@ -9,6 +9,7 @@ const Item = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const { item } = props;
+  console.log(item)
   let dateOptions = {
     hour: "numeric",
     month: "2-digit",
@@ -28,7 +29,7 @@ const Item = (props) => {
   if (isLoaded) {
     return (
       <section className="itemComponent">
-        {meData.me._id !== item.itemUser._id ? (
+        {meData.me._id !== item?.itemUser?._id ? (
           <label className="purchased" htmlFor="isPurchased">
             <input
               type="checkbox"
@@ -40,8 +41,8 @@ const Item = (props) => {
           </label>
         ) : null}
         <span className="itemDiv">
-          <h2>{item.itemName.substring(0, 20)}</h2>
-          <h3>Price: ${item.itemPrice}</h3>
+          <h2>{item.itemName?.substring(0, 20)}</h2>
+          <h3>Price: ${item?.itemPrice}</h3>
           <p>
             Added:
             {" " +
@@ -51,7 +52,7 @@ const Item = (props) => {
               )}
           </p>
 
-          <h4>{item.itemDetails.substring(0, 30) + "..."}</h4>
+          <h4>{item.itemDetails?.substring(0, 30) + "..."}</h4>
         </span>
         <div className="priorityDiv">
           {item.priority ? (

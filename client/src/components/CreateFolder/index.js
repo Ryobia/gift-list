@@ -4,7 +4,7 @@ import { CREATE_FOLDER} from "../../utils/mutations";
 import { useParams, useNavigate } from "react-router-dom";
 
 const CreateFolder = () => {
-  const { id: listId } = useParams();
+  const { listId: listId } = useParams();
   const [error, setError] = useState(false);
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
@@ -26,6 +26,7 @@ const CreateFolder = () => {
   const handleCreateFolder = async (event) => {
     setError(false);
     event.preventDefault();
+    if (formState.name) {
       try {
         const mutationResponse = await createFolder({
           variables: {
@@ -33,12 +34,13 @@ const CreateFolder = () => {
             folderName: formState.name
           },
         });
+        navigate(0);
         console.log(mutationResponse);
       } catch (e) {
         setError(true);
         console.log(e);
       }
-    
+    }
   };
 
   return (

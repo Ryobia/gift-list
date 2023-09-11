@@ -15,7 +15,7 @@ const SingleItem = (props) => {
   const [isAllowedToView, setIsAllowedToView] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const { id: itemId, listId: listId } = useParams();
+  const { itemId: itemId, listId: listId } = useParams();
   const [updateItem, { error: updateError }] = useMutation(UPDATE_ITEM);
   const [removeItem, { error: removeItemError }] = useMutation(REMOVE_ITEM);
 
