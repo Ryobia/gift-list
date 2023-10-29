@@ -56,12 +56,13 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#39603d",endCo
 header {
   display: flex;
   justify-content: space-between;
-  background-color: var(--color1);
+  background-color: var(--color4);
   border-radius: 5px;
   padding: 1em;
   margin: 1em;
   color: var(--color3);
   box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5);
+  border: 2px solid black;
   align-items: center;
 }
 
@@ -86,6 +87,26 @@ nav a:hover {
   margin-top: 15em;
   display: flex;
   justify-content: center;
+}
+
+.homeInfo {
+  text-align: center;
+  padding: 1em;
+  background-color: var(--color1);
+  width: fit-content;
+  max-width: 80%;
+  margin: auto;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+.homeInfo > p {
+  font-size: 20px;
+}
+
+.highlightText {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 .homeSection {
@@ -176,6 +197,14 @@ nav a:hover {
   .homeSection a div h1 {
     font-size: 28px;
   }
+
+  .homeInfo > p {
+    font-size: 14px;
+  }
+
+  .homeInfo > h2 {
+    font-size: 20px;
+  }
   
 }
 
@@ -197,6 +226,14 @@ nav a:hover {
   .homeSection a div h1 {
     font-size: 24px;
   }
+
+  .homeInfo > p {
+    font-size: 12px;
+  }
+
+  .homeInfo > h2 {
+    font-size: 16px;
+  }
 }
 
 .sectionMain {
@@ -212,6 +249,7 @@ nav a:hover {
   padding: 2em;
   margin: 1em;
   background-color: var(--color1);
+  border: 2px solid black;
   text-align: center;
 }
 
@@ -905,6 +943,7 @@ background-color: var(--color5);
   text-align: center;
   width: 90%;
   padding: 1em;
+  border: 2px solid black;
   border-radius: 5px;
   background-color: var(--color4);
   margin-bottom: 1em;
@@ -972,11 +1011,19 @@ background-color: var(--color5);
 .priorityDiv span {
   width: 100%;
 }
+
 .priorityDivSingleItem {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-left: 2em;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: var(--color1);
+  width: -moz-fit-content;
+  text-align: center;
+  margin: 0 .5em;
+  justify-content: center;
+  padding: .3em;
 }
 .prioActive {
   background-color: var(--color4);
