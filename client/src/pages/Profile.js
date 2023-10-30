@@ -135,13 +135,13 @@ const Profile = () => {
                   </span>
                 </div>
                 <div className="changeInfoDiv">
-                  <button className="insetBtnInverse standardShadow" onClick={() => setProfileView('')}>Change User Info</button>
+                  <button className="insetBtnInverse standardShadow" onClick={() => setProfileView('changeInfo')}>Change User Info</button>
                   <button className="insetBtnInverse standardShadow" onClick={() => setProfileView('changePass')}>Change Password</button>
                 </div>
               </div>
               {profileView === 'changeInfo' ?
             <form className="accountForm standardShadow" onSubmit={handleInfoSubmit}>
-            <div className="form-el ">
+            <div className="form-el">
               <label className="form-label" htmlFor="username">
                 Username:
               </label>
@@ -156,7 +156,7 @@ const Profile = () => {
             </div>
             <div className="form-el">
               <label className="form-label" htmlFor="email">
-                Email:
+                Your Email:
               </label>
               <input
                 className="form-input"
