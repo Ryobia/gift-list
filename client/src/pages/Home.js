@@ -4,6 +4,12 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <main>
+      <div className="homeInfo standardShadow">
+        <h2>Anonylists is your one-stop shop for making and sharing your Holiday/Birthday wishlists!</h2>
+        <p>Anonylists was made to help you, your friends and your family coordinate buying gifts and keeping them a surprise.</p>
+        <p>Once you create your account, your first list can be made with only a few clicks and adding items is a breeze!</p>
+        <p className="highlightText"> Get started today for free by clicking "MY LISTS".</p>
+        </div>
       <section className="homeSection">
       <Link className="standardShadow" to="/lists">
         <div className="homeInsetBtn ">
