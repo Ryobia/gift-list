@@ -17,7 +17,9 @@ const Lists = () => {
   const [selectedList, setSelectedList] = useState();
   const { loading: allListsLoading, data: allListsData } =
     useQuery(QUERY_ALL_LISTS);
-  const { loading, error: meError, data: meData } = useQuery(QUERY_ME);
+  const { loading, error: meError, data: meData } = useQuery(QUERY_ME, {
+    pollInterval: 5000,
+  });
   const [myLists, setMyLists] = useState([]);
   let me = [];
   const [removeList, { error }] = useMutation(REMOVE_LIST);
