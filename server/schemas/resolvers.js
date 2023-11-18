@@ -298,6 +298,17 @@ const resolvers = {
       throw new AuthenticationError("Not logged in");
     },
 
+    resetPassword: async (parent, args, context) => {
+      console.log(context);
+      if (context.user) {
+        return await User.findByIdAndUpdate(context.user._id, args, {
+          new: true,
+        });
+      }
+
+    },
+
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 

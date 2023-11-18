@@ -180,7 +180,7 @@ const SingleItem = (props) => {
                     className="insetBtnInverse"
                     onClick={() => setDeleteModal(false)}
                   >
-                    Nevermind
+                    No, Do Not Delete
                   </div>
                   <div
                     className="insetBtnInverse"
