@@ -99,8 +99,7 @@ const typeDefs = gql`
       password: String
     ): User
     resetPassword(
-      username: String
-      email: String
+      _id: ID!
       password: String
     ): User
   }

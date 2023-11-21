@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { LOGIN } from "../utils/mutations";
+import { useParams } from "react-router-dom";
 import Logout from "../components/Logout";
 
-import { UPDATE_USER } from "../utils/mutations";
+import { RESET_PASS } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 
 const PassReset = (props) => {
   const [OTPState, setOTPState] = useState({otp: ""});
   const [passMatch, setPassMatch] = useState(false);
+  const [passReset, setPassReset] = useState(false);
   const [profileView, setProfileView] = useState("default");
+  const { id: userId } = useParams();
   const [login, { error }] = useMutation(LOGIN);
-  const [updateUser, { error: errorUpdate }] = useMutation(UPDATE_USER);
+  const [resetPass, { error: errorUpdate }] = useMutation(RESET_PASS);
   const [changePassword, setChangePassword] = useState({
     pass1: "",
     pass2: "",
@@ -40,15 +43,16 @@ const PassReset = (props) => {
   const handlePassSubmit = async (event) => {
     event.preventDefault();
     if (changePassword.pass1 === changePassword.pass2) {
+      console.log(userId)
     try {
-      const mutationResponse = await updateUser({
+      const mutationResponse = await resetPass({
         variables: {
+          _id: userId,
           password: changePassword.pass1,
         },
       });
       console.log(mutationResponse);
-      setProfileView('');
-
+      setPassReset(true);
     } catch (e) {
       console.log(e);
     }
@@ -60,30 +64,10 @@ const PassReset = (props) => {
   if (Auth.loggedIn() === false) {
     return (
       <section className="loginSection">
-                {profileView === 'default' ?
-
-        <div className="form-div standardShadow">
-            <p className="passResetText">If there is an account associated with that email,<br/> you will receive a code shortly. Enter it here</p>
-            <form >
-              <input
-                className="form-input"
-                placeholder="One-Time Password"
-                name="otp"
-                type="text"
-                id="otp"
-                value={OTPState.otp}
-                onChange={handleOTPChange}
-              />
-              <button className="insetBtnInverse form-submit" type="submit" onClick={() => setProfileView('resetPW')}>
-                Submit
-              </button>
-            </form>
-
-        </div>
-        : profileView === 'forgotPW' ?
-
-        <div className="form-div standardShadow">
+                
+        <div className="passResetForm standardShadow">
         <form className="" onSubmit={handlePassSubmit}>
+          <h2>Password Reset Form</h2>
           <div className="form-resetPW">
             <label className="form-label" htmlFor="password">
               New Password:
@@ -95,11 +79,12 @@ const PassReset = (props) => {
               id="pass1"
               value={changePassword.pass1}
               onChange={handlePassChange}
+              disabled={passReset}
             />
           </div>
           <div className="form-resetPW">
             <label className="form-label" htmlFor="password">
-              Do It Again:
+              Confirm Password
             </label>
             <input
               className="form-input"
@@ -108,6 +93,7 @@ const PassReset = (props) => {
               id="pass2"
               value={changePassword.pass2}
               onChange={handlePassChange}
+              disabled={passReset}
             />
           </div>
           {errorUpdate ? (
@@ -126,7 +112,7 @@ const PassReset = (props) => {
           ) : null}
           <div className="form-resetPW infoBtnDiv">
             <button className="insetBtnInverse" type="submit">
-              Save Changes
+              Save New Password
             </button>
             <button
               className="insetBtnInverse"
@@ -136,10 +122,15 @@ const PassReset = (props) => {
               Cancel
             </button>
           </div>
+          {passReset === true && (
+              <div className="successText">
+                Password Has Been Reset! <br/>
+            <Link className="highlightText" to="/login">Click To Go Back To Login Screen</Link>
+
+              </div>
+            )}
         </form>
         </div>
-        : null
-    }
       </section>
     );
   } else {

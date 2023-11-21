@@ -299,12 +299,12 @@ const resolvers = {
     },
 
     resetPassword: async (parent, args, context) => {
-      console.log(context);
-      if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, {
+      console.log(args);
+        return await User.findByIdAndUpdate(args._id, args, {
           new: true,
         });
-      }
+
+      throw new AuthenticationError("Not logged in");
 
     },
 

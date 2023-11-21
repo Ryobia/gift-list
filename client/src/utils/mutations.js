@@ -33,6 +33,14 @@ export const UPDATE_USER = gql`
     }
   }
 `;
+export const RESET_PASS = gql`
+  mutation resetPassword( $_id: ID!, $password: String) {
+    resetPassword( _id: $_id, password: $password) {
+      _id
+      email
+    }
+  }
+`;
 
 export const ADD_LIST = gql`
   mutation addList($listDate: String, $listUser: ID, $listName: String) {

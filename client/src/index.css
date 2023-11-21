@@ -110,6 +110,10 @@ nav a:hover {
   font-weight: bold;
 }
 
+.highlightText:hover {
+  cursor: pointer;
+}
+
 .homeSection {
   margin-top: 3em;
   display: flex;
@@ -468,8 +472,15 @@ padding: 1em;
 /* PASSWORD RESET PAGE ___________________________________________________AWEOAJSEDFOAWJSEOFASEOFABJWEORTAEKJRTOAEKTOAKWOGTAKWTOKAWOETAGOTKO */
 
 .passResetForm {
-  margin: auto;
-  width: fit-content;
+  background-color: var(--color1);
+  padding: 1em;
+  border-radius: 5px;
+  max-width: 30%;
+  min-width: 250px;
+}
+
+.form-resetPW {
+  width: 100%;
 }
 
 
@@ -1200,6 +1211,12 @@ width: fit-content;
 .errorText {
   text-align: center;
   color: red;
+}
+
+.successText {
+  text-align: center;
+  color: var(--color4);
+  font-size: 18px;
 }
 
 .hidden {
