@@ -74,7 +74,7 @@ const Lists = () => {
           <section className="myListSection sectionMain listsPage">
             {deleteModal ? (
               <div id="open-modal" className="modal-delete-window">
-                <div>
+                <div className="deleteListModal">
                   <div className="deleteModalText">
                     <h3>Are you sure you want to delete this List?</h3>
                     <p>
@@ -90,7 +90,7 @@ const Lists = () => {
                         setSelectedList();
                       }}
                     >
-                      Nevermind
+                      No, Do Not Delete
                     </div>
                     <div
                       className="insetBtnInverse"

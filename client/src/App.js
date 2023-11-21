@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState  } from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
 
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
@@ -9,6 +8,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 import Home from "./pages/Home";
+import PassReset from "./pages/PassReset"
 import Profile from "./pages/Profile";
 import Lists from "./pages/Lists";
 import Friends from "./pages/Friends";
@@ -55,6 +55,7 @@ function App() {
           <Route  path='/profile' element={<Profile/>} />
           <Route  path='/friends' element={<Friends/>} />
           <Route  path='/login' element={<Login/>} />
+          <Route path="/passReset/:id" element={<PassReset/>} />
           <Route  path='/signup' element={<Signup/>} />
           <Route  path='/lists/:listId/:id' element={<SingleItem/>} />
           <Route path="*" element={<NoMatch/>} />

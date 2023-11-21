@@ -98,6 +98,10 @@ const typeDefs = gql`
       email: String
       password: String
     ): User
+    resetPassword(
+      _id: ID!
+      password: String
+    ): User
   }
 `;
 
