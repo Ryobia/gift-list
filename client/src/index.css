@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
 
 :root {
-  --color1: #DADED4;
-  --color2: #A3BCB6;
-  --color3: #3C403D;
+  --color1: #daded4;
+  --color2: #a3bcb6;
+  --color3: #3c403d;
   --color4: #3a81f5;
-  --color5: #FFFFFF;
-  --color6: #39603D;
+  --color5: #ffffff;
+  --color6: #39603d;
 }
 
 * {
@@ -29,30 +29,40 @@ body {
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background: rgb(57,96,61);
-background: -moz-linear-gradient(0deg, rgba(57,96,61,0.5242471988795518) 63%, rgba(255,255,255,1) 100%);
-background: -webkit-linear-gradient(0deg, rgba(57,96,61,0.5242471988795518) 63%, rgba(255,255,255,1) 100%);
-background: linear-gradient(0deg, rgba(57,96,61,0.5242471988795518) 63%, rgba(255,255,255,1) 100%) fixed;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#39603d",endColorstr="#ffffff",GradientType=1);
+  background: rgb(57, 96, 61);
+  background: -moz-linear-gradient(
+    0deg,
+    rgba(57, 96, 61, 0.5242471988795518) 63%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(57, 96, 61, 0.5242471988795518) 63%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: linear-gradient(
+      0deg,
+      rgba(57, 96, 61, 0.5242471988795518) 63%,
+      rgba(255, 255, 255, 1) 100%
+    )
+    fixed;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#39603d",endColorstr="#ffffff",GradientType=1);
 }
 
 .standardShadow {
   box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5);
-
 }
 
 .desktopStandardShadow {
   box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5);
-
 }
 
 @media (max-width: 1100px) {
   .desktopStandardShadow {
-
     box-shadow: 0 0 0 0;
   }
 }
- 
+
 header {
   display: flex;
   justify-content: space-between;
@@ -74,7 +84,7 @@ nav a {
   color: black;
   display: flex;
   justify-content: center;
-  transition: .1s linear;
+  transition: 0.1s linear;
 }
 
 nav a:hover {
@@ -203,22 +213,20 @@ nav a:hover {
     font-size: 28px;
   }
 
-  .homeInfo > p, .highlightText {
+  .homeInfo > p,
+  .highlightText {
     font-size: 14px;
   }
 
   .homeInfo > h2 {
     font-size: 20px;
   }
-  
 }
-
 
 @media (max-width: 550px) {
   header h1 {
     font-size: 18px;
   }
-
 
   .backBtnSection {
     font-size: 10px;
@@ -232,7 +240,8 @@ nav a:hover {
     font-size: 24px;
   }
 
-  .homeInfo > p, .highlightText {
+  .homeInfo > p,
+  .highlightText {
     font-size: 12px;
   }
 
@@ -380,7 +389,7 @@ label {
   justify-content: space-evenly;
   width: 33%;
   border-radius: 5px;
-  padding: .5em;
+  padding: 0.5em;
 }
 
 .changeInfoDiv button {
@@ -388,9 +397,9 @@ label {
 }
 
 .accountDiv span {
-display: flex;
-justify-content: space-between;
-padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
 }
 
 .accountDiv {
@@ -414,7 +423,7 @@ padding: 1em;
   margin-top: 1em;
   border-radius: 5px;
   background-color: var(--color1);
-  padding: .5em;
+  padding: 0.5em;
 }
 
 .accountForm div {
@@ -427,47 +436,46 @@ padding: 1em;
   justify-content: center;
 }
 
-
 @media (max-width: 1100px) {
- .profileDiv {
-  width: 75%;
- }
+  .profileDiv {
+    width: 75%;
+  }
 }
 
 @media (max-width: 800px) {
   .profileDiv {
-   width: 90%;
-   margin: auto;
+    width: 90%;
+    margin: auto;
   }
   .changeInfoDiv {
     padding: 0;
   }
- }
+}
 
- @media (max-width: 600px) {
+@media (max-width: 600px) {
   .profileInfoDiv {
     flex-wrap: wrap;
     justify-content: space-evenly;
-}
+  }
   .accountDiv {
     width: 100%;
   }
   .changeInfoDiv {
     flex-direction: row;
     height: fit-content;
-    padding: .5em;
-  width: 80%;
-  margin-top: 1em;
+    padding: 0.5em;
+    width: 80%;
+    margin-top: 1em;
   }
   .changeInfoDiv button {
     font-size: 12px;
-    padding: .2em;
+    padding: 0.2em;
   }
   .accountDiv span {
     font-size: 12px;
-    padding: .3em;
-    }
- }
+    padding: 0.3em;
+  }
+}
 
 /* PASSWORD RESET PAGE ___________________________________________________AWEOAJSEDFOAWJSEOFASEOFABJWEORTAEKJRTOAEKTOAKWOGTAKWTOKAWOETAGOTKO */
 
@@ -482,7 +490,6 @@ padding: 1em;
 .form-resetPW {
   width: 100%;
 }
-
 
 /* FRIEND PAGE ___________________________________________FASASDFAEAWEAW$t5q23ASDFAEFASFAEFASDaj;wlk3j4a;l5kjw;elakJF:SDoiUW:O#4 */
 
@@ -529,9 +536,9 @@ padding: 1em;
   display: flex;
   justify-content: space-between;
   background-color: var(--color1);
-  margin: 1.5em .5em;
-  padding: .5em 1em .2em 1em ;
-  transition: .1s linear;
+  margin: 1.5em 0.5em;
+  padding: 0.5em 1em 0.2em 1em;
+  transition: 0.1s linear;
   border-radius: 5px;
 }
 
@@ -540,9 +547,9 @@ padding: 1em;
   justify-content: space-between;
   align-items: center;
   background-color: var(--color1);
-  margin: 1.5em .5em;
-  padding: .5em 1em .2em 1em ;
-  transition: .1s linear;
+  margin: 1.5em 0.5em;
+  padding: 0.5em 1em 0.2em 1em;
+  transition: 0.1s linear;
   border-radius: 5px;
 }
 
@@ -561,7 +568,7 @@ padding: 1em;
   flex-wrap: wrap;
   border-radius: 5px;
   border: 2px solid black;
-  padding: .5em;
+  padding: 0.5em;
   margin-top: 1em;
   height: fit-content;
   width: 52%;
@@ -574,11 +581,10 @@ padding: 1em;
   padding-top: 1em;
 }
 
-
 .expandedFriendDiv h3 {
   text-align: center;
   margin: auto;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   border-radius: 5px;
   background-color: var(--color3);
   color: var(--color1);
@@ -589,9 +595,9 @@ padding: 1em;
   width: 100%;
   margin-top: 1em;
   border-radius: 5px;
-  padding: .5em 1em .2em 1em ;
+  padding: 0.5em 1em 0.2em 1em;
   background-color: var(--color1);
-  transition: .1s linear;
+  transition: 0.1s linear;
 }
 
 .expandedFriendDiv a:hover {
@@ -616,14 +622,14 @@ padding: 1em;
   border-radius: 5px;
   margin-top: 4em;
   font-size: 12px;
-  padding: .3em;
+  padding: 0.3em;
 }
 
 .toggleShownFriendList {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: .5em;
+  padding: 0.5em;
 }
 
 .toggleShownFriendList div {
@@ -636,7 +642,7 @@ padding: 1em;
   display: inline-block;
   background-color: var(--color1);
   color: var(--color3);
-  padding: .5em;
+  padding: 0.5em;
   border-radius: 5px;
 }
 
@@ -647,12 +653,12 @@ padding: 1em;
   color: var(--color3);
   left: 0;
   width: 100%;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
 .dropdown-content p {
-  padding: .2em;
+  padding: 0.2em;
   border: 1px solid black;
 }
 
@@ -660,7 +666,7 @@ padding: 1em;
   cursor: pointer;
   background-color: var(--color3);
   color: var(--color1);
-} 
+}
 
 .dropdown:hover {
   background-color: var(--color3);
@@ -693,9 +699,6 @@ padding: 1em;
     text-align: center;
     overflow: hidden;
   }
-
-  
-  
 }
 
 @media (max-width: 800px) {
@@ -703,7 +706,8 @@ padding: 1em;
     font-size: 12px;
   }
 
-  .addFriendComponent, .friendsListDiv {
+  .addFriendComponent,
+  .friendsListDiv {
     margin: 1em 0 0 0;
   }
 
@@ -723,7 +727,6 @@ padding: 1em;
     font-size: 10px;
   }
 }
-
 
 /* CREATE LIST **************************************________*_*__*__*_***&_*(_*%(^&_*(_(#%^_&*($_&*($_^&*(_$ */
 
@@ -774,7 +777,6 @@ padding: 1em;
   text-align: center;
   margin: auto;
   color: var(--color3);
-
 }
 
 .modal-delete-window > div {
@@ -783,11 +785,10 @@ padding: 1em;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: .5em;
+  padding: 0.5em;
   border-radius: 5px;
   background: var(--color4);
   box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5);
-
 }
 
 .listMemberList {
@@ -800,18 +801,17 @@ padding: 1em;
 
 .listMember {
   border-radius: 5px;
-  transition: .1s linear;
+  transition: 0.1s linear;
   border: 1px solid var(--color3);
   list-style: none;
-  margin: .3em;
-  padding: 0em .3em;
+  margin: 0.3em;
+  padding: 0em 0.3em;
   width: 100%;
 }
 
 .listMember:hover {
   cursor: pointer;
   background-color: var(--color4);
-
 }
 
 .removeFromListModal {
@@ -819,14 +819,14 @@ padding: 1em;
   justify-content: space-between;
   flex-direction: column;
   height: fit-content;
-background-color: var(--color5);
+  background-color: var(--color5);
 }
 
 .removeFromListModal button {
   border-radius: 5px;
-  padding: .2em;
+  padding: 0.2em;
   margin-top: 1em;
-  transition: .1s linear;
+  transition: 0.1s linear;
 }
 
 .removeFromListModal button:hover {
@@ -834,7 +834,6 @@ background-color: var(--color5);
   color: var(--color5);
   background-color: var(--color4);
 }
-
 
 .listIcon {
   display: none;
@@ -945,7 +944,8 @@ background-color: var(--color5);
   transition: 0.2s;
 }
 
-.reactTrash:hover, .reactTrashList:hover {
+.reactTrash:hover,
+.reactTrashList:hover {
   cursor: pointer;
   background-color: var(--color3);
   color: var(--color2);
@@ -969,8 +969,6 @@ background-color: var(--color5);
   align-content: flex-start;
   width: 100%;
 }
-
-
 
 .itemMapDiv div {
   width: 47%;
@@ -1022,11 +1020,12 @@ background-color: var(--color5);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: .2em;
+  padding: 0.2em;
   width: 100%;
 }
 
-.itemDiv h2, .itemDiv p {
+.itemDiv h2,
+.itemDiv p {
   width: 100%;
   text-align: center;
 }
@@ -1037,18 +1036,18 @@ background-color: var(--color5);
   margin-top: 1em;
 }
 
-
 .priorityDiv {
   display: flex;
   width: 100%;
 }
 
-.priorityDiv span, .priorityDivSingleItem span {
+.priorityDiv span,
+.priorityDivSingleItem span {
   border-radius: 5px;
   font-size: 14px;
   border: 1px solid var(--color4);
   width: 1em;
-  padding: .1em;
+  padding: 0.1em;
   text-align: center;
 }
 .priorityDiv span {
@@ -1064,15 +1063,15 @@ background-color: var(--color5);
   background-color: var(--color1);
   width: -moz-fit-content;
   text-align: center;
-  margin: 0 .5em;
+  margin: 0 0.5em;
   justify-content: center;
-  padding: .3em;
+  padding: 0.3em;
 }
 .prioActive {
   background-color: var(--color4);
 }
 .priorityDivSingleItem span {
-  margin-left: .4em;
+  margin-left: 0.4em;
 }
 
 .priorityDivSingleItem span:hover {
@@ -1126,10 +1125,10 @@ background-color: var(--color5);
 }
 
 .item-form-label {
-font-size: 14px;
-    margin-top: 1em;
-    text-align: center;
-width: fit-content;
+  font-size: 14px;
+  margin-top: 1em;
+  text-align: center;
+  width: fit-content;
 }
 
 .myItem {
@@ -1234,7 +1233,7 @@ width: fit-content;
 .addItemPrioOption {
   display: flex;
   justify-content: space-around;
-  padding: .3em;
+  padding: 0.3em;
 }
 
 .addItemPrioOption span {
@@ -1269,7 +1268,7 @@ width: fit-content;
     padding: 1em;
   }
   .createListComponent {
-    padding: .5em;
+    padding: 0.5em;
   }
   .createListComponent h2 {
     font-size: 18px;
@@ -1280,7 +1279,6 @@ width: fit-content;
   .createListComponent form input {
     padding: 0;
   }
-
 }
 
 @media (max-width: 1100px) {
@@ -1292,7 +1290,8 @@ width: fit-content;
     width: 90%;
   }
 
-  .listsPage .myListLeft, .singleListPage .myListLeft {
+  .listsPage .myListLeft,
+  .singleListPage .myListLeft {
     width: 50%;
   }
   .itemMapDiv div {
@@ -1318,52 +1317,51 @@ width: fit-content;
   }
   .listIconSpan {
     width: fit-content;
-    padding: .1em;
-    background-color: var(--color1); 
+    padding: 0.1em;
+    background-color: var(--color1);
     border-radius: 5px;
     transition: 0.2s;
   }
 
   .listIconSpan svg {
     font-size: 1.3em;
-    padding: .1em;
+    padding: 0.1em;
   }
-  
+
   .listIcon span:hover {
     cursor: pointer;
     background-color: var(--color3);
     color: var(--color2);
     scale: 1.1;
   }
- .listsPage {
-  flex-wrap: wrap;
-  width: 100%;
- }
- .listsPage .myListLeft {
-  width: 90%;
-  margin: auto;
- }
- .listDivEl a {
-  padding: .5em;
- }
- .listDivEl {
-  width: 95%;
- }
- .listComponent {
-  padding: .5em;
- }
- .listComponent div h2 {
-  font-size: 18px;
- } 
- .listComponent div p {
-  font-size: 14px;
- }
-
+  .listsPage {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .listsPage .myListLeft {
+    width: 90%;
+    margin: auto;
+  }
+  .listDivEl a {
+    padding: 0.5em;
+  }
+  .listDivEl {
+    width: 95%;
+  }
+  .listComponent {
+    padding: 0.5em;
+  }
+  .listComponent div h2 {
+    font-size: 18px;
+  }
+  .listComponent div p {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 460px) {
   .itemMapDiv div a {
-    margin: .3em;
+    margin: 0.3em;
   }
   .itemDiv h2 {
     font-size: 14px;
@@ -1377,19 +1375,19 @@ width: fit-content;
     font-size: 14px;
     text-align: center;
     width: 100%;
-    }
+  }
 
-    .item-form-input {
-      width: 100%;
-    }
-  
+  .item-form-input {
+    width: 100%;
+  }
 }
 
 /* MODAL BASIC THING_______________________________________________________________________________ */
 
-.modal-window, .modal-delete-window {
+.modal-window,
+.modal-delete-window {
   position: fixed;
-  background-color: rgba(255, 255, 255, 0.40);
+  background-color: rgba(255, 255, 255, 0.4);
   top: 0;
   right: 0;
   bottom: 0;
@@ -1407,11 +1405,10 @@ width: fit-content;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: .5em;
+  padding: 0.5em;
   border-radius: 5px;
   background: var(--color4);
   box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5);
-
 }
 
 .cancelModal {
@@ -1425,5 +1422,62 @@ width: fit-content;
 }
 
 .cancelModal .insetBtnInverse {
-  padding: .2em;
+  padding: 0.2em;
+}
+
+/* WHAT TO AD SECTION ___________________----------___----_--------------__-__----___-_--_____-__-_-__-- */
+
+.whatToAdSection {
+  width: fit-content;
+  border-radius: 5px;
+  margin: auto;
+}
+
+.whatToAdLink {
+  border-radius: 5px;
+  padding: 0.25em 0.8em;
+  margin: auto;
+  margin-top: 1em;
+  transition: 0.3s;
+  background-color: var(--color1);
+  color: black;
+  text-align: center;
+  width: fit-content;
+  border: 2px black solid;
+}
+
+.whatToAdLink:hover {
+  box-shadow: inset 0 0 0 2.5em var(--color4);
+  cursor: pointer;
+}
+
+.whatToAddList {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: auto;
+}
+
+.whatToAddList > a {
+  width: 40%;
+  padding: 2em;
+}
+
+.whatToAddBtn {
+  border-radius: 5px;
+  text-align: center;
+  padding: 0.25em 0.8em;
+  margin: 0.5em;
+  transition: 0.25s;
+  border: 1px solid var(--color3);
+  color: var(--color5);
+  background-color: var(--color3);
+}
+
+.whatToAddBtn:hover {
+  border: 1px solid var(--color3);
+  box-shadow: inset 0 0 0 3.5em var(--color1);
+  color: var(--color3);
+  cursor: pointer;
 }
