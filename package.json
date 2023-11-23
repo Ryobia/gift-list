@@ -24,5 +24,8 @@
   "dependencies": {
     "@apollo/client": "^3.7.13",
     "graphql": "^16.0.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.18.6"
   }
 }
