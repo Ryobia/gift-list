@@ -1481,3 +1481,17 @@ label {
   color: var(--color3);
   cursor: pointer;
 }
+
+@media (max-width: 600px) {
+  .whatToAdSection {
+    width: 90%;
+  }
+
+  .whatToAdSection h1 {
+    font-size: 20px;
+  }
+  .whatToAdSection h4 {
+    font-size: 12px;
+  }
+
+}
