@@ -1494,4 +1494,12 @@ label {
     font-size: 12px;
   }
 
+.whatToAddList {
+  width: 90%;
+}
+
+.whatToAddList > a {
+  width: 100%;
+}
+
 }
