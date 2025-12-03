@@ -184,3 +184,17 @@ export const QUERY_ALL_ITEMS = gql`
     }
   }
 `;
+
+export const QUERY_ALL_STORES = gql`
+  {
+    allStores {
+      _id
+      storeName
+      storeURL
+      storeLogo
+      storeDescription
+      dateAdded
+      tags
+    }
+  }
+`;

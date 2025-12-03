@@ -10,7 +10,6 @@ import Footer from './components/Footer';
 import Home from "./pages/Home";
 import PassReset from "./pages/PassReset"
 import Profile from "./pages/Profile";
-import WhatToAd from "./pages/WhatToAd";
 import Lists from "./pages/Lists";
 import Friends from "./pages/Friends";
 import Login from "./pages/Login";
@@ -57,7 +56,6 @@ function App() {
           <Route  path='/friends' element={<Friends/>} />
           <Route  path='/login' element={<Login/>} />
           <Route path="/passReset/:id" element={<PassReset/>} />
-          <Route path="/whattoadd" element={<WhatToAd/>} />
           <Route  path='/signup' element={<Signup/>} />
           <Route  path='/lists/:listId/:id' element={<SingleItem/>} />
           <Route path="*" element={<NoMatch/>} />

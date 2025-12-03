@@ -2,7 +2,7 @@ const {
   AuthenticationError,
   UserInputError,
 } = require("apollo-server-express");
-const { User, List, Item } = require("../models");
+const { User, List, Item, Store } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -84,6 +84,9 @@ const resolvers = {
     allItems: async () => {
       return Item.find();
     },
+    allStores: async () => {
+      return Store.find();
+    }
   },
 
   Mutation: {
@@ -326,6 +329,33 @@ const resolvers = {
 
       return { token, user };
     },
+
+    addStore: async (parent, args, context) => {
+      
+        const store = await Store.create(args);
+
+        return store;
+    },
+
+    removeStore: async (parent, { _id }, context) => {
+      
+        const deletedStore = await Store.findByIdAndDelete({ _id: _id });
+
+        return deletedStore;
+    },
+
+    updateStore: async (parent, args, context) => {
+      console.log(args);
+      let { _id, ...rest } = args;
+      
+        return await Store.findByIdAndUpdate(_id, rest, {
+          new: true,
+          multi: true,
+        });
+      
+
+      
+    }
   },
 };
 

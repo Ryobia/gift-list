@@ -106,6 +106,7 @@ const Profile = () => {
                 <div className="sectionTitleDiv standardShadow">
                   <h2>PROFILE</h2>
                 </div>
+                
               <div className="profileInfoDiv">
                 <div className="accountDiv standardShadow">
                   <h3>Account Info</h3>
@@ -245,8 +246,20 @@ const Profile = () => {
         </form>
             :null}
             </div>
-            
+            <section className="homeSection">
+            <Link className="standardShadow" to="/lists">
+          <div className="homeInsetBtn ">
+            <h1>MY LISTS</h1>
+          </div>
+        </Link>
+        <Link className="standardShadow" to="/friends">
+          <div className="homeInsetBtn">
+            <h1>FRIENDS</h1>
+          </div>
+        </Link>
+        </section>
           </section>
+          
         )}
       </section>
     );

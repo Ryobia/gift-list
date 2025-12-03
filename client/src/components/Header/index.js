@@ -15,7 +15,7 @@ const Header = () => {
       </nav>
       <nav>
         <Link className="" to="/">
-          <h1>Anonylists</h1>
+          <h1>The Curatory</h1>
         </Link>
       </nav>
       {Auth.loggedIn() === false ? (
@@ -32,6 +32,9 @@ const Header = () => {
           <a className="" onClick={() => Auth.logout()}>
             <h3>Logout</h3>
           </a>
+          <Link className="" to="/profile">
+            <h3>Profile</h3>
+          </Link>
         </nav>
       )}
     </header>

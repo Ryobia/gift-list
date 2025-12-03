@@ -36,6 +36,17 @@ const typeDefs = gql`
     linkedItems: [Item]
   }
 
+  type Store {
+    _id: ID
+    storeName: String
+    storeURL: String
+    storeLogo: String
+    storeDescription: String
+    dateAdded: String
+    tags: [String]
+  }
+
+
   type Auth {
     token: ID!
     user: User
@@ -50,6 +61,7 @@ const typeDefs = gql`
     item(_id: ID): Item
     allLists: [List]
     allItems: [Item]
+    allStores: [Store]
   }
 
   type Mutation {
@@ -73,6 +85,9 @@ const typeDefs = gql`
       priority: Float
       purchased: Boolean
     ): Item
+    addStore(storeName: String!, storeURL: String, storeLogo: String, storeDescription: String, dateAdded: String, tags: [String]): Store
+    removeStore(_id: ID!): Store
+    updateStore(_id: ID!, storeName: String, storeURL: String, storeLogo: String, storeDescription: String, dateAdded: String, tags: [String]): Store
     removeList(_id: ID!): User
     removeItem(_id: ID!, listId: String): List
     addFriend(friendId: ID!): User
