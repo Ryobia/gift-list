@@ -117,16 +117,16 @@ const Login = (props) => {
                   value={formState.password}
                   onChange={handleChange}
                 />
-                <button className="insetBtnInverse form-submit" type="submit">
+                <button className="sortBtn form-submit" type="submit">
                   Submit
                 </button>
               </form>
-              <a
+              {/* <a
                 className="highlightText"
                 onClick={() => setProfileView("forgotPW")}
               >
                 Forgot Password? Click Here
-              </a>
+              </a> */}
 
               {error && (
                 <div className="errorText">
@@ -167,7 +167,7 @@ const Login = (props) => {
                 hidden={true}
                 value={data?.user?.lastName}
               />
-              <button className="insetBtnInverse form-submit" type="submit">
+              <button className="sortBtn form-submit" type="submit">
                 Request Code
               </button>
             </form>

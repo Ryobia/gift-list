@@ -111,11 +111,11 @@ const PassReset = (props) => {
             </div>
           ) : null}
           <div className="form-resetPW infoBtnDiv">
-            <button className="insetBtnInverse" type="submit">
+            <button className="insetBtn" type="submit">
               Save New Password
             </button>
             <button
-              className="insetBtnInverse"
+              className="insetBtn"
               type="button"
               onClick={() => setProfileView('default')}
             >

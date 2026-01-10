@@ -149,7 +149,7 @@ const Friends = () => {
                     className="cancelModal"
                     onClick={() => setModalOpen(false)}
                   >
-                    <BsFillXSquareFill className="insetBtnInverse " />
+                    <BsFillXSquareFill className="insetBtn " />
                   </span>
                   {selectedFriend?.lists?.length > 0 ? (
                     <div className="expandedFriendDiv">
@@ -171,7 +171,7 @@ const Friends = () => {
                         onClick={() => handleRemoveFriend(selectedFriend._id)}
                       >
                         Remove Friend
-                        <BsTrash className="insetBtnInverse" />
+                        <BsTrash className="insetBtn" />
                       </span>
                     </div>
                   ) : (
@@ -186,7 +186,7 @@ const Friends = () => {
                         onClick={() => handleRemoveFriend(selectedFriend._id)}
                       >
                         Remove Friend
-                        <BsTrash className="insetBtnInverse" />
+                        <BsTrash className="insetBtn" />
                       </span>
                     </div>
                   )}
@@ -209,7 +209,7 @@ const Friends = () => {
                     value={changeInfoState.email}
                     onChange={handleChange}
                   />
-                  <button className="insetBtnInverse" type="submit">
+                  <button className="insetBtn" type="submit">
                     Send Friend Request
                   </button>
                 </form>
@@ -274,7 +274,7 @@ const Friends = () => {
                         onClick={() => handleRemoveFriend(selectedFriend._id)}
                       >
                         Remove Friend
-                        <BsTrash className="insetBtnInverse" />
+                        <BsTrash className="insetBtn" />
                       </span>
               </div>
             ) : selectedFriend === "" ? (
@@ -293,7 +293,7 @@ const Friends = () => {
                   onClick={() => handleRemoveFriend(selectedFriend._id)}
                 >
                   Remove Friend
-                  <BsTrash className="insetBtnInverse" />
+                  <BsTrash className="insetBtn" />
                 </span>
               </div>
             )}

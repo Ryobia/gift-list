@@ -27,10 +27,10 @@ const Home = () => {
   const filteredAndSortedStores = useMemo(() => {
     let filtered = stores;
 
-    // Filter by selected tags
+    // Filter by selected tags - only show stores with ALL selected tags
     if (selectedTags.length > 0) {
       filtered = stores.filter((store) =>
-        selectedTags.some((tag) => store.tags && store.tags.includes(tag))
+        selectedTags.every((tag) => store.tags && store.tags.includes(tag))
       );
     }
 
@@ -72,12 +72,7 @@ const Home = () => {
   return (
     <main className="homePage">
       {/* Welcome Message */}
-      <section className="welcomeSection">
-        <div className="welcomeMessage">
-          <h2>Welcome to Gift List Stores</h2>
-          <p>Discover and share your favorite stores for gift ideas</p>
-        </div>
-      </section>
+      
 
       {/* Sidebar toggle button (mobile) */}
       <button
@@ -174,9 +169,16 @@ const Home = () => {
                 />
               ))
             ) : (
-              <p style={{ textAlign: "center", width: "100%" }}>
-                No stores found matching your filters.
-              </p>
+              <div className="no-stores-message">
+                <p>
+                  No stores found matching all selected tags.
+                </p>
+                {selectedTags.length > 0 && (
+                  <p>
+                    Try selecting fewer tags or clearing your filters.
+                  </p>
+                )}
+              </div>
             )}
           </div>
         </section>

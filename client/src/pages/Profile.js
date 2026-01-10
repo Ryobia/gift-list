@@ -136,8 +136,8 @@ const Profile = () => {
                   </span>
                 </div>
                 <div className="changeInfoDiv">
-                  <button className="insetBtnInverse standardShadow" onClick={() => setProfileView('changeInfo')}>Change User Info</button>
-                  <button className="insetBtnInverse standardShadow" onClick={() => setProfileView('changePass')}>Change Password</button>
+                  <button className="sortBtn standardShadow" onClick={() => setProfileView('changeInfo')}>Change User Info</button>
+                  <button className="sortBtn standardShadow" onClick={() => setProfileView('changePass')}>Change Password</button>
                 </div>
               </div>
               {profileView === 'changeInfo' ?
@@ -177,11 +177,11 @@ const Profile = () => {
               </div>
             ) : null}
             <div className="form-el infoBtnDiv">
-              <button className="insetBtnInverse" type="submit">
+              <button className="sortBtn" type="submit">
                 Save Changes
               </button>
               <button
-                className="insetBtnInverse"
+                className="sortBtn"
                 type="button"
                 onClick={() => setProfileView('')}
               >
@@ -232,11 +232,11 @@ const Profile = () => {
             </div>
           ) : null}
           <div className="form-el infoBtnDiv">
-            <button className="insetBtnInverse" type="submit">
+            <button className="sortBtn" type="submit">
               Save Changes
             </button>
             <button
-              className="insetBtnInverse"
+              className="sortBtn"
               type="button"
               onClick={() => setProfileView('')}
             >
@@ -248,12 +248,12 @@ const Profile = () => {
             </div>
             <section className="homeSection">
             <Link className="standardShadow" to="/lists">
-          <div className="homeInsetBtn ">
+          <div className="sortBtn">
             <h1>MY LISTS</h1>
           </div>
         </Link>
         <Link className="standardShadow" to="/friends">
-          <div className="homeInsetBtn">
+          <div className="sortBtn">
             <h1>FRIENDS</h1>
           </div>
         </Link>

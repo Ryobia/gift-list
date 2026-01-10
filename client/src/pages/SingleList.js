@@ -35,6 +35,7 @@ function SingleList() {
   const [modalY, setModalY] = useState(0);
   const [itemsArray, setItemsArray] = useState([]);
   const [formState, setFormState] = useState({ email: "" });
+  const [activeSortOption, setActiveSortOption] = useState("dateNewestFirst");
   const navigate = useNavigate();
   const { loading, error: meError, data: meData } = useQuery(QUERY_ME);
   const { id: listId } = useParams();
@@ -136,6 +137,7 @@ function SingleList() {
   const orderDateNewestFirst = () => {
     let arr = [...data.list.items];
     setItemsArray(arr);
+    setActiveSortOption("dateNewestFirst");
   };
   const orderPriceLowestFirst = () => {
     let arr = [...data.list.items];
@@ -144,6 +146,7 @@ function SingleList() {
         return a.itemPrice - b.itemPrice;
       })
     );
+    setActiveSortOption("priceLowestFirst");
   };
 
   const orderPriceHighestFirst = () => {
@@ -153,6 +156,7 @@ function SingleList() {
         return b.itemPrice - a.itemPrice;
       })
     );
+    setActiveSortOption("priceHighestFirst");
   };
   const orderPriorityHighestFirst = () => {
     let arr = [...data.list.items];
@@ -161,6 +165,7 @@ function SingleList() {
         return a.priority - b.priority;
       })
     );
+    setActiveSortOption("priorityHighestFirst");
   };
   const orderPriorityLowestFirst = () => {
     let arr = [...data.list.items];
@@ -169,6 +174,7 @@ function SingleList() {
         return b.priority - a.priority;
       })
     );
+    setActiveSortOption("priorityLowestFirst");
   };
   useEffect(() => {
     if (data?.list?.listUser) {
@@ -189,7 +195,7 @@ function SingleList() {
                   <span className="cancelModal">
                     <BsFillXSquareFill
                       onClick={() => setModalOpen(false)}
-                      className="insetBtnInverse "
+                      className="insetBtn "
                     />
                   </span>
                   {modalView === "addUser" ? (
@@ -215,8 +221,8 @@ function SingleList() {
                         onChange={handleListNameChange}
                       />
                       <div className="editListBtnDiv">
-                      <button className="insetBtnInverse" onClick={handleUpdateList}>Save</button>
-                      <button className="insetBtnInverse" onClick={() => setIsEditing(false)}>Cancel</button>
+                      <button className="insetBtn" onClick={handleUpdateList}>Save</button>
+                      <button className="insetBtn" onClick={() => setIsEditing(false)}>Cancel</button>
                       </div>
                       </div>
                     ) : (
@@ -329,37 +335,37 @@ function SingleList() {
                   <h3>Sorting Options</h3>
 
                   <button
-                    className="insetBtnInverse"
+                    className={`sortBtn ${activeSortOption === "dateNewestFirst" ? "active" : ""}`}
                     onClick={orderDateNewestFirst}
-                  >
-                    Oldest First
-                  </button>
-                  <button
-                    className="insetBtnInverse"
-                    onClick={orderDateOldestFirst}
                   >
                     Newest First
                   </button>
                   <button
-                    className="insetBtnInverse"
+                    className={`sortBtn ${activeSortOption === "dateOldestFirst" ? "active" : ""}`}
+                    onClick={orderDateOldestFirst}
+                  >
+                    Oldest First
+                  </button>
+                  <button
+                    className={`sortBtn ${activeSortOption === "priceLowestFirst" ? "active" : ""}`}
                     onClick={orderPriceLowestFirst}
                   >
                     Price low to high
                   </button>
                   <button
-                    className="insetBtnInverse"
+                    className={`sortBtn ${activeSortOption === "priceHighestFirst" ? "active" : ""}`}
                     onClick={orderPriceHighestFirst}
                   >
                     Price high to low
                   </button>
                   <button
-                    className="insetBtnInverse"
+                    className={`sortBtn ${activeSortOption === "priorityLowestFirst" ? "active" : ""}`}
                     onClick={orderPriorityLowestFirst}
                   >
                     Priority low to high
                   </button>
                   <button
-                    className="insetBtnInverse"
+                    className={`sortBtn ${activeSortOption === "priorityHighestFirst" ? "active" : ""}`}
                     onClick={orderPriorityHighestFirst}
                   >
                     Priority high to low

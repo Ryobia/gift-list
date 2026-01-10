@@ -117,7 +117,7 @@ const AddUserToList = (props) => {
             onChange={handleChange}
           />
 
-          <button className="insetBtnInverse" type="submit">
+          <button className="insetBtn" type="submit">
             Add User
           </button>
         </form>

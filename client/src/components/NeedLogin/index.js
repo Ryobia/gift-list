@@ -9,11 +9,11 @@ const NeedLogin = () => {
     <section className="needLoginSection standardShadow" >
         <h2>Must be logged in</h2>
         <Link to="/login">
-            <h3 className="insetBtnInverse">Click here to Login</h3>
+            <h3 className="insetBtn">Click here to Login</h3>
         </Link>
 
         <Link to="/signup">
-            <h3 className="insetBtnInverse">Or here to Signup</h3>
+            <h3 className="insetBtn">Or here to Signup</h3>
         </Link>
     </section>
   );

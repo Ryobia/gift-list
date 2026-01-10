@@ -55,7 +55,7 @@ const CreateList = () => {
             onChange={handleChange}
           />
 
-          <button className="insetBtnInverse" type="submit">
+          <button className="insetBtn" type="submit">
             Create New List
           </button>
         </form>

@@ -177,13 +177,13 @@ const SingleItem = (props) => {
                 </div>
                 <div className="deleteModalBtnDiv">
                   <div
-                    className="insetBtnInverse"
+                    className="insetBtn"
                     onClick={() => setDeleteModal(false)}
                   >
                     No, Do Not Delete
                   </div>
                   <div
-                    className="insetBtnInverse"
+                    className="insetBtn"
                     onClick={() => handleRemoveItem(data.item._id)}
                   >
                     Yes, I'm Sure
@@ -235,12 +235,12 @@ const SingleItem = (props) => {
             {isAllowedToView && data.item.purchased === false ? (
               <div
                 onClick={handlePurchaseItem}
-                className="createListComponent editItem insetBtnInverse"
+                className="createListComponent editItem insetBtn"
               >
                 <h2>MARK ITEM AS PURCHASED</h2>
               </div>
             ) : isAllowedToView && data.item.purchased === true ? (
-              <div className="createListComponent insetBtnInverse editItem"
+              <div className="createListComponent insetBtn editItem"
               onClick={handlePurchaseItem}
               >
                 <h2>PURCHASED</h2>
@@ -312,11 +312,11 @@ const SingleItem = (props) => {
                   </div>
                 ) : null}
                 <div className="form-el infoBtnDiv">
-                  <button className="insetBtnInverse" type="submit">
+                  <button className="insetBtn" type="submit">
                     Save Changes
                   </button>
                   <button
-                    className="insetBtnInverse"
+                    className="insetBtn"
                     type="button"
                     onClick={() => setItemView("")}
                   >

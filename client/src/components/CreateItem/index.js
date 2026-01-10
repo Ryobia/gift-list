@@ -109,7 +109,7 @@ const CreateItem = () => {
                   <span className={prio === 5 ? 'prioActive' : ''} onClick={() => setPrio(5)} id="5">5</span>
                 </div>
               </div>
-          <button className="insetBtnInverse" type="submit">
+          <button className="insetBtn" type="submit">
             Add Item
           </button>
         </form>

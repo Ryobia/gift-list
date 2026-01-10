@@ -55,7 +55,7 @@ function App() {
           <Route  path='/profile' element={<Profile/>} />
           <Route  path='/friends' element={<Friends/>} />
           <Route  path='/login' element={<Login/>} />
-          <Route path="/passReset/:id" element={<PassReset/>} />
+          {/* <Route path="/passReset/:id" element={<PassReset/>} /> */}
           <Route  path='/signup' element={<Signup/>} />
           <Route  path='/lists/:listId/:id' element={<SingleItem/>} />
           <Route path="*" element={<NoMatch/>} />

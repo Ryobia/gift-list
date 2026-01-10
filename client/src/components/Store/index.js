@@ -88,11 +88,11 @@ const Store = (props) => {
                     >
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <h2 style={{ margin: 0 }}>{name}</h2>
-                            <button className="insetBtnInverse" onClick={closeModal} aria-label="Close">Close</button>
+                            <button className="sortBtn" onClick={closeModal} aria-label="Close">Close</button>
                         </div>
                         <div style={{ marginTop: '1rem' }}>
                             <p>{description}</p>
-                            <a href={link} target="_blank" rel="noopener noreferrer" className="store-link">Visit Store</a>
+                            <a href={link} target="_blank" rel="noopener noreferrer" className="sortBtn">Visit Store</a>
                         </div>
                     </div>
                 </div>

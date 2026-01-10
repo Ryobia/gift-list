@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
 
 :root {
-  --color1: #daded4;
-  --color2: #a3bcb6;
-  --color3: #3c403d;
-  --color4: #3a81f5;
+  --text: #2d312b;
+  --mainGreen: #4b634c;
   --color5: #ffffff;
-  --color6: #39603d;
+  --parchment: #e7e4dc;
+  --heart: #a84432;
+  --greenHover: #364a38;  
+  --border: #9ca18f;  
+  --golden: #c5a059;  
 }
 
 * {
@@ -27,26 +29,7 @@ html {
 body {
   height: 100%;
   margin: 0;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background: rgb(57, 96, 61);
-  background: -moz-linear-gradient(
-    0deg,
-    rgba(57, 96, 61, 0.5242471988795518) 63%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  background: -webkit-linear-gradient(
-    0deg,
-    rgba(57, 96, 61, 0.5242471988795518) 63%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  background: linear-gradient(
-      0deg,
-      rgba(57, 96, 61, 0.5242471988795518) 63%,
-      rgba(255, 255, 255, 1) 100%
-    )
-    fixed;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#39603d",endColorstr="#ffffff",GradientType=1);
+  background-color: var(--mainGreen);
 }
 
 .standardShadow {
@@ -66,22 +49,34 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  background-color: var(--color4);
+  background-color: var(--parchment);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   border-radius: 5px;
   padding: 1em;
   margin: 1em;
-  color: black;
+  color: var(--text);
   box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5);
-  border: 2px solid black;
+  border: 2px solid var(--border);
   align-items: center;
+  min-height: 150px;
 }
 
 header h1 {
   font-size: 48px;
 }
 
+.headerNav {
+  display: flex;
+  align-items: flex-start;
+  gap: 1em;
+  justify-content: space-around;
+  width: 100%;
+}
+
 nav a {
-  color: black;
+  color: var(--text);
   display: flex;
   justify-content: center;
   transition: 0.1s linear;
@@ -90,7 +85,7 @@ nav a {
 nav a:hover {
   scale: 1.01;
   cursor: pointer;
-  color: black;
+  color: var(--text);
 }
 
 .loader {
@@ -102,12 +97,12 @@ nav a:hover {
 .homeInfo {
   text-align: center;
   padding: 1em;
-  background-color: var(--color1);
+  background-color: var(--parchment);
   width: fit-content;
   max-width: 80%;
   margin: auto;
   border-radius: 5px;
-  border: 2px solid black;
+  border: 2px solid var(--border);
 }
 
 .homeInfo > p {
@@ -132,67 +127,34 @@ nav a:hover {
   justify-content: center;
 }
 
-.homeSection a {
-  border: 2px solid black;
-}
 
-.homeInsetBtn {
-  border-radius: 5px;
-  padding: 0.25em 0.8em;
-  margin: 0.5em;
-  transition: 0.3s;
-  background-color: var(--color4);
-}
-
-.homeInsetBtn:hover {
-  box-shadow: inset 0 0 0 2.5em var(--color1);
-  cursor: pointer;
-}
 
 .insetBtn {
   border-radius: 5px;
   padding: 0.25em 0.8em;
   margin: 0.5em;
+  color: var(--text);
   transition: 0.3s;
-  background-color: var(--color1);
+  background-color: var(--parchment);
 }
 
 .insetBtn:hover {
-  box-shadow: inset 0 0 0 2.5em var(--color4);
-  cursor: pointer;
-}
-
-.insetBtnInverse {
-  border-radius: 5px;
-  padding: 0.25em 0.8em;
-  margin: 0.5em;
-  transition: 0.25s;
-  border: 1px solid var(--color3);
-  color: var(--color5);
-  background-color: var(--color3);
-}
-
-.insetBtnInverse:hover {
-  border: 1px solid var(--color3);
-  box-shadow: inset 0 0 0 2.5em var(--color1);
-  color: var(--color3);
+  box-shadow: inset 0 0 0 2.5em var(--greenHover);
+  border: 1px solid var(--greenHover);  
+  color: var(--parchment);
   cursor: pointer;
 }
 
 .homeSection a {
   width: 45%;
-  color: black;
+  color: var(--text);
   border-radius: 5px;
   height: 100%;
   margin: 1em;
-  background-color: var(--color4);
   text-align: center;
 }
 
-.homeSection div:hover {
-  background-color: var(--color1);
-  cursor: pointer;
-}
+
 
 .homeSection div h1 {
   padding: 2em;
@@ -201,7 +163,7 @@ nav a:hover {
 
 .backBtnSection div:hover {
   cursor: pointer;
-  color: black;
+  color: var(--text);
 }
 
 @media (max-width: 750px) {
@@ -258,19 +220,19 @@ nav a:hover {
 }
 
 .sectionTitleDiv {
-  color: var(--color3);
+  color: var(--text);
   border-radius: 5px;
   padding: 2em;
   margin: 1em;
-  background-color: var(--color1);
-  border: 2px solid black;
+  background-color: var(--parchment);
+  border: 2px solid var(--border);
   text-align: center;
 }
 
 /* LOGIN ******************************************************************************************************************* */
 
 .loginSection {
-  color: var(--color3);
+  color: var(--text);
   display: flex;
   flex-wrap: wrap;
   text-align: center;
@@ -278,6 +240,11 @@ nav a:hover {
   position: fixed;
   top: 30%;
   justify-content: center;
+}
+
+.loginSection > div {
+  border: 1px solid var(--border);
+
 }
 
 form {
@@ -291,7 +258,7 @@ label {
 }
 
 .form-div {
-  background-color: var(--color1);
+  background-color: var(--parchment);
   padding: 1em;
   border-radius: 5px;
 }
@@ -349,7 +316,7 @@ label {
 }
 
 .needLoginSection {
-  background-color: var(--color4);
+  background-color: var(--mainGreen);
   width: fit-content;
   margin: auto;
   padding: 1em;
@@ -403,15 +370,15 @@ label {
 }
 
 .accountDiv {
-  background-color: var(--color4);
+  background-color: var(--mainGreen);
   padding: 1em;
   border-radius: 5px;
   width: 60%;
-  border: 2px solid black;
+  border: 2px solid var(--mainGreen);
 }
 
 .accountDiv span:nth-child(even) {
-  background-color: var(--color2);
+  background-color: var(--border);
 }
 
 .accountForm {
@@ -419,16 +386,16 @@ label {
   flex-wrap: wrap;
   width: 100%;
   margin: 1em;
-  border: 2px solid black;
+  border: 2px solid var(--border);
   margin-top: 1em;
   border-radius: 5px;
-  background-color: var(--color1);
+  background-color: var(--parchment);
   padding: 0.5em;
 }
 
 .accountForm div {
   width: 80%;
-  color: var(--color3);
+  color: var(--text);
 }
 
 .infoBtnDiv {
@@ -480,7 +447,7 @@ label {
 /* PASSWORD RESET PAGE ___________________________________________________AWEOAJSEDFOAWJSEOFASEOFABJWEORTAEKJRTOAEKTOAKWOGTAKWTOKAWOETAGOTKO */
 
 .passResetForm {
-  background-color: var(--color1);
+  background-color: var(--parchment);
   padding: 1em;
   border-radius: 5px;
   max-width: 30%;
@@ -513,16 +480,16 @@ label {
   color: var(--color5);
   width: 100%;
   border-radius: 5px;
-  border: 2px solid black;
+  border: 2px solid var(--mainGreen);
   padding: 1em;
   margin: 1em;
-  background-color: var(--color4);
+  background-color: var(--mainGreen);
   text-align: center;
 }
 
 .friendsListDiv {
-  background-color: var(--color4);
-  border: 2px solid black;
+  background-color: var(--mainGreen);
+  border: 2px solid var(--mainGreen);
   width: 100%;
   margin: 1em;
   border-radius: 5px;
@@ -535,7 +502,7 @@ label {
 .friendEl {
   display: flex;
   justify-content: space-between;
-  background-color: var(--color1);
+  background-color: var(--parchment);
   margin: 1.5em 0.5em;
   padding: 0.5em 1em 0.2em 1em;
   transition: 0.1s linear;
@@ -546,7 +513,7 @@ label {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--color1);
+  background-color: var(--parchment);
   margin: 1.5em 0.5em;
   padding: 0.5em 1em 0.2em 1em;
   transition: 0.1s linear;
@@ -554,25 +521,25 @@ label {
 }
 
 .friendRequestEl button {
-  border: 1px black solid;
+  border: 1px solid var(--border);
 }
 
 .friendEl:hover {
   cursor: pointer;
-  background-color: var(--color3);
-  color: var(--color1);
+  background-color: var(--text);
+  color: var(--parchment);
 }
 
 .expandedFriendDiv {
   display: flex;
   flex-wrap: wrap;
   border-radius: 5px;
-  border: 2px solid black;
+  border: 2px solid var(--mainGreen);
   padding: 0.5em;
   margin-top: 1em;
   height: fit-content;
   width: 52%;
-  background-color: var(--color4);
+  background-color: var(--mainGreen);
 }
 
 .expandedFriendDiv p {
@@ -586,23 +553,23 @@ label {
   margin: auto;
   padding: 0.5em 1em;
   border-radius: 5px;
-  background-color: var(--color3);
-  color: var(--color1);
+  background-color: var(--text);
+  color: var(--parchment);
 }
 
 .expandedFriendDiv a {
-  color: var(--color3);
+  color: var(--text);
   width: 100%;
   margin-top: 1em;
   border-radius: 5px;
   padding: 0.5em 1em 0.2em 1em;
-  background-color: var(--color1);
+  background-color: var(--parchment);
   transition: 0.1s linear;
 }
 
 .expandedFriendDiv a:hover {
-  background-color: var(--color3);
-  color: var(--color1);
+  background-color: var(--text);
+  color: var(--parchment);
 }
 
 .noFriendSelected {
@@ -640,8 +607,8 @@ label {
 .dropdown {
   position: relative;
   display: inline-block;
-  background-color: var(--color1);
-  color: var(--color3);
+  background-color: var(--parchment);
+  color: var(--text);
   padding: 0.5em;
   border-radius: 5px;
 }
@@ -649,8 +616,8 @@ label {
 .dropdown-content {
   display: none !important;
   position: absolute;
-  background-color: #f9f9f9;
-  color: var(--color3);
+  background-color: var(--color5);
+  color: var(--text);
   left: 0;
   width: 100%;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -659,18 +626,18 @@ label {
 
 .dropdown-content p {
   padding: 0.2em;
-  border: 1px solid black;
+  border: 1px solid var(--border);
 }
 
 .dropdown-content p:hover {
   cursor: pointer;
-  background-color: var(--color3);
-  color: var(--color1);
+  background-color: var(--text);
+  color: var(--parchment);
 }
 
 .dropdown:hover {
-  background-color: var(--color3);
-  color: var(--color1);
+  background-color: var(--text);
+  color: var(--parchment);
   cursor: pointer;
 }
 
@@ -737,7 +704,7 @@ label {
 }
 
 .createListDiv {
-  background-color: var(--color1);
+  background-color: var(--parchment);
   padding: 1em;
   border-radius: 5px;
   width: 25%;
@@ -753,13 +720,13 @@ label {
 }
 
 .contentDiv {
-  background-color: var(--color1);
+  background-color: var(--parchment);
   text-align: center;
 }
 
 /* LISTS )(!)@#(!)@()()()()()(((((((()))))))!@(#)!($)!*%)*^)!*#$)^!*#$%)!*#^$)!*^#)!*^)#*$^)!#*$^)!#*^$ */
 .deleteListModal {
-  border: black 2px solid;
+  border: 2px solid var(--border);
 }
 
 .deleteModalBtnDiv {
@@ -776,7 +743,7 @@ label {
   width: 200px;
   text-align: center;
   margin: auto;
-  color: var(--color3);
+  color: var(--text);
 }
 
 .modal-delete-window > div {
@@ -787,7 +754,7 @@ label {
   transform: translate(-50%, -50%);
   padding: 0.5em;
   border-radius: 5px;
-  background: var(--color4);
+  background: var(--mainGreen);
   box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5);
 }
 
@@ -802,7 +769,7 @@ label {
 .listMember {
   border-radius: 5px;
   transition: 0.1s linear;
-  border: 1px solid var(--color3);
+  border: 1px solid var(--text);
   list-style: none;
   margin: 0.3em;
   padding: 0em 0.3em;
@@ -811,7 +778,7 @@ label {
 
 .listMember:hover {
   cursor: pointer;
-  background-color: var(--color4);
+  background-color: var(--mainGreen);
 }
 
 .removeFromListModal {
@@ -832,7 +799,7 @@ label {
 .removeFromListModal button:hover {
   cursor: pointer;
   color: var(--color5);
-  background-color: var(--color4);
+  background-color: var(--mainGreen);
 }
 
 .listIcon {
@@ -844,8 +811,8 @@ label {
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
-  background-color: var(--color4);
-  border: 2px black solid;
+  background-color: var(--mainGreen);
+  border: 2px solid var(--mainGreen);
   border-radius: 5px;
 }
 
@@ -862,7 +829,7 @@ label {
 
 .fullscreenEditList:hover {
   cursor: pointer;
-  color: var(--color4);
+  color: var(--mainGreen);
 }
 
 .createListComponent {
@@ -870,13 +837,13 @@ label {
   border-radius: 5px;
   padding: 2em;
   margin: 1em;
-  background-color: var(--color4);
+  background-color: var(--mainGreen);
   text-align: center;
 }
 
 .editItem {
-  background-color: var(--color4);
-  border: 1px black solid;
+  background-color: var(--mainGreen);
+  border: 1px solid var(--mainGreen);
 }
 .myListLeft {
   width: 35%;
@@ -900,46 +867,46 @@ label {
 }
 
 .listDivEl a {
-  background-color: var(--color1);
-  color: var(--color3);
+  background-color: var(--parchment);
+  color: var(--text);
   text-align: center;
   width: 80%;
   padding: 1em;
   margin-top: 1em;
   overflow: hidden;
   border-radius: 5px;
-  border: 2px solid black;
+  border: 2px solid var(--border);
 }
 
 .listDivEl a:hover {
   cursor: pointer;
-  background-color: var(--color4);
+  background-color: var(--greenHover);
   scale: 1.01;
 }
 
 .listDivEl a {
-  background-color: var(--color1);
-  color: var(--color3);
+  background-color: var(--parchment);
+  color: var(--text);
   padding: 1em;
   border-radius: 5px;
   transition: 0.2s;
 }
 
 .reactTrashList {
-  background-color: var(--color1);
-  color: var(--color3);
+  background-color: var(--parchment);
+  color: var(--text);
   padding: 1em;
   margin: auto;
   border-radius: 5px;
-  border: 2px solid black;
+  border: 2px solid var(--border);
   transition: 0.2s;
 }
 
 .reactTrash {
-  background-color: var(--color1);
-  color: var(--color3);
+  background-color: var(--parchment);
+  color: var(--text);
   padding: 1em;
-  border: 2px solid black;
+  border: 2px solid var(--border);
   border-radius: 5px;
   transition: 0.2s;
 }
@@ -947,8 +914,8 @@ label {
 .reactTrash:hover,
 .reactTrashList:hover {
   cursor: pointer;
-  background-color: var(--color3);
-  color: var(--color2);
+  background-color: var(--text);
+  color: var(--border);
   scale: 1.1;
 }
 
@@ -983,28 +950,56 @@ label {
   justify-content: space-evenly;
   text-align: center;
   width: 90%;
-  padding: 1em;
-  border: 2px solid black;
-  border-radius: 5px;
-  background-color: var(--color4);
+  background-color: var(--parchment);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   margin-bottom: 1em;
 }
 
 .itemSortDiv h3 {
   width: 100%;
+  margin: 0 0 1rem 0;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.itemSortDiv .sortBtn {
+  padding: 0.5rem 0.75rem;
+  background-color: var(--parchment);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.itemSortDiv .sortBtn:hover {
+  background-color: var(--border);
+  color: var(--color5);
+  border-color: var(--greenHover);
+}
+
+.itemSortDiv .sortBtn.active {
+  background-color: var(--greenHover);
+  color: var(--color5);
+  border-color: var(--text);
 }
 
 .itemMapDiv div a {
   width: 100%;
-  background-color: var(--color1);
+  background-color: var(--parchment);
   border-radius: 5px;
   margin: 1em;
-  border: 2px solid black;
-  color: var(--color3);
+  border: 2px solid var(--mainGreen);
+  color: var(--text);
 }
 
 .itemMapDiv div a:hover {
-  background-color: var(--color4);
+  background-color: var(--greenHover);
 }
 
 .itemMapDiv div span {
@@ -1045,7 +1040,7 @@ label {
 .priorityDivSingleItem span {
   border-radius: 5px;
   font-size: 14px;
-  border: 1px solid var(--color4);
+  border: 1px solid var(--mainGreen);
   width: 1em;
   padding: 0.1em;
   text-align: center;
@@ -1058,9 +1053,9 @@ label {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  border: 2px solid black;
+  border: 2px solid var(--border);
   border-radius: 5px;
-  background-color: var(--color1);
+  background-color: var(--parchment);
   width: -moz-fit-content;
   text-align: center;
   margin: 0 0.5em;
@@ -1068,7 +1063,7 @@ label {
   padding: 0.3em;
 }
 .prioActive {
-  background-color: var(--color4);
+  background-color: var(--mainGreen);
 }
 .priorityDivSingleItem span {
   margin-left: 0.4em;
@@ -1076,7 +1071,7 @@ label {
 
 .priorityDivSingleItem span:hover {
   cursor: pointer;
-  background-color: var(--color4);
+  background-color: var(--mainGreen);
 }
 
 .priorityDivSingleItem p {
@@ -1107,7 +1102,7 @@ label {
   margin: auto;
   margin-top: 1em;
   border-radius: 5px;
-  background-color: var(--color1);
+  background-color: var(--parchment);
 }
 
 .itemForm div {
@@ -1115,7 +1110,7 @@ label {
   flex-wrap: wrap;
   justify-content: flex-end;
   width: 95%;
-  color: var(--color3);
+  color: var(--text);
 }
 
 .item-form-input {
@@ -1146,7 +1141,7 @@ label {
 }
 
 .itemLink {
-  color: var(--color4);
+  color: var(--mainGreen);
   text-decoration: underline;
   font-weight: bold;
 }
@@ -1178,11 +1173,11 @@ label {
   left: 0;
   height: 25px;
   width: 25px;
-  background-color: var(--color6);
+  background-color: var(--parchment);
 }
 
 .purchased input:checked ~ .checkmark {
-  background-color: var(--color6);
+  background-color: var(--parchment);
 }
 
 .checkmark:after {
@@ -1214,7 +1209,7 @@ label {
 
 .successText {
   text-align: center;
-  color: var(--color4);
+  color: var(--mainGreen);
   font-size: 18px;
 }
 
@@ -1226,7 +1221,7 @@ label {
   width: 100%;
   background-color: white;
   margin: 1em;
-  color: var(--color3);
+  color: var(--text);
   font-size: 14px;
 }
 
@@ -1237,15 +1232,15 @@ label {
 }
 
 .addItemPrioOption span {
-  border: var(--color3) 1px solid;
+  border: var(--text) 1px solid;
   width: 1em;
   border-radius: 5px;
 }
 
 .addItemPrioOption span:hover {
   cursor: pointer;
-  background-color: var(--color3);
-  color: var(--color1);
+  background-color: var(--text);
+  color: var(--parchment);
 }
 
 @media (max-width: 1400px) {
@@ -1313,12 +1308,12 @@ label {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    color: var(--color3);
+    color: var(--text);
   }
   .listIconSpan {
     width: fit-content;
     padding: 0.1em;
-    background-color: var(--color1);
+    background-color: var(--parchment);
     border-radius: 5px;
     transition: 0.2s;
   }
@@ -1330,8 +1325,8 @@ label {
 
   .listIcon span:hover {
     cursor: pointer;
-    background-color: var(--color3);
-    color: var(--color2);
+    background-color: var(--text);
+    color: var(--border);
     scale: 1.1;
   }
   .listsPage {
@@ -1407,7 +1402,7 @@ label {
   transform: translate(-50%, -50%);
   padding: 0.5em;
   border-radius: 5px;
-  background: var(--color4);
+  background: var(--parchment);
   box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5);
 }
 
@@ -1421,7 +1416,7 @@ label {
   justify-content: flex-end;
 }
 
-.cancelModal .insetBtnInverse {
+.cancelModal .insetBtn {
   padding: 0.2em;
 }
 
@@ -1440,13 +1435,13 @@ label {
 }
 
 .welcomeMessage {
-  background-color: var(--color4);
+  background-color: var(--mainGreen);
   color: var(--color5);
   border-radius: 8px;
   padding: 1.5rem 2rem;
   max-width: 600px;
   text-align: center;
-  border: 2px solid black;
+  border: 2px solid var(--mainGreen);
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
@@ -1468,9 +1463,9 @@ label {
   transform: translateY(-50%);
   z-index: 100;
   padding: 0.75rem 0.5rem;
-  background-color: var(--color4);
-  color: var(--color5);
-  border: 2px solid black;
+  background-color: var(--parchment);
+  color: var(--text);
+  border: 2px solid var(--heart);
   border-left: none;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
@@ -1504,7 +1499,7 @@ label {
   height: 100vh;
   z-index: 101;
   background-color: var(--color5);
-  border-right: 2px solid black;
+  border-right: 2px solid var(--border);
   padding: 1rem;
   box-sizing: border-box;
   overflow-y: auto;
@@ -1534,8 +1529,8 @@ label {
 }
 
 .sortingOptions {
-  background-color: var(--color1);
-  border: 2px solid black;
+  background-color: var(--parchment);
+  border: 2px solid var(--border);
   border-radius: 8px;
   padding: 1rem;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -1547,7 +1542,7 @@ label {
 .sortingOptions h3 {
   margin: 0 0 1rem 0;
   font-size: 16px;
-  color: var(--color3);
+  color: var(--text);
 }
 
 .sortButtonGroup {
@@ -1558,9 +1553,9 @@ label {
 
 .sortBtn {
   padding: 0.5rem 0.75rem;
-  background-color: var(--color5);
-  color: var(--color3);
-  border: 1px solid var(--color3);
+  background-color: var(--parchment);
+  color: var(--text);
+  border: 1px solid var(--border);
   border-radius: 5px;
   cursor: pointer;
   font-size: 13px;
@@ -1569,22 +1564,21 @@ label {
 }
 
 .sortBtn:hover {
-  background-color: var(--color4);
+  background-color: var(--border);
   color: var(--color5);
-  border-color: var(--color4);
+  border-color: var(--greenHover);
 }
 
 .sortBtn.active {
-  background-color: var(--color3);
+  background-color: var(--greenHover);
   color: var(--color5);
-  border-color: var(--color3);
-  font-weight: 700;
+  border-color: var(--text);
 }
 
 /* Tag Filter */
 .tagsFilter {
-  background-color: var(--color1);
-  border: 2px solid black;
+  background-color: var(--parchment);
+  border: 2px solid var(--border);
   border-radius: 8px;
   padding: 1rem;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -1593,7 +1587,7 @@ label {
 .tagsFilter h3 {
   margin: 0 0 1rem 0;
   font-size: 16px;
-  color: var(--color3);
+  color: var(--text);
 }
 
 .tagButtonGroup {
@@ -1605,9 +1599,9 @@ label {
 
 .tagBtn {
   padding: 0.4rem 0.6rem;
-  background-color: var(--color5);
-  color: var(--color3);
-  border: 1px solid var(--color3);
+  background-color: var(--parchment);
+  color: var(--text);
+  border: 1px solid var(--border);
   border-radius: 5px;
   cursor: pointer;
   font-size: 12px;
@@ -1616,23 +1610,22 @@ label {
 }
 
 .tagBtn:hover {
-  background-color: var(--color2);
-  border-color: var(--color4);
+  background-color: var(--border);
+  border-color: var(--greenHover);
 }
 
 .tagBtn.active {
-  background-color: var(--color4);
+  background-color: var(--heart);
   color: var(--color5);
-  border-color: var(--color4);
-  font-weight: 600;
+  border-color: var(--mainGreen);
 }
 
 .clearFiltersBtn {
   width: 100%;
   padding: 0.4rem;
-  background-color: var(--color3);
+  background-color: var(--text);
   color: var(--color5);
-  border: 1px solid var(--color3);
+  border: 1px solid var(--text);
   border-radius: 5px;
   cursor: pointer;
   font-size: 12px;
@@ -1642,7 +1635,7 @@ label {
 
 .clearFiltersBtn:hover {
   background-color: var(--color5);
-  color: var(--color3);
+  color: var(--text);
 }
 
 .sidebarCloseBtn {
@@ -1654,11 +1647,11 @@ label {
   border: none;
   font-size: 20px;
   cursor: pointer;
-  color: var(--color3);
+  color: var(--text);
 }
 
 .sidebarCloseBtn:hover {
-  color: var(--color4);
+  color: var(--mainGreen);
 }
 
 .sidebarOverlay {
@@ -1695,7 +1688,7 @@ label {
     height: 100vh;
     z-index: 101;
     background-color: var(--color5);
-    border-right: 2px solid black;
+    border-right: 2px solid var(--border);
     padding: 1rem;
     box-sizing: border-box;
     overflow-y: auto;
@@ -1717,7 +1710,7 @@ label {
   }
 
   .sidebarCloseBtn:hover {
-    color: var(--color4);
+    color: var(--mainGreen);
   }
 
   .sortingOptions {
@@ -1793,9 +1786,59 @@ label {
   box-sizing: border-box;
 }
 
+.no-stores-message {
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--parchment);
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  grid-column: 1 / -1;
+  box-sizing: border-box;
+  justify-self: center;
+}
+
+@media (max-width: 768px) {
+  .no-stores-message {
+    max-width: calc(100% - 2rem);
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .no-stores-message {
+    max-width: calc(100% - 1rem);
+    margin: 1.5rem 0.5rem;
+    padding: 1rem;
+  }
+
+  .no-stores-message p:first-child {
+    font-size: 14px;
+  }
+
+  .no-stores-message p:last-child {
+    font-size: 12px;
+  }
+}
+
+.no-stores-message p:first-child {
+  font-size: 16px;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.no-stores-message p:last-child {
+  font-size: 14px;
+  color: var(--text);
+  opacity: 0.7;
+}
+
 .store-item {
-  background-color: var(--color1);
-  border: 2px solid black;
+  background-color: var(--parchment);
+  border: 2px solid var(--border);
   border-radius: 6px;
   padding: 0.75rem;
   display: flex;
@@ -1833,19 +1876,19 @@ label {
   font-size: 18px;
   font-weight: 700;
   margin: 0.25rem 0 0.5rem 0;
-  color: var(--color3);
+  color: var(--text);
 }
 
 .store-description {
   font-size: 13px;
   margin: 0 0 0.75rem 0;
-  color: var(--color3);
+  color: var(--text);
 }
 
 .store-link {
   display: inline-block;
   padding: 0.35em 0.8em;
-  background-color: var(--color3);
+  background-color: var(--text);
   color: var(--color5);
   border-radius: 5px;
   text-decoration: none;
@@ -1855,37 +1898,50 @@ label {
 
 .store-link:hover {
   background-color: var(--color5);
-  color: var(--color3);
+  color: var(--text);
+}
+
+.store-link:active {
+  color: var(--text);
 }
 
 /* Compact modal content override for Streamlined Store modal */
 .modal-content {
   max-width: 360px; /* fallback when no inline width is set */
   height: fit-content;
-  background-color: var(--color1);
-  color: var(--color3);
+  background-color: var(--parchment);
+  color: var(--text);
   border-radius: 8px;
   padding: 0.6rem;
   box-shadow: 0 12px 30px rgba(0,0,0,0.18);
-  border: 2px solid black;
+  border: 2px solid var(--border);
   box-sizing: border-box;
 }
 
 .modal-content h2 {
   font-size: 18px;
   margin: 0;
-  color: var(--color3);
+  color: var(--text);
 }
 
 .modal-content p {
   margin: 0.65rem 0 0.85rem 0;
   font-size: 14px;
-  color: var(--color3);
+  color: var(--text);
   line-height: 1.25;
 }
 
 .modal-content .store-link {
   margin-top: 0.5rem;
+}
+
+/* Ensure sort-style buttons inside modals inherit proper spacing and visited color */
+.modal-content .sortBtn {
+  margin-top: 0.5rem;
+}
+
+.sortBtn:visited {
+  color: var(--text);
 }
 
 @media (max-width: 520px) {

@@ -106,7 +106,7 @@ const Signup = () => {
               
               </div>
               
-              <button className="insetBtnInverse form-submit" type="submit">
+              <button className="sortBtn form-submit" type="submit">
                 Submit
               </button>
             </form>

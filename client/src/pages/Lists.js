@@ -84,7 +84,7 @@ const Lists = () => {
                   </div>
                   <div className="deleteModalBtnDiv">
                     <div
-                      className="insetBtnInverse"
+                      className="insetBtn"
                       onClick={() => {
                         setDeleteModal(false);
                         setSelectedList();
@@ -93,7 +93,7 @@ const Lists = () => {
                       No, Do Not Delete
                     </div>
                     <div
-                      className="insetBtnInverse"
+                      className="insetBtn"
                       onClick={() => handleRemoveList(selectedList)}
                     >
                       Yes, I'm Sure

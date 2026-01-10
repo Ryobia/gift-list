@@ -1,6 +1,6 @@
 {
-  "short_name": "Anonylists",
-  "name": "Anonylists",
+  "short_name": "Indie Index",
+  "name": "The Indie Index - Curated Goods. Real People.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,18 +8,18 @@
       "type": "image/x-icon"
     },
     {
-      "src": "anonylist192.png",
+      "src": "indieindex192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "anonylist512.png",
+      "src": "indieindex512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#DADED4",
-  "background_color": "#DADED4"
+  "theme_color": "#e7e4dc",
+  "background_color": "#e7e4dc"
 }
