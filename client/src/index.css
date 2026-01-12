@@ -1476,7 +1476,7 @@ label {
   display: block;
   position: fixed;
   left: 0;
-  top: 55%;
+  top: 65%;
   transform: translateY(-50%);
   z-index: 100;
   padding: 0.75rem 0.5rem;
