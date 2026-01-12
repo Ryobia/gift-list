@@ -11,6 +11,7 @@ const typeDefs = gql`
     lists: [List]
     friends: [User]
     friendRequests: [User]
+    favoriteStores: [Store]
   }
 
   type List {
@@ -96,6 +97,8 @@ const typeDefs = gql`
     removeFriendRequest(friendId: ID!): User
     addUserToList(_id: ID!, userId: ID!): List
     removeUserToList(_id: ID!, userId: ID!): List
+    addFavoriteStore(storeId: ID!): User
+    removeFavoriteStore(storeId: ID!): User
     updateItem(
       _id: ID
       itemName: String

@@ -23,7 +23,7 @@ const Header = () => {
             </Link>
           </nav>
           <nav>
-            <Link className="" to="/signup">
+            <Link style={{ color: "var(--heart)" }} to="/signup">
               <h3>Signup</h3>
             </Link>
           </nav>

@@ -28,6 +28,10 @@ export const QUERY_ME = gql`
       friendRequests {
         _id
       }
+      favoriteStores {
+        _id
+        storeName
+      }
     }
   }
 `;

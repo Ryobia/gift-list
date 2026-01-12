@@ -178,3 +178,26 @@ export const REMOVE_FRIEND_REQUEST = gql`
     }
   }
 `;
+export const ADD_FAVORITE_STORE = gql`
+  mutation addFavoriteStore($storeId: ID!) {
+    addFavoriteStore(storeId: $storeId) {
+      _id
+      favoriteStores {
+        _id
+        storeName
+      }
+    }
+  }
+`;
+
+export const REMOVE_FAVORITE_STORE = gql`
+  mutation removeFavoriteStore($storeId: ID!) {
+    removeFavoriteStore(storeId: $storeId) {
+      _id
+      favoriteStores {
+        _id
+        storeName
+      }
+    }
+  }
+`;

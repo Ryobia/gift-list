@@ -8,7 +8,6 @@ import { QUERY_LIST, QUERY_ME } from "../utils/queries";
 import { REMOVE_USER_TO_LIST, UPDATE_LIST } from "../utils/mutations";
 import { useQuery } from "@apollo/client";
 import {
-  BsTrashFill,
   BsPlusCircleFill,
   BsPersonPlusFill,
   BsFillXSquareFill,

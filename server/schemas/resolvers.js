@@ -15,7 +15,8 @@ const resolvers = {
           .populate("items")
           .populate("listUser")
           .populate("listUsers")
-          .populate("friends");
+          .populate("friends")
+          .populate("favoriteStores");
 
         return userData;
       }
@@ -86,7 +87,7 @@ const resolvers = {
     },
     allStores: async () => {
       return Store.find();
-    }
+    },
   },
 
   Mutation: {
@@ -240,9 +241,8 @@ const resolvers = {
           { $addToSet: { friends: context.user._id } },
           { new: true }
         ).populate("friends", "users");
-        
 
-        return (updatedUser1);
+        return updatedUser1;
       }
 
       throw new AuthenticationError("You need to be logged in!");
@@ -303,14 +303,12 @@ const resolvers = {
 
     resetPassword: async (parent, args, context) => {
       console.log(args);
-        return await User.findByIdAndUpdate(args._id, args, {
-          new: true,
-        });
+      return await User.findByIdAndUpdate(args._id, args, {
+        new: true,
+      });
 
       throw new AuthenticationError("Not logged in");
-
     },
-
 
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
@@ -331,31 +329,53 @@ const resolvers = {
     },
 
     addStore: async (parent, args, context) => {
-      
-        const store = await Store.create(args);
+      const store = await Store.create(args);
 
-        return store;
+      return store;
     },
 
     removeStore: async (parent, { _id }, context) => {
-      
-        const deletedStore = await Store.findByIdAndDelete({ _id: _id });
+      const deletedStore = await Store.findByIdAndDelete({ _id: _id });
 
-        return deletedStore;
+      return deletedStore;
     },
 
     updateStore: async (parent, args, context) => {
       console.log(args);
       let { _id, ...rest } = args;
-      
-        return await Store.findByIdAndUpdate(_id, rest, {
-          new: true,
-          multi: true,
-        });
-      
 
-      
-    }
+      return await Store.findByIdAndUpdate(_id, rest, {
+        new: true,
+        multi: true,
+      });
+    },
+    addFavoriteStore: async (parent, { storeId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { favoriteStores: storeId } },
+          { new: true }
+        ).populate("favoriteStores");
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    removeFavoriteStore: async (parent, { storeId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $pull: { favoriteStores: storeId } },
+          { new: true }
+        ).populate("favoriteStores");
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
   },
 };
 

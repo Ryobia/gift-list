@@ -4,7 +4,7 @@
   --text: #2d312b;
   --mainGreen: #4b634c;
   --color5: #ffffff;
-  --parchment: #e7e4dc;
+  --parchment: #E5E4D5;
   --heart: #a84432;
   --greenHover: #364a38;  
   --border: #9ca18f;  
@@ -186,8 +186,8 @@ nav a:hover {
 }
 
 @media (max-width: 550px) {
-  header h1 {
-    font-size: 18px;
+  header h3 {
+    font-size: 16px;
   }
 
   .backBtnSection {
@@ -1379,8 +1379,21 @@ label {
 
 /* MODAL BASIC THING_______________________________________________________________________________ */
 
-.modal-window,
 .modal-delete-window {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.4);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.123s;
+}
+
+.modal-window {
   position: fixed;
   background-color: rgba(255, 255, 255, 0.4);
   top: 0;
@@ -1400,9 +1413,8 @@ label {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 0.5em;
   border-radius: 5px;
-  background: var(--parchment);
+  background: var(--mainGreen);
   box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5);
 }
 
@@ -1427,33 +1439,38 @@ label {
   flex-direction: column;
 }
 
-.welcomeSection {
-  width: 100%;
+.welcome-section {
   display: flex;
   justify-content: center;
-  padding: 1.5rem 0;
+  align-items: center;
+  width: 100%;
+  margin-top: 0.5em;
 }
 
-.welcomeMessage {
-  background-color: var(--mainGreen);
-  color: var(--color5);
+.welcome-message {
+  background-color: var(--parchment);
+  color: var(--text);
   border-radius: 8px;
   padding: 1.5rem 2rem;
-  max-width: 600px;
+  max-width: 700px;
   text-align: center;
-  border: 2px solid var(--mainGreen);
+  border: 2px solid var(--border);
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 0 1em 0.5em 1em;
 }
 
-.welcomeMessage h2 {
-  margin: 0 0 0.5rem 0;
+.welcome-message h2 {
   font-size: 24px;
 }
 
-.welcomeMessage p {
-  margin: 0;
-  font-size: 16px;
+.welcome-message h3 {
+  font-size: 20px;
 }
+
+.welcome-message p {
+  font-size: 18px;
+}
+
 
 .sidebarToggleBtn {
   display: block;
@@ -1465,7 +1482,7 @@ label {
   padding: 0.75rem 0.5rem;
   background-color: var(--parchment);
   color: var(--text);
-  border: 2px solid var(--heart);
+  border: 2px solid var(--border);
   border-left: none;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
@@ -1760,15 +1777,15 @@ label {
 
   .tagBtn { font-size: 11px; }
 
-  .welcomeSection { padding: 0.75rem 0; }
 
-  .welcomeMessage {
+  .welcome-message {
     padding: 0.75rem 1rem;
     max-width: calc(100% - 1rem);
   }
 
-  .welcomeMessage h2 { font-size: 18px; }
-  .welcomeMessage p { font-size: 13px; }
+  .welcome-message h2 { font-size: 18px; }
+  .welcome-message h3 { font-size: 16px; }
+  .welcome-message p { font-size: 13px; }
 
   .homeSidebar {
     width: 85%;
@@ -1838,7 +1855,7 @@ label {
 
 .store-item {
   background-color: var(--parchment);
-  border: 2px solid var(--border);
+  border: 2px solid var(--border2);
   border-radius: 6px;
   padding: 0.75rem;
   display: flex;
@@ -1907,7 +1924,7 @@ label {
 
 /* Compact modal content override for Streamlined Store modal */
 .modal-content {
-  max-width: 360px; /* fallback when no inline width is set */
+  max-width: 360px; 
   height: fit-content;
   background-color: var(--parchment);
   color: var(--text);
@@ -1919,14 +1936,14 @@ label {
 }
 
 .modal-content h2 {
-  font-size: 18px;
+  font-size: 20px;
   margin: 0;
   color: var(--text);
 }
 
 .modal-content p {
   margin: 0.65rem 0 0.85rem 0;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text);
   line-height: 1.25;
 }
@@ -1942,6 +1959,85 @@ label {
 
 .sortBtn:visited {
   color: var(--text);
+}
+
+/* Modal close button - X style */
+.modal-close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: var(--text);
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--parchment);
+  border-radius: 5px;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+  font-weight: bold;
+}
+
+.modal-close-btn:hover {
+  color: var(--text);
+  background-color: var(--parchment);
+}
+
+/* Visit Store button fills width at bottom */
+.modal-visit-btn {
+  display: block;
+  width: 100%;
+  padding: 0.5rem !important;
+  background-color: var(--text) !important;
+  color: var(--color5) !important;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0 !important;
+  box-sizing: border-box;
+}
+
+.modal-visit-btn:hover {
+  background-color: var(--color5) !important;
+  color: var(--text) !important;
+}
+
+.modal-visit-btn:active {
+  color: var(--text) !important;
+}
+
+/* Favorite Store Button */
+.store-favorite-btn {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--heart);
+  transition: all 0.15s ease;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.store-favorite-btn:hover {
+  color: var(--heart);
+  transform: scale(1.2);
+}
+
+.store-favorite-btn svg {
+  width: 20px;
+  height: 20px;
 }
 
 @media (max-width: 520px) {

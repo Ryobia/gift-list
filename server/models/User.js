@@ -53,7 +53,13 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'User'
       }
-    ]
+    ],
+    favoriteStores: [
+  {
+    type: Schema.Types.ObjectId,
+    ref: 'Store'
+  }
+]
   
   },
   {

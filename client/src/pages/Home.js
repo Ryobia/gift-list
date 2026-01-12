@@ -2,15 +2,20 @@ import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import Store from "../components/Store";
-import { QUERY_ALL_STORES } from "../utils/queries";
+import { QUERY_ALL_STORES, QUERY_ME } from "../utils/queries";
+import { PiCompassBold } from "react-icons/pi";
 
 const Home = () => {
   const { loading, error, data } = useQuery(QUERY_ALL_STORES);
-  const [sortBy, setSortBy] = useState("name-asc");
+  const { data: meData } = useQuery(QUERY_ME);
+  const [sortBy, setSortBy] = useState("favorites-first");
   const [selectedTags, setSelectedTags] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const stores = data?.allStores || [];
+  const favoriteStoreIds = useMemo(() => {
+    return new Set(meData?.me?.favoriteStores?.map(store => store._id) || []);
+  }, [meData]);
 
   // Extract unique tags from all stores
   const allTags = useMemo(() => {
@@ -40,8 +45,14 @@ const Home = () => {
       const bName = (b.storeName || b.name || "").toLowerCase();
       const aDate = new Date(a.dateAdded || 0).getTime();
       const bDate = new Date(b.dateAdded || 0).getTime();
+      const aIsFavorite = favoriteStoreIds.has(a._id);
+      const bIsFavorite = favoriteStoreIds.has(b._id);
 
       switch (sortBy) {
+        case "favorites-first":
+          if (aIsFavorite && !bIsFavorite) return -1;
+          if (!aIsFavorite && bIsFavorite) return 1;
+          return aName.localeCompare(bName);
         case "name-asc":
           return aName.localeCompare(bName);
         case "name-desc":
@@ -54,7 +65,7 @@ const Home = () => {
           return 0;
       }
     });
-  }, [stores, sortBy, selectedTags]);
+  }, [stores, sortBy, selectedTags, favoriteStoreIds]);
 
   if (loading) return <p>Loading stores...</p>;
   if (error) return <p>Error loading stores: {error.message}</p>;
@@ -72,15 +83,20 @@ const Home = () => {
   return (
     <main className="homePage">
       {/* Welcome Message */}
-      
-
+      <div className="welcome-section">
+        <div className="welcome-message">
+            <h2>Welcome to Indie Index</h2>
+            <h3>The fastest growing database of independent stores</h3>
+            <p>Support small businesses, find one of a kind treasures, and take your gift-giving to the next level.</p>
+        </div>
+      </div>
       {/* Sidebar toggle button (mobile) */}
       <button
         className="sidebarToggleBtn"
         onClick={() => setSidebarOpen(!sidebarOpen)}
         aria-label="Toggle sidebar"
       >
-        ☰ Filters
+        <PiCompassBold /> Filters
       </button>
 
       {/* Main content with sidebar */}
@@ -98,6 +114,12 @@ const Home = () => {
           <div className="sortingOptions">
             <h3>Sort By</h3>
             <div className="sortButtonGroup">
+              <button
+                className={`sortBtn ${sortBy === "favorites-first" ? "active" : ""}`}
+                onClick={() => setSortBy("favorites-first")}
+              >
+                Favorites First
+              </button>
               <button
                 className={`sortBtn ${sortBy === "name-asc" ? "active" : ""}`}
                 onClick={() => setSortBy("name-asc")}
@@ -158,9 +180,12 @@ const Home = () => {
           />
         )}
 
+
+
         {/* Stores section */}
         <section className="storesSection">
-          <div className="stores-container">
+          
+          <div className="stores-container ">
             {filteredAndSortedStores.length > 0 ? (
               filteredAndSortedStores.map((store) => (
                 <Store
