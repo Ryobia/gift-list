@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import Store from "../components/Store";
+import Footer from "../components/Footer";
 import { QUERY_ALL_STORES, QUERY_ME } from "../utils/queries";
 import { PiCompassBold } from "react-icons/pi";
 
@@ -208,6 +209,7 @@ const Home = () => {
           </div>
         </section>
       </div>
+            <Footer />
     </main>
   );
 };

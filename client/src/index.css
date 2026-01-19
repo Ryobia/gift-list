@@ -36,9 +36,80 @@ body {
   box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5);
 }
 
-.desktopStandardShadow {
-  box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5);
+/* Footer styles */
+footer {
+  padding: 1rem;
+  background: var(--text);
+  color: var(--parchment);
+  text-align: center;
 }
+.footer-socials {
+  margin-bottom: 0.5rem;
+}
+.footer-socials a {
+  margin: 0 10px;
+  color: var(--parchment);
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.footer-contact-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  background: var(--parchment);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.footer-contact-btn:hover {
+  background: var(--golden);
+}
+
+/* ContactForm styles */
+.contact-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.contact-modal {
+  background: var(--parchment);
+  padding: 2rem;
+  border-radius: 8px;
+  min-width: 300px;
+  position: relative;
+  color: var(--text);
+}
+.contact-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.contact-send-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  background: var(--mainGreen);
+  color: var(--color5);
+  cursor: pointer;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 
 @media (max-width: 1100px) {
   .desktopStandardShadow {
