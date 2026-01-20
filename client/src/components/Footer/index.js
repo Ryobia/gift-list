@@ -9,7 +9,7 @@ import xIcon from '../../images/logo-white.png';
 
 const socials = [
   { name: 'X.com', url: 'https://x.com/ShopIndieIndex', icon: xIcon },
-  { name: 'TikTok', url: 'https://tiktok.com/shopindieindex', icon: tiktokIcon },
+  { name: 'TikTok', url: 'https://www.tiktok.com/@shopindieindex', icon: tiktokIcon },
   { name: 'Instagram', url: 'https://instagram.com/shopindieindex', icon: instagramIcon },
 ];
 
