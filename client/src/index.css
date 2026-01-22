@@ -4,11 +4,11 @@
   --text: #2d312b;
   --mainGreen: #4b634c;
   --color5: #ffffff;
-  --parchment: #E5E4D5;
+  --parchment: #e5e4d5;
   --heart: #a84432;
-  --greenHover: #364a38;  
-  --border: #9ca18f;  
-  --golden: #c5a059;  
+  --greenHover: #364a38;
+  --border: #9ca18f;
+  --golden: #c5a059;
 }
 
 * {
@@ -72,7 +72,7 @@ footer {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,7 +110,6 @@ footer {
   gap: 1rem;
 }
 
-
 @media (max-width: 1100px) {
   .desktopStandardShadow {
     box-shadow: 0 0 0 0;
@@ -147,7 +146,7 @@ nav > img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
 }
 
 .headerNavRight {
@@ -158,6 +157,8 @@ nav > img {
 }
 
 .header-contact-btn {
+  border: 1px solid var(--border);
+  font-size: 14px;
   padding: 0.4em 0.8em;
   border-radius: 5px;
   background-color: var(--mainGreen);
@@ -182,6 +183,69 @@ nav a:hover {
   scale: 1.01;
   cursor: pointer;
   color: var(--text);
+}
+
+.search-bar-div {
+  position: fixed;
+  top: 220px;
+  left: 0;
+  width: 100vw;
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.search-bar-wrapper {
+  position: relative;
+  width: 60%;
+  max-width: 90%;
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.search-bar-text {
+   position: absolute;
+  top: -3.5em;
+  left: 0;
+  width: 100%;
+  color: var(--parchment);
+  font-size: 1.7em;
+  font-weight: 600;
+  padding: 0.3em 1.2em;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  pointer-events: auto;
+  z-index: 1;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 0.5em 2.5em 0.5em 1.2em;
+  border-radius: 8px;
+  border: 2px solid var(--mainGreen);
+  font-size: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: var(--parchment);
+  color: var(--text);
+  pointer-events: auto;
+}
+
+.search-icon {
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--parchment);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  background-color: var(--mainGreen);
+  padding: .3em .7em;
+  border-radius: 5px;
 }
 
 .loader {
@@ -223,8 +287,6 @@ nav a:hover {
   justify-content: center;
 }
 
-
-
 .insetBtn {
   border-radius: 5px;
   padding: 0.25em 0.8em;
@@ -236,7 +298,7 @@ nav a:hover {
 
 .insetBtn:hover {
   box-shadow: inset 0 0 0 2.5em var(--greenHover);
-  border: 1px solid var(--greenHover);  
+  border: 1px solid var(--greenHover);
   color: var(--parchment);
   cursor: pointer;
 }
@@ -250,8 +312,6 @@ nav a:hover {
   text-align: center;
 }
 
-
-
 .homeSection div h1 {
   padding: 2em;
   font-size: 35px;
@@ -263,6 +323,21 @@ nav a:hover {
 }
 
 @media (max-width: 750px) {
+  .search-bar-text {
+    font-size: 1.5em;
+    top: -3.5em;
+  }
+  .search-icon {
+    padding: .2em .5em;
+  }
+  .search-bar {
+    font-size: 14px;
+  }
+
+  .search-bar-div {
+    top: 190px;
+  } 
+
   nav > img {
     height: 50px;
   }
@@ -300,6 +375,20 @@ nav a:hover {
 }
 
 @media (max-width: 550px) {
+  .search-bar-text {
+    font-size: 1.2em;
+  }
+  .search-icon {
+    padding: .15em .4em;
+  }
+  .search-bar {
+    font-size: 12px;
+    min-width: 70%;
+  }
+
+  .search-bar-div {
+    top: 160px;
+  } 
   nav > img {
     height: 40px;
   }
@@ -312,7 +401,7 @@ nav a:hover {
   .header {
     height: 240px;
   }
-  
+
   .header-contact-btn {
     padding: 0.2em 0.4em;
     font-size: 10px;
@@ -325,8 +414,6 @@ nav a:hover {
   .backBtnSection {
     font-size: 10px;
   }
-
- 
 
   .homeSection a div h1 {
     font-size: 24px;
@@ -374,7 +461,6 @@ nav a:hover {
 
 .loginSection > div {
   border: 1px solid var(--border);
-
 }
 
 form {
@@ -1084,7 +1170,7 @@ label {
   border: 2px solid var(--border);
   border-radius: 8px;
   padding: 1rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 1em;
 }
 
@@ -1585,7 +1671,7 @@ label {
   max-width: 700px;
   text-align: center;
   border: 2px solid var(--border);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin: 0 1em 0.5em 1em;
 }
 
@@ -1600,7 +1686,6 @@ label {
 .welcome-message p {
   font-size: 18px;
 }
-
 
 .sidebarToggleBtn {
   display: block;
@@ -1624,7 +1709,7 @@ label {
 }
 
 .sidebarToggleBtn:hover {
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   padding-right: 0.75rem;
 }
 
@@ -1652,7 +1737,9 @@ label {
   overflow-y: auto;
   transform: translateX(-100%);
   opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .homeSidebar.open {
@@ -1667,7 +1754,7 @@ label {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   z-index: 99;
 }
 
@@ -1680,7 +1767,7 @@ label {
   border: 2px solid var(--border);
   border-radius: 8px;
   padding: 1rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 1rem;
   margin-bottom: 1rem;
@@ -1728,7 +1815,7 @@ label {
   border: 2px solid var(--border);
   border-radius: 8px;
   padding: 1rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .tagsFilter h3 {
@@ -1808,7 +1895,7 @@ label {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
   z-index: 99;
 }
 
@@ -1892,7 +1979,9 @@ label {
     margin-bottom: 1rem;
   }
 
-  .sortingOptions h3 { font-size: 14px; }
+  .sortingOptions h3 {
+    font-size: 14px;
+  }
 
   .sortBtn {
     font-size: 12px;
@@ -1903,19 +1992,28 @@ label {
     padding: 0.75rem;
   }
 
-  .tagsFilter h3 { font-size: 14px; }
+  .tagsFilter h3 {
+    font-size: 14px;
+  }
 
-  .tagBtn { font-size: 11px; }
-
+  .tagBtn {
+    font-size: 11px;
+  }
 
   .welcome-message {
     padding: 0.75rem 1rem;
     max-width: calc(100% - 1rem);
   }
 
-  .welcome-message h2 { font-size: 18px; }
-  .welcome-message h3 { font-size: 16px; }
-  .welcome-message p { font-size: 13px; }
+  .welcome-message h2 {
+    font-size: 18px;
+  }
+  .welcome-message h3 {
+    font-size: 16px;
+  }
+  .welcome-message p {
+    font-size: 13px;
+  }
 
   .homeSidebar {
     width: 85%;
@@ -1992,13 +2090,15 @@ label {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
   box-sizing: border-box;
 }
 
 .store-item:hover {
   transform: translateY(-4px) scale(1.01);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
   cursor: pointer;
 }
 
@@ -2039,7 +2139,9 @@ label {
   color: var(--color5);
   border-radius: 5px;
   text-decoration: none;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
   margin-top: auto;
 }
 
@@ -2054,13 +2156,13 @@ label {
 
 /* Compact modal content override for Streamlined Store modal */
 .modal-content {
-  max-width: 360px; 
+  max-width: 360px;
   height: fit-content;
   background-color: var(--parchment);
   color: var(--text);
   border-radius: 8px;
   padding: 0.6rem;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
   border: 2px solid var(--border);
   box-sizing: border-box;
 }
@@ -2127,7 +2229,9 @@ label {
   border-radius: 5px;
   text-decoration: none;
   text-align: center;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
   margin-top: 1.5rem !important;
   margin-bottom: 0 !important;
   box-sizing: border-box;
@@ -2175,8 +2279,12 @@ label {
     width: calc(100% - 2rem);
     padding: 0.6rem;
   }
-  .modal-content h2 { font-size: 16px; }
-  .modal-content p { font-size: 13px; }
+  .modal-content h2 {
+    font-size: 16px;
+  }
+  .modal-content p {
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -2188,6 +2296,10 @@ label {
   .store-logo {
     height: 80px;
   }
-  .store-name { font-size: 16px; }
-  .store-description { font-size: 12px; }
+  .store-name {
+    font-size: 16px;
+  }
+  .store-description {
+    font-size: 12px;
+  }
 }

@@ -6,6 +6,7 @@ import Store from "../components/Store";
 import Footer from "../components/Footer";
 import { QUERY_ALL_STORES, QUERY_ME } from "../utils/queries";
 import { PiCompassBold } from "react-icons/pi";
+import { FiSearch } from "react-icons/fi";
 
 const Home = () => {
   const { loading, error, data } = useQuery(QUERY_ALL_STORES);
@@ -13,6 +14,7 @@ const Home = () => {
   const [sortBy, setSortBy] = useState("favorites-first");
   const [selectedTags, setSelectedTags] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const stores = data?.allStores || [];
   const favoriteStoreIds = useMemo(() => {
@@ -30,9 +32,20 @@ const Home = () => {
     return Array.from(tagSet).sort();
   }, [stores]);
 
-  // Filter by tags and sort
+  // Filter by tags, search, and sort
   const filteredAndSortedStores = useMemo(() => {
     let filtered = stores;
+
+    // Filter by search term
+    if (searchTerm.trim() !== "") {
+      const lower = searchTerm.toLowerCase();
+      filtered = filtered.filter(store => {
+        const nameMatch = (store.storeName || store.name || "").toLowerCase().includes(lower);
+        const descMatch = (store.storeDescription || store.description || "").toLowerCase().includes(lower);
+        const tagsMatch = (store.tags || []).some(tag => tag.toLowerCase().includes(lower));
+        return nameMatch || descMatch || tagsMatch;
+      });
+    }
 
     // Filter by selected tags - only show stores with ALL selected tags
     if (selectedTags.length > 0) {
@@ -67,7 +80,7 @@ const Home = () => {
           return 0;
       }
     });
-  }, [stores, sortBy, selectedTags, favoriteStoreIds]);
+  }, [stores, sortBy, selectedTags, favoriteStoreIds, searchTerm]);
 
   if (loading) return <p>Loading stores...</p>;
   if (error) return <p>Error loading stores: {error.message}</p>;
@@ -84,6 +97,22 @@ const Home = () => {
 
   return (
     <main className="homePage">
+      {/* Text and Search Bar over header image */}
+      <div className="search-bar-div">
+        <div className="search-bar-text">Discover Unique. Support Local. <br></br> Shop Indie Index</div>
+        <div className="search-bar-wrapper">
+          <input
+            className="search-bar"
+            type="text"
+            placeholder="Search stores, tags, descriptions..."
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
+          />
+          <span className="search-icon">
+            <FiSearch size={18} />
+          </span>
+        </div>
+      </div>
       <header 
         
         className="header-image"

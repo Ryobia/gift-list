@@ -43,6 +43,22 @@ const Header = () => {
           </>
         ) : (
           <>
+          <Link to="/">
+              <nav>
+                <img src={logo} alt="Shop Indie Index Logo" />
+              </nav>
+            </Link>
+            <div className="headerNavRight">
+              <button
+                className="header-contact-btn"
+                onClick={() => setShowContact(true)}
+              >
+                List Your Store
+              </button>
+              <ContactForm
+                isOpen={showContact}
+                onClose={() => setShowContact(false)}
+              />
             <nav>
               <a className="" onClick={() => Auth.logout()}>
                 <h3>Logout</h3>
@@ -53,6 +69,7 @@ const Header = () => {
                 <h3>Profile</h3>
               </Link>
             </nav>
+            </div>
           </>
         )}
       </div>
