@@ -29,7 +29,7 @@ html {
 body {
   height: 100%;
   margin: 0;
-  background-color: var(--mainGreen);
+  background-color: var(--parchment);
 }
 
 .standardShadow {
@@ -117,33 +117,58 @@ footer {
   }
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  background-color: var(--parchment);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 5px;
-  padding: 1em;
-  margin: 1em;
-  color: var(--text);
-  box-shadow: 5px 5px 6px 0px rgba(0, 0, 0, 0.5);
-  border: 2px solid var(--border);
-  align-items: center;
-  min-height: 150px;
+/* HEADER AND HOME PAGE STYLES ****************************************************************************************** */
+.header {
+  height: 300px;
 }
 
 header h1 {
   font-size: 48px;
 }
 
+.header-image {
+  position: absolute;
+  top: 85px;
+  left: 0;
+  width: 100vw;
+  height: 200px;
+  z-index: 100;
+  background-repeat: repeat-x;
+  background-size: auto 200px;
+  filter: brightness(0.5);
+}
+
+nav > img {
+  height: 60px;
+  margin-right: 1em;
+}
+
 .headerNav {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5em 1em;
+}
+
+.headerNavRight {
+  display: flex;
+  align-items: center;
   gap: 1em;
-  justify-content: space-around;
-  width: 100%;
+  margin: auto 0;
+}
+
+.header-contact-btn {
+  padding: 0.4em 0.8em;
+  border-radius: 5px;
+  background-color: var(--mainGreen);
+  color: var(--parchment);
+  transition: 0.3s;
+}
+
+.header-contact-btn:hover {
+  box-shadow: inset 0 0 0 2.5em var(--greenHover);
+  color: var(--parchment);
+  cursor: pointer;
 }
 
 nav a {
@@ -238,6 +263,24 @@ nav a:hover {
 }
 
 @media (max-width: 750px) {
+  nav > img {
+    height: 50px;
+  }
+
+  .header {
+    height: 270px;
+  }
+
+  .header-image {
+    height: 180px;
+    top: 70px;
+  }
+
+  .header-contact-btn {
+    padding: 0.3em 0.6em;
+    font-size: 12px;
+  }
+
   .homeSection a {
     width: 90%;
   }
@@ -257,17 +300,33 @@ nav a:hover {
 }
 
 @media (max-width: 550px) {
-  header h3 {
-    font-size: 16px;
+  nav > img {
+    height: 40px;
+  }
+
+  .header-image {
+    height: 150px;
+    top: 60px;
+  }
+
+  .header {
+    height: 240px;
+  }
+  
+  .header-contact-btn {
+    padding: 0.2em 0.4em;
+    font-size: 10px;
+  }
+
+  nav h3 {
+    font-size: 12px;
   }
 
   .backBtnSection {
     font-size: 10px;
   }
 
-  header a {
-    font-size: 10px;
-  }
+ 
 
   .homeSection a div h1 {
     font-size: 24px;
@@ -1926,7 +1985,7 @@ label {
 
 .store-item {
   background-color: var(--parchment);
-  border: 2px solid var(--border2);
+  border: 2px solid var(--text);
   border-radius: 6px;
   padding: 0.75rem;
   display: flex;

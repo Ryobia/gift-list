@@ -1,4 +1,3 @@
-import './ContactForm.css';
 
 
 import React, { useRef } from 'react';

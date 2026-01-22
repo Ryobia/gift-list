@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
+import banner from "../images/banner.png";
 import Store from "../components/Store";
 import Footer from "../components/Footer";
 import { QUERY_ALL_STORES, QUERY_ME } from "../utils/queries";
@@ -83,14 +84,14 @@ const Home = () => {
 
   return (
     <main className="homePage">
-      {/* Welcome Message */}
-      <div className="welcome-section">
-        <div className="welcome-message">
-            <h2>Welcome to Indie Index</h2>
-            <h3>The fastest growing database of independent stores</h3>
-            <p>Support small businesses, find one of a kind treasures, and take your gift-giving to the next level.</p>
-        </div>
-      </div>
+      <header 
+        
+        className="header-image"
+        style={{
+          backgroundImage: `url(${banner})`,
+          
+        }}
+      ></header>
       {/* Sidebar toggle button (mobile) */}
       <button
         className="sidebarToggleBtn"

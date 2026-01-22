@@ -97,7 +97,7 @@ const Store = (props) => {
     return (
         <>
             <div
-                className="store-item standardShadow"
+                className="store-item "
                 role="button"
                 tabIndex={0}
                 onClick={openModal}

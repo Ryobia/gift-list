@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import ContactForm from '../ContactForm';
-import './Footer.css';
 import instagramIcon from '../../images/Instagram_Glyph_Gradient.png';
 import tiktokIcon from '../../images/TikTok_Icon_Black_Circle.png';
 import xIcon from '../../images/logo-white.png';

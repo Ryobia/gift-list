@@ -1,49 +1,62 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import BackBtn from "../BackBtn";
-import indieIndexLogo from "../../images/indieindexfull.png";
+import ContactForm from "../ContactForm";
+import logo from "../../images/indieindexfull.png";
 
 import Auth from "../../utils/auth";
 
 const Header = () => {
+  const [showContact, setShowContact] = useState(false);
+
   return (
-    <header className="" style={{ backgroundImage: `url(${indieIndexLogo})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', display: 'flex', alignItems: 'flex-start', gap: '1em' }}>
+    <div className="header">
       <div className="headerNav">
-      <BackBtn />
-      <nav>
-        <Link className="" to="/">
-          <h3>Home</h3>
-        </Link>
-      </nav>
-      {Auth.loggedIn() === false ? (
-        <>
-          <nav>
-            <Link className="" to="/login">
-              <h3>Login</h3>
+        {Auth.loggedIn() === false ? (
+          <>
+            <Link to="/">
+              <nav>
+                <img src={logo} alt="Shop Indie Index Logo" />
+              </nav>
             </Link>
-          </nav>
-          <nav>
-            <Link style={{ color: "var(--heart)" }} to="/signup">
-              <h3>Signup</h3>
-            </Link>
-          </nav>
-        </>
-      ) : (
-        <>
-          <nav>
-            <a className="" onClick={() => Auth.logout()}>
-              <h3>Logout</h3>
-            </a>
-          </nav>
-          <nav>
-            <Link className="" to="/profile">
-              <h3>Profile</h3>
-            </Link>
-          </nav>
-        </>
-      )}
+            <div className="headerNavRight">
+              <button
+                className="header-contact-btn"
+                onClick={() => setShowContact(true)}
+              >
+                List Your Store
+              </button>
+              <ContactForm
+                isOpen={showContact}
+                onClose={() => setShowContact(false)}
+              />
+              <nav>
+                <Link className="" to="/login">
+                  <h3>Login</h3>
+                </Link>
+              </nav>
+              <nav>
+                <Link style={{ color: "var(--heart)" }} to="/signup">
+                  <h3>Signup</h3>
+                </Link>
+              </nav>
+            </div>
+          </>
+        ) : (
+          <>
+            <nav>
+              <a className="" onClick={() => Auth.logout()}>
+                <h3>Logout</h3>
+              </a>
+            </nav>
+            <nav>
+              <Link className="" to="/profile">
+                <h3>Profile</h3>
+              </Link>
+            </nav>
+          </>
+        )}
       </div>
-    </header>
+    </div>
   );
 };
 
