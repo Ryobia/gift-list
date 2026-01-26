@@ -202,3 +202,17 @@ export const QUERY_ALL_STORES = gql`
     }
   }
 `;
+
+export const QUERY_STORE = gql`
+  query store($_id: ID!) {
+    store(_id: $_id) {
+      _id
+      storeName
+      storeURL
+      storeLogo
+      storeDescription
+      dateAdded
+      tags
+    }
+  }
+`;

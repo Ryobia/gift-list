@@ -55,6 +55,9 @@ const resolvers = {
         .populate("users")
         .populate("friends");
     },
+    store: async (parent, { _id }) => {
+      return Store.findById(_id);
+    },
     list: async (parent, { _id }) => {
       return List.findById(_id)
         .select("-__v")

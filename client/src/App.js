@@ -17,6 +17,7 @@ import NoMatch from "./pages/NoMatch";
 import Signup from "./pages/Signup";
 import SingleList from "./pages/SingleList";
 import SingleItem from "./pages/SingleItem";
+import SingleStore from "./pages/SingleStore";
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -58,10 +59,12 @@ function App() {
           {/* <Route path="/passReset/:id" element={<PassReset/>} /> */}
           <Route  path='/signup' element={<Signup/>} />
           <Route  path='/lists/:listId/:id' element={<SingleItem/>} />
+          <Route  path='/stores/:id' element={<SingleStore/>} />
           <Route path="*" element={<NoMatch/>} />
         </Routes>
       </div>
-      {/* <Footer /> */}
+            <Footer />
+
       </BrowserRouter>
     </ApolloProvider>
   );

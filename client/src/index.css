@@ -206,7 +206,7 @@ nav a:hover {
 }
 
 .search-bar-text {
-   position: absolute;
+  position: absolute;
   top: -3.5em;
   left: 0;
   width: 100%;
@@ -215,7 +215,7 @@ nav a:hover {
   font-weight: 600;
   padding: 0.3em 1.2em;
   border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
   pointer-events: auto;
   z-index: 1;
   text-align: center;
@@ -244,7 +244,7 @@ nav a:hover {
   display: flex;
   align-items: center;
   background-color: var(--mainGreen);
-  padding: .3em .7em;
+  padding: 0.3em 0.7em;
   border-radius: 5px;
 }
 
@@ -328,7 +328,7 @@ nav a:hover {
     top: -3.5em;
   }
   .search-icon {
-    padding: .2em .5em;
+    padding: 0.2em 0.5em;
   }
   .search-bar {
     font-size: 14px;
@@ -340,7 +340,7 @@ nav a:hover {
 
   .search-bar-div {
     top: 190px;
-  } 
+  }
 
   nav > img {
     height: 50px;
@@ -383,7 +383,7 @@ nav a:hover {
     font-size: 1.2em;
   }
   .search-icon {
-    padding: .15em .4em;
+    padding: 0.15em 0.4em;
   }
   .search-bar {
     font-size: 12px;
@@ -392,7 +392,7 @@ nav a:hover {
 
   .search-bar-div {
     top: 160px;
-  } 
+  }
   nav > img {
     height: 40px;
   }
@@ -1691,32 +1691,6 @@ label {
   font-size: 18px;
 }
 
-.sidebarToggleBtn {
-  display: block;
-  position: fixed;
-  left: 0;
-  top: 65%;
-  transform: translateY(-50%);
-  z-index: 100;
-  padding: 0.75rem 0.5rem;
-  background-color: var(--parchment);
-  color: var(--text);
-  border: 2px solid var(--border);
-  border-left: none;
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transition: all 0.2s ease;
-}
-
-.sidebarToggleBtn:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  padding-right: 0.75rem;
-}
-
 .homeContentWrapper {
   display: flex;
   gap: 1.5rem;
@@ -1724,183 +1698,6 @@ label {
   padding: 1rem;
   box-sizing: border-box;
   position: relative;
-}
-
-.homeSidebar {
-  width: 220px;
-  flex-shrink: 0;
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  z-index: 101;
-  background-color: var(--color5);
-  border-right: 2px solid var(--border);
-  padding: 1rem;
-  box-sizing: border-box;
-  overflow-y: auto;
-  transform: translateX(-100%);
-  opacity: 0;
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
-}
-
-.homeSidebar.open {
-  transform: translateX(0);
-  opacity: 1;
-}
-
-.sidebarOverlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 99;
-}
-
-.homeSidebar.open ~ .sidebarOverlay {
-  display: block;
-}
-
-.sortingOptions {
-  background-color: var(--parchment);
-  border: 2px solid var(--border);
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.sortingOptions h3 {
-  margin: 0 0 1rem 0;
-  font-size: 16px;
-  color: var(--text);
-}
-
-.sortButtonGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.sortBtn {
-  padding: 0.5rem 0.75rem;
-  background-color: var(--parchment);
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 500;
-  transition: all 0.15s ease;
-}
-
-.sortBtn:hover {
-  background-color: var(--border);
-  color: var(--color5);
-  border-color: var(--greenHover);
-}
-
-.sortBtn.active {
-  background-color: var(--greenHover);
-  color: var(--color5);
-  border-color: var(--text);
-}
-
-/* Tag Filter */
-.tagsFilter {
-  background-color: var(--parchment);
-  border: 2px solid var(--border);
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.tagsFilter h3 {
-  margin: 0 0 1rem 0;
-  font-size: 16px;
-  color: var(--text);
-}
-
-.tagButtonGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.tagBtn {
-  padding: 0.4rem 0.6rem;
-  background-color: var(--parchment);
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 12px;
-  text-align: left;
-  transition: all 0.15s ease;
-}
-
-.tagBtn:hover {
-  background-color: var(--border);
-  border-color: var(--greenHover);
-}
-
-.tagBtn.active {
-  background-color: var(--heart);
-  color: var(--color5);
-  border-color: var(--mainGreen);
-}
-
-.clearFiltersBtn {
-  width: 100%;
-  padding: 0.4rem;
-  background-color: var(--text);
-  color: var(--color5);
-  border: 1px solid var(--text);
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 600;
-  transition: all 0.15s ease;
-}
-
-.clearFiltersBtn:hover {
-  background-color: var(--color5);
-  color: var(--text);
-}
-
-.sidebarCloseBtn {
-  display: none;
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: var(--text);
-}
-
-.sidebarCloseBtn:hover {
-  color: var(--mainGreen);
-}
-
-.sidebarOverlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 99;
 }
 
 .storesSection {
@@ -2158,96 +1955,8 @@ label {
   color: var(--text);
 }
 
-/* Compact modal content override for Streamlined Store modal */
-.modal-content {
-  max-width: 360px;
-  height: fit-content;
-  background-color: var(--parchment);
-  color: var(--text);
-  border-radius: 8px;
-  padding: 0.6rem;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-  border: 2px solid var(--border);
-  box-sizing: border-box;
-}
-
-.modal-content h2 {
-  font-size: 20px;
-  margin: 0;
-  color: var(--text);
-}
-
-.modal-content p {
-  margin: 0.65rem 0 0.85rem 0;
-  font-size: 16px;
-  color: var(--text);
-  line-height: 1.25;
-}
-
-.modal-content .store-link {
-  margin-top: 0.5rem;
-}
-
-/* Ensure sort-style buttons inside modals inherit proper spacing and visited color */
-.modal-content .sortBtn {
-  margin-top: 0.5rem;
-}
-
 .sortBtn:visited {
   color: var(--text);
-}
-
-/* Modal close button - X style */
-.modal-close-btn {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  background-color: var(--text);
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: var(--parchment);
-  border-radius: 5px;
-  padding: 0;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.15s ease;
-  font-weight: bold;
-}
-
-.modal-close-btn:hover {
-  color: var(--text);
-  background-color: var(--parchment);
-}
-
-/* Visit Store button fills width at bottom */
-.modal-visit-btn {
-  display: block;
-  width: 100%;
-  padding: 0.5rem !important;
-  background-color: var(--text) !important;
-  color: var(--color5) !important;
-  border-radius: 5px;
-  text-decoration: none;
-  text-align: center;
-  transition:
-    background-color 0.15s ease,
-    color 0.15s ease;
-  margin-top: 1.5rem !important;
-  margin-bottom: 0 !important;
-  box-sizing: border-box;
-}
-
-.modal-visit-btn:hover {
-  background-color: var(--color5) !important;
-  color: var(--text) !important;
-}
-
-.modal-visit-btn:active {
-  color: var(--text) !important;
 }
 
 /* Favorite Store Button */
@@ -2278,20 +1987,134 @@ label {
   height: 20px;
 }
 
-@media (max-width: 520px) {
-  .modal-content {
-    width: calc(100% - 2rem);
-    padding: 0.6rem;
-  }
-  .modal-content h2 {
-    font-size: 16px;
-  }
-  .modal-content p {
-    font-size: 13px;
-  }
+.back-link {
+  display: inline-block;
+  margin: 1rem ;
+  padding: 0.5rem 1rem;
+  background-color: var(--mainGreen);
+  color: var(--parchment);
+  border-radius: 5px;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 }
 
-@media (max-width: 600px) {
+.back-link:hover {
+  background-color: var(--greenHover);
+  color: var(--parchment);
+}
+
+.single-store-page {
+  max-width: 600px;
+  margin: 1rem auto;
+  display: flex;
+  background-color: var(--mainGreen);
+  justify-content: space-around;
+  border: 2px solid var(--text);
+  border-radius: 5px;
+  padding: 1.5em;
+}
+
+.single-store-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.single-store-header h1 {
+  color: var(--parchment);
+  margin-bottom: 0.5rem;
+}
+
+.single-store-header img {
+  margin-bottom: 0.5rem;
+  color: var(--parchment);
+  border: 2px solid var(--parchment);
+  background-color: var(--parchment);
+  border-radius: 5px;
+  padding: 0.4em 0.8em;
+}
+
+.single-store-details {
+  margin-top: 0.5rem;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.single-store-description {
+  width: 90%;
+  margin-top: 0.5rem;
+  color: var(--parchment);
+  font-size: 16px;
+  margin: auto 1em;
+}
+
+.single-store-bottom {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.single-store-tags {
+  margin-top: 0.5rem;
+  color: var(--parchment);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.single-store-url {
+  display: inline-block;
+  margin: 1rem;
+  padding: .5rem 1.5rem;
+  background-color: var(--parchment);
+  color: var(--text);
+  border-radius: 5px;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.single-store-url:hover {
+  background-color: var(--greenHover);
+  color: var(--parchment);
+}
+
+.single-store-footer {
+  width: 100%;
+  margin-top: 2rem;
+  color: var(--text);
+  font-size: 14px;
+  display: flex;  
+  flex-direction: row;
+}
+
+.single-store-footer a {
+  display: inline-block;
+  margin: 1rem;
+  padding: .5rem 1.5rem;
+  background-color: var(--mainGreen);
+  color: var(--parchment);
+  border-radius: 5px;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.single-store-footer a:hover {
+  background-color: var(--greenHover);
+}
+
+@media (max-width: 750px) {
   .stores-container {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 0.6rem;
@@ -2305,5 +2128,10 @@ label {
   }
   .store-description {
     font-size: 12px;
+  }
+  .single-store-page {
+    max-width: 80%;
+    flex-direction: column;
+    align-items: center;
   }
 }

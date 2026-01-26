@@ -63,6 +63,7 @@ const typeDefs = gql`
     allLists: [List]
     allItems: [Item]
     allStores: [Store]
+    store(_id: ID): Store
   }
 
   type Mutation {
