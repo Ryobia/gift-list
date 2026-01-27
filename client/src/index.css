@@ -2051,7 +2051,7 @@ label {
   margin-top: 0.5rem;
   color: var(--parchment);
   font-size: 16px;
-  margin: auto 1em;
+  text-align: center;
 }
 
 .single-store-bottom {
@@ -2088,19 +2088,24 @@ label {
   color: var(--parchment);
 }
 
-.single-store-footer {
+.recommended-div {
   width: 100%;
   margin-top: 2rem;
   color: var(--text);
   font-size: 14px;
   display: flex;  
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.single-store-footer a {
-  display: inline-block;
+.recommended-div a {
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
   margin: 1rem;
-  padding: .5rem 1.5rem;
+  padding: 1rem 1rem;
   background-color: var(--mainGreen);
   color: var(--parchment);
   border-radius: 5px;
@@ -2110,8 +2115,12 @@ label {
     color 0.15s ease;
 }
 
-.single-store-footer a:hover {
+.recommended-div a:hover {
   background-color: var(--greenHover);
+}
+
+.recommended-img {
+  border-radius: 5px;
 }
 
 @media (max-width: 750px) {

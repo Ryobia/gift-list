@@ -26,12 +26,20 @@ const SingleStore = () => {
   // Find stores that share all the same tags, excluding the current store
   let recommendedStores = [];
   if (storesData && storesData.allStores && tags && tags.length > 0) {
+    // First, try to find stores that share all tags
     recommendedStores = storesData.allStores.filter(s => {
       if (s._id === id) return false;
       if (!s.tags || s.tags.length === 0) return false;
-      // Check if every tag in 'tags' is present in s.tags
       return tags.every(tag => s.tags.includes(tag));
     });
+    // If none found, find stores that share at least one tag
+    if (recommendedStores.length === 0) {
+      recommendedStores = storesData.allStores.filter(s => {
+        if (s._id === id) return false;
+        if (!s.tags || s.tags.length === 0) return false;
+        return tags.some(tag => s.tags.includes(tag));
+      });
+    }
   }
 
   return (
@@ -87,11 +95,12 @@ const SingleStore = () => {
         {recommendedStores.length > 0 && (
           <div className="">
             <h2>You might also like</h2>
-            <div className="single-store-footer">
+            <div className="recommended-div">
               {recommendedStores.map(store => (
                 <Link key={store._id} to={`/stores/${store._id}`} className="store-recommendation-card">
                   <div>
                     <img
+                    className="recommended-img"
                       src={store.storeLogo ? store.storeLogo : indieindexlogo}
                       alt={store.storeName + ' logo'}
                       onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = indieindexlogo; }}
