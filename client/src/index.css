@@ -2226,8 +2226,15 @@ label {
   align-items: center;
   margin: .5em auto;
   justify-content: space-between;
-  width: 80%;
+  width: 1200px;
 }
+
+@media (max-width: 1370px) {
+  .sort-filter-bar {
+    width: 85%;
+  }
+}
+
 .sort-options {
   display: flex;
   align-items: center;
@@ -2323,7 +2330,6 @@ label {
   margin: 1.5rem 1.5rem 1rem 0;
 }
 
-/* Shrink sort-filter-bar contents for screens < 550px */
 @media (max-width: 550px) {
   .sort-filter-bar {
     font-size: 14px;
