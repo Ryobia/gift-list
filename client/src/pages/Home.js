@@ -121,12 +121,84 @@ const Home = () => {
           </span>
         </div>
       </div>
+
       <header
         className="header-image"
         style={{
           backgroundImage: `url(${banner})`,
         }}
       ></header>
+
+      {/* Fixed vertical Filter by tag button on left */}
+      
+      <div className="sort-filter-bar">
+        <button
+        className="open-tag-sidebar-btn "
+        onClick={() => setSidebarOpen(true)}
+        aria-label="Open tag filter sidebar"
+      >
+        <span className="">Filter by tag</span>
+      </button>
+        
+        <div className="sort-options">
+          <label htmlFor="sortBy" className="sort-label">Sort by:</label>
+          <select
+            id="sortBy"
+            value={sortBy}
+            onChange={e => setSortBy(e.target.value)}
+            className="sort-select"
+          >
+            <option value="favorites-first">Favorites First</option>
+            <option value="name-asc">A-Z</option>
+            <option value="name-desc">Z-A</option>
+            <option value="oldest">Oldest First</option>
+            <option value="newest">Newest First</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Tag Filter Sidebar */}
+      <div className={`tag-sidebar${sidebarOpen ? ' open' : ''}`}>
+        <div className="tag-sidebar-header">
+          <span className="tag-sidebar-title">Filter by tag</span>
+          <button
+            className="close-tag-sidebar-btn"
+            onClick={() => setSidebarOpen(false)}
+            aria-label="Close tag filter sidebar"
+          >
+            ×
+          </button>
+        </div>
+        <div className="tag-sidebar-content">
+          <div className="tag-filter-list">
+            {allTags.length > 0 ? (
+              allTags.map(tag => (
+                <button
+                  key={tag}
+                  type="button"
+                  onClick={() => toggleTag(tag)}
+                  className={`tag-filter-btn${selectedTags.includes(tag) ? ' selected' : ''}`}
+                >
+                  {tag}
+                </button>
+              ))
+            ) : (
+              <span className="no-tags">No tags</span>
+            )}
+          </div>
+          {selectedTags.length > 0 && (
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="clear-tags-btn"
+            >
+              Clear
+            </button>
+          )}
+        </div>
+      </div>
+      {/* Overlay for sidebar */}
+      {sidebarOpen && <div className="tag-sidebar-overlay" onClick={() => setSidebarOpen(false)}></div>}
 
       <div className="homeContentWrapper">
         {/* Stores section */}
